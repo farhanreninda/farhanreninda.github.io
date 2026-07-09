@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Halaman login admin SIP">
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <g transform="translate(430 92)">
+    <rect x="178" y="0" width="56" height="56" rx="15" fill="#cf332d"/>
+    <text x="76" y="110" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="38" font-weight="900" fill="#111827">Selamat datang</text>
+    <text x="94" y="146" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#97a1b2">Masuk untuk mulai mengelola warung Anda hari ini.</text>
+    <text x="0" y="220" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#475569">Username</text>
+    <rect x="0" y="232" width="420" height="58" rx="12" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="48" y="267" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800" fill="#111827">admin</text>
+    <text x="0" y="326" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#475569">Password</text>
+    <rect x="0" y="338" width="420" height="58" rx="12" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="48" y="374" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" fill="#111827">*****</text>
+    <rect x="0" y="422" width="420" height="62" rx="10" fill="#c93530"/>
+    <text x="138" y="461" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" fill="#fff">Masuk ke Dashboard -&gt;</text>
+    <text x="72" y="528" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" fill="#a7afbd">Hanya untuk pegawai warung. Hubungi pemilik untuk akses baru.</text>
+  </g>
+</svg>

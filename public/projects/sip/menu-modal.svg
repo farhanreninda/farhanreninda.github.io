@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Modal tambah menu SIP">
+  <rect width="1280" height="720" fill="#efefef"/>
+  <rect width="210" height="720" fill="#ffffff" opacity=".65"/>
+  <rect x="236" y="74" width="940" height="590" rx="18" fill="#ffffff" opacity=".5"/>
+  <rect width="1280" height="720" fill="#111827" opacity=".34"/>
+  <g transform="translate(382 86)">
+    <rect width="520" height="530" rx="24" fill="#ffffff" stroke="#d9dee8" stroke-width="2"/>
+    <text x="36" y="58" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="900" fill="#111827">Tambah Menu Baru</text>
+    <text x="36" y="88" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#64748b">Lengkapi data menu, harga, modal, stok, dan deskripsi.</text>
+    <g font-family="Inter, Arial, sans-serif" font-size="13" font-weight="900" fill="#475569">
+      <text x="36" y="140">NAMA MENU</text><text x="300" y="140">KATEGORI</text><text x="36" y="214">HARGA JUAL</text><text x="214" y="214">MODAL / HPP</text><text x="392" y="214">STOK</text>
+    </g>
+    <g fill="#fff" stroke="#d9dee8" stroke-width="2">
+      <rect x="36" y="154" width="230" height="42" rx="10"/><rect x="300" y="154" width="184" height="42" rx="10"/>
+      <rect x="36" y="228" width="150" height="42" rx="10"/><rect x="214" y="228" width="150" height="42" rx="10"/><rect x="392" y="228" width="92" height="42" rx="10"/>
+      <rect x="36" y="324" width="448" height="70" rx="12"/><rect x="36" y="432" width="448" height="72" rx="12" fill="#f8fafc"/>
+    </g>
+    <text x="56" y="181" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#9ca3af">Contoh: Bakso Urat Jumbo</text>
+    <text x="36" y="306" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="900" fill="#475569">DESKRIPSI</text>
+    <rect x="372" y="474" width="92" height="34" rx="10" fill="#cf332d"/>
+    <text x="393" y="496" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="900" fill="#fff">Tambah</text>
+  </g>
+</svg>

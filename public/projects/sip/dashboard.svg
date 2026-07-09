@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Dashboard admin SIP">
+  <rect width="1280" height="720" fill="#f4f5f7"/>
+  <rect width="210" height="720" fill="#ffffff"/>
+  <text x="58" y="62" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" fill="#111827">Bakso Tulus</text>
+  <text x="28" y="138" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="900" fill="#98a2b3">MENU UTAMA</text>
+  <rect x="24" y="170" width="162" height="34" rx="10" fill="#ffe8e7"/>
+  <text x="58" y="192" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#cf332d">Dashboard</text>
+  <text x="58" y="240" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#475569">Kelola Pesanan</text>
+  <text x="58" y="288" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#475569">Kelola Transaksi</text>
+  <g transform="translate(250 40)">
+    <text x="0" y="50" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="34" font-weight="900" fill="#111827">Dashboard</text>
+    <text x="0" y="98" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" fill="#111827">Halo, Admin Tulus</text>
+    <g fill="#fff" stroke="#e5e7eb" stroke-width="2">
+      <rect x="0" y="130" width="300" height="92" rx="16"/><rect x="324" y="130" width="300" height="92" rx="16"/>
+      <rect x="648" y="130" width="300" height="92" rx="16"/><rect x="0" y="250" width="300" height="92" rx="16"/>
+    </g>
+    <text x="26" y="168" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#7b8794">Pesanan Hari Ini</text>
+    <text x="26" y="202" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900" fill="#111827">28</text>
+    <text x="350" y="168" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#7b8794">Total Transaksi</text>
+    <text x="350" y="202" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900" fill="#111827">Rp 1.420.000</text>
+    <text x="674" y="168" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#7b8794">Menu Aktif</text>
+    <text x="674" y="202" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900" fill="#111827">12</text>
+    <rect x="0" y="380" width="620" height="250" rx="18" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="28" y="424" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" fill="#111827">Penjualan Mingguan</text>
+    <polyline points="60,565 150,520 250,540 360,480 505,455 575,505" fill="none" stroke="#cf332d" stroke-width="7" stroke-linecap="round"/>
+    <rect x="650" y="380" width="300" height="250" rx="18" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="678" y="424" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" fill="#111827">Menu Terlaris</text>
+    <rect x="678" y="462" width="220" height="18" rx="9" fill="#f2d2cf"/><rect x="678" y="510" width="175" height="18" rx="9" fill="#e5e7eb"/><rect x="678" y="558" width="132" height="18" rx="9" fill="#e5e7eb"/>
+  </g>
+</svg>

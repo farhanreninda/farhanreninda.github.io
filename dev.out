@@ -1,0 +1,56 @@
+
+> farhanreninda-portfolio@1.0.0 dev
+> vite --host 127.0.0.1 --port 5173
+
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m540[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m15.01.56[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m15.02.31[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/main.css[22m
+[2m15.02.47[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue?vue&type=style&index=0&scoped=48a13218&lang.css[22m
+[2m15.03.17[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue, /src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css[22m
+[2m15.03.43[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/SkillsSection.vue, /src/components/SkillsSection.vue?vue&type=style&index=0&scoped=5d8fd36a&lang.css[22m
+[2m15.04.12[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ExperienceSection.vue, /src/components/ExperienceSection.vue?vue&type=style&index=0&scoped=47c507f7&lang.css[22m
+[2m15.04.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProjectsSection.vue, /src/components/ProjectsSection.vue?vue&type=style&index=0&scoped=b8f65a8c&lang.css[22m
+[2m15.05.13[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/CertificatesSection.vue?vue&type=style&index=0&scoped=e5c067b7&lang.css, /src/components/CertificatesSection.vue[22m
+[2m15.05.35[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ContactSection.vue, /src/components/ContactSection.vue?vue&type=style&index=0&scoped=b5664408&lang.css[22m
+[2m15.20.42[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/main.css[22m
+[2m15.20.57[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue, /src/components/AppHeader.vue?vue&type=style&index=0&scoped=48a13218&lang.css[22m
+[2m15.21.27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m15.21.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/SkillsSection.vue?vue&type=style&index=0&scoped=5d8fd36a&lang.css[22m
+[2m15.21.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/CertificatesSection.vue?vue&type=style&index=0&scoped=e5c067b7&lang.css[22m
+[2m15.21.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ExperienceSection.vue?vue&type=style&index=0&scoped=47c507f7&lang.css[22m
+[2m15.21.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css[22m
+[2m15.21.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProjectsSection.vue?vue&type=style&index=0&scoped=b8f65a8c&lang.css[22m
+[2m15.21.52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ContactSection.vue?vue&type=style&index=0&scoped=b5664408&lang.css[22m
+[2m15.49.21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue, /src/components/AppFooter.vue, /src/components/HeroSection.vue, /src/components/ExperienceSection.vue, /src/components/ProjectsSection.vue, /src/components/AboutSection.vue, /src/components/CertificatesSection.vue, /src/components/ContactSection.vue, /src/components/SkillsSection.vue[22m
+[2m15.49.21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/main.css[22m
+[2m15.49.21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m15.49.21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue[22m
+[2m15.50.04[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProjectsSection.vue, /src/components/ProjectsSection.vue?vue&type=style&index=0&scoped=b8f65a8c&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/SkillsSection.vue?vue&type=style&index=0&scoped=5d8fd36a&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue?vue&type=style&index=0&scoped=48a13218&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ExperienceSection.vue?vue&type=style&index=0&scoped=47c507f7&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/CertificatesSection.vue?vue&type=style&index=0&scoped=e5c067b7&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProjectsSection.vue?vue&type=style&index=0&scoped=b8f65a8c&lang.css[22m
+[2m15.51.06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ContactSection.vue?vue&type=style&index=0&scoped=b5664408&lang.css, /src/components/ContactSection.vue[22m
+[2m16.05.11[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m16.09.27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m16.12.55[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css, /src/components/HeroSection.vue[22m
+[2m16.15.12[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/main.css[22m
+[2m16.15.12[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue?vue&type=style&index=0&scoped=48a13218&lang.css[22m
+[2m16.20.46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m16.24.34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m16.29.31[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroSection.vue, /src/components/HeroSection.vue?vue&type=style&index=0&scoped=9caf22ae&lang.css[22m
+[2m16.49.11[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue, /src/components/AppFooter.vue, /src/components/HeroSection.vue, /src/components/ExperienceSection.vue, /src/components/ProjectsSection.vue, /src/components/AboutSection.vue, /src/components/CertificatesSection.vue, /src/components/ContactSection.vue, /src/components/SkillsSection.vue[22m
+[2m16.49.51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue, /src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css[22m
+[2m16.50.09[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/CertificatesSection.vue[22m
+[2m16.56.02[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue, /src/components/AppFooter.vue, /src/components/HeroSection.vue, /src/components/ExperienceSection.vue, /src/components/ProjectsSection.vue, /src/components/AboutSection.vue, /src/components/CertificatesSection.vue, /src/components/ContactSection.vue, /src/components/SkillsSection.vue[22m
+[2m16.56.02[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue, /src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css[22m
+[2m17.00.12[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css, /src/components/AboutSection.vue[22m
+[2m17.03.57[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue?vue&type=style&index=0&scoped=ba907332&lang.css, /src/components/AboutSection.vue[22m
+[2m17.04.34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AppHeader.vue, /src/components/AppFooter.vue, /src/components/HeroSection.vue, /src/components/ExperienceSection.vue, /src/components/ProjectsSection.vue, /src/components/AboutSection.vue, /src/components/CertificatesSection.vue, /src/components/ContactSection.vue, /src/components/SkillsSection.vue[22m
+[2m17.04.34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutSection.vue[22m

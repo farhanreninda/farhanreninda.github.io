@@ -1,0 +1,28 @@
+{
+  "name": "farhanreninda-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Personal portfolio of Farhan Reninda Budiansyah built with Vue 3 + Vite.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "@unhead/vue": "^1.7.2",
+    "@vueuse/core": "^11.3.0",
+    "pinia": "^2.2.6",
+    "vue": "^3.5.13",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "gh-pages": "^6.2.0",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.11",
+    "vue-tsc": "^2.1.10"
+  }
+}

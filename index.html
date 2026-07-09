@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portofolio Farhan Reninda Budiansyah â€” Android Developer (Kotlin), Backend (Laravel), mahasiswa Sistem Informasi Telkom University." />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Farhan Reninda â€” Portfolio</title>
+    <script>
+      // Hydrate theme early to avoid flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = saved || (prefersDark ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      (function () {
+        try {
+          var p = new URLSearchParams(location.search);
+          if (p.has('theme')) { localStorage.setItem('theme', p.get('theme')); }
+          if (p.get('noreveal') === '1') { document.documentElement.setAttribute('data-noreveal', '1'); }
+        } catch (e) { }
+      })();
+    </script>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

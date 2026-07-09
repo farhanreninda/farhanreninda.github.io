@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Pesanan pelanggan SIP mobile">
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <g transform="translate(500 28)">
+    <rect width="280" height="664" rx="34" fill="#111827"/>
+    <rect x="10" y="12" width="260" height="640" rx="28" fill="#ffffff"/>
+    <text x="72" y="58" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="22" font-weight="900" fill="#111827">Pesanan Saya</text>
+    <text x="28" y="108" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="900" fill="#64748b">3 ITEM DIPILIH</text>
+    <g fill="#fff" stroke="#e5e7eb" stroke-width="2">
+      <rect x="24" y="126" width="232" height="92" rx="14"/><rect x="24" y="232" width="232" height="92" rx="14"/><rect x="24" y="338" width="232" height="92" rx="14"/>
+    </g>
+    <text x="82" y="158" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#111827">Bakso Halus</text>
+    <text x="82" y="182" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" fill="#cf332d">Rp 15.000</text>
+    <text x="82" y="264" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#111827">Bakso Urat</text>
+    <text x="82" y="288" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" fill="#cf332d">Rp 18.000</text>
+    <text x="82" y="370" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#111827">Baso Besar</text>
+    <text x="82" y="394" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" fill="#cf332d">Rp 17.000</text>
+    <text x="28" y="470" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="900" fill="#64748b">Catatan Semua Pesanan</text>
+    <rect x="24" y="486" width="232" height="64" rx="10" fill="#fff" stroke="#e5e7eb"/>
+    <rect x="24" y="570" width="232" height="56" rx="16" fill="#fff" stroke="#e5e7eb"/>
+    <text x="34" y="604" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#111827">Total Rp 50.000</text>
+    <rect x="166" y="582" width="80" height="34" rx="10" fill="#cf332d"/>
+    <text x="182" y="604" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#fff">Konfirmasi</text>
+  </g>
+</svg>
