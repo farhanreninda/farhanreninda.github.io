@@ -218,7 +218,7 @@ export const cv: Cv = {
         "/projects/sip/customer-order.svg",
         "/projects/sip/order-status.svg",
       ],
-      link: "https://farhanreninda.github.io/SIP/",
+      link: "https://farhanreninda.my.id/SIP/",
     },
     {
       name: "Redmimo Application",

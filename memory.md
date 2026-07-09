@@ -1198,3 +1198,51 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 **Pending Tasks:**
 - Review manual carousel proyek SIP di browser dan ganti asset jika user menyediakan file gambar asli
+
+| 2026-07-09 | Update link proyek SIP | Mengganti link akses Sistem Informasi Penjualan menjadi `https://farhanreninda.my.id/SIP/` | User meminta link project SIP diarahkan ke domain personal terbaru |
+
+### Session 2026-07-09 - Update Link Proyek SIP
+**Dikerjakan:**
+- Mengubah link project `Sistem Informasi Penjualan` di `src/data/cv.ts`
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Data link tetap disimpan di `cv.ts` sebagai single source of truth untuk project portfolio
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Tidak ada
+
+**Commit Message Terakhir:**
+```text
+Feature
+Redesign section portfolio dan tambah showcase proyek SIP
+```
+
+| 2026-07-09 | Simpan format commit message | Setiap selesai perubahan, agent harus menyertakan commit message dengan format dua baris: tipe seperti `Feature`, lalu ringkasan perubahan di bawahnya | User meminta commit message selalu dibuat dan disimpan sebagai kebiasaan kerja |
+
+### Known Context Update - Commit Message
+- Setelah setiap perubahan kode/konten, sertakan rekomendasi commit message di final response.
+- Commit message dibuat dalam Bahasa Indonesia.
+- Format commit message yang diminta user:
+
+```text
+Feature
+Ringkasan perubahan
+```
+
+### Session 2026-07-09 - Simpan Preferensi Commit Message
+**Dikerjakan:**
+- Menyimpan preferensi format commit message ke `memory.md`
+- Menyiapkan commit message untuk perubahan portfolio saat ini
+
+**Keputusan Penting:**
+- Final response setelah perubahan berikutnya harus menyertakan commit message format `Feature` di baris pertama dan ringkasan di baris kedua
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Tidak ada
