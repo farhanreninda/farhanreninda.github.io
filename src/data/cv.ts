@@ -206,7 +206,7 @@ export const cv: Cv = {
       period: "",
       description: "Sistem informasi penjualan berbasis web untuk mengelola pesanan, transaksi kasir, menu, laporan, dan alur pemesanan pelanggan.",
       tech: ["Vue.js", "Web App", "Dashboard"],
-      thumbnail: "/projects/sip/cover.svg",
+      thumbnail: "/projects/sip/cover.png",
       images: [
         "/projects/sip/login.svg",
         "/projects/sip/dashboard.svg",

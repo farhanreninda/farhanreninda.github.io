@@ -1215,6 +1215,60 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 **Pending Tasks:**
 - Tidak ada
 
+| 2026-07-09 | Perbarui cover proyek SIP | Mengganti mockup web dan mobile di `public/projects/sip/cover.svg` dengan screenshot asli yang ditanam sebagai data image | User ingin desain cover tetap sama, tetapi tampilan web dan mobile memakai gambar asli dari lampiran |
+
+### Session 2026-07-09 - Perbarui Cover SIP
+**Dikerjakan:**
+- Mengambil screenshot asli dari `D:\han\web sip.png` dan `D:\han\mobile sip.png`
+- Menanam screenshot web dan mobile langsung ke `public/projects/sip/cover.svg`
+- Menghapus copy PNG sementara agar aset public tidak redundant
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Screenshot ditanam langsung dalam SVG supaya cover tetap aman saat dirender sebagai gambar di card proyek
+
+**Technical Debt:**
+- Browser bawaan session tidak tersedia, sehingga verifikasi visual langsung dilakukan terbatas lewat struktur file dan build
+
+**Pending Tasks:**
+- Review manual tampilan cover SIP di browser lokal
+
+| 2026-07-09 | Refinement cover dan galeri proyek SIP | Mengganti thumbnail SIP ke `cover.png`, menghapus `cover.svg` lama, dan membuat modal proyek selalu membuka thumbnail sebagai slide pertama | User ingin font cover SIP lebih natural seperti proyek lain dan detail proyek menampilkan gambar cover terlebih dahulu sebelum carousel |
+
+### Session 2026-07-09 - Refinement Cover dan Galeri SIP
+**Dikerjakan:**
+- Membuat `public/projects/sip/cover.png` dari screenshot asli web dan mobile SIP dengan komposisi cover yang lebih natural
+- Mengubah thumbnail proyek SIP di `src/data/cv.ts` dari `cover.svg` ke `cover.png`
+- Mengubah `ProjectsSection.vue` agar galeri detail selalu dimulai dari thumbnail/cover, lalu gambar detail berikutnya
+- Menghapus `public/projects/sip/cover.svg` lama yang sudah tidak dipakai
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Cover SIP memakai PNG final agar font dan screenshot stabil seperti asset proyek lain
+- Carousel proyek memakai thumbnail sebagai slide pertama untuk menjaga konteks visual antara card dan modal
+
+**Technical Debt:**
+- Verifikasi visual browser manual masih perlu dilakukan oleh user karena browser bawaan session tidak tersedia
+
+**Pending Tasks:**
+- Review manual card SIP dan modal detail di `http://localhost:5173/#projects`
+
+| 2026-07-09 | Center label cover SIP | Meregenerasi `public/projects/sip/cover.png` agar teks label `Web Application` berada tepat di tengah pill | User melihat label cover SIP belum center dibanding cover proyek lain |
+
+### Session 2026-07-09 - Center Label Cover SIP
+**Dikerjakan:**
+- Meregenerasi cover SIP PNG dengan alignment label yang dihitung center di dalam pill
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Perbaikan dilakukan di asset cover PNG agar tampilan card proyek langsung ikut rapi tanpa mengubah layout komponen
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Review manual refresh halaman proyek untuk memastikan cache browser tidak menampilkan cover lama
+
 **Commit Message Terakhir:**
 ```text
 Feature

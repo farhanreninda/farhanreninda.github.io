@@ -19,8 +19,9 @@ const closeProject = () => {
 const selectedProjectImages = computed(() => {
   const project = selectedProject.value;
   if (!project) return [];
-  if (project.images?.length) return project.images;
-  return project.thumbnail ? [project.thumbnail] : [];
+  const images = project.images ?? [];
+  const gallery = project.thumbnail ? [project.thumbnail, ...images] : images;
+  return Array.from(new Set(gallery));
 });
 
 const activeProjectImage = computed(() => selectedProjectImages.value[selectedImageIndex.value] || "");
