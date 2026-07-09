@@ -1215,6 +1215,112 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 **Pending Tasks:**
 - Tidak ada
 
+| 2026-07-09 | Ringkas teknologi proyek SIP | Menghapus `Express` dari tag teknologi proyek SIP | User ingin tag teknologi SIP lebih ringkas tanpa menampilkan Express |
+
+### Session 2026-07-09 - Ringkas Teknologi SIP
+**Dikerjakan:**
+- Menghapus tag `Express` dari proyek Sistem Informasi Penjualan di `src/data/cv.ts`
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Tag SIP dibuat lebih ringkas dengan tetap menampilkan teknologi inti: JavaScript, HTML, CSS, Node.js, dan MySQL
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Tidak ada
+
+| 2026-07-09 | Sesuaikan teknologi proyek SIP | Mengganti tag teknologi SIP menjadi `JavaScript`, `HTML`, `CSS`, `Node.js`, `Express`, dan `MySQL` | Repo SIP menunjukkan stack web/Node/MySQL dan user meminta menghapus `Dashboard` karena bukan teknologi |
+
+### Session 2026-07-09 - Sesuaikan Teknologi SIP
+**Dikerjakan:**
+- Mengecek referensi repo `farhanreninda/SIP`
+- Menghapus tag `Dashboard` dari proyek Sistem Informasi Penjualan
+- Mengganti tag proyek SIP menjadi teknologi yang relevan dengan repo
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Tag proyek SIP menampilkan stack teknis, bukan tipe fitur atau label halaman
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Review visual tag teknologi SIP pada card dan modal proyek
+
+| 2026-07-09 | Atur tombol navigasi galeri proyek | Tombol gambar sebelumnya hanya tampil setelah slide pertama dan tombol berikutnya hanya tampil sebelum slide terakhir | User ingin tombol carousel tidak muncul pada halaman awal dan akhir |
+
+### Session 2026-07-09 - Atur Navigasi Galeri Proyek
+**Dikerjakan:**
+- Menambahkan computed `hasPreviousProjectImage` dan `hasNextProjectImage`
+- Mengubah navigasi galeri proyek agar tidak lagi looping dari slide pertama ke terakhir atau sebaliknya
+- Menyembunyikan tombol kiri pada slide pertama dan tombol kanan pada slide terakhir
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Carousel detail proyek dibuat linear agar arah navigasinya lebih jelas untuk user
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Review manual slide pertama dan terakhir pada modal proyek
+
+| 2026-07-09 | Perbaiki tampilan screenshot mobile SIP | Menambahkan mode media khusus untuk screenshot mobile SIP agar gambar portrait ditampilkan penuh tanpa crop | User melihat screenshot mobile pada modal detail proyek masih terpotong |
+
+### Session 2026-07-09 - Perbaiki Screenshot Mobile SIP
+**Dikerjakan:**
+- Menambahkan deteksi gambar mobile SIP pada `ProjectsSection.vue`
+- Mengatur frame modal khusus screenshot portrait agar lebih tinggi dan dapat menampilkan gambar secara utuh
+- Membatasi lebar screenshot mobile agar tidak membesar berlebihan dan tidak terpotong
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Screenshot mobile SIP memakai perlakuan khusus karena rasio gambarnya portrait dan berbeda dari screenshot web/cover
+
+**Technical Debt:**
+- Browser bawaan session tidak tersedia, sehingga verifikasi visual langsung di browser perlu dicek manual setelah refresh halaman
+
+**Pending Tasks:**
+- Review manual slide mobile SIP pada modal proyek
+
+| 2026-07-09 | Ganti galeri detail SIP | Menggunakan screenshot asli `detail-01.png` sampai `detail-12.png` untuk slide detail proyek Sistem Informasi Penjualan | User ingin slide ke-2 dan seterusnya memakai foto lampiran sesuai urutan nomor |
+
+### Session 2026-07-09 - Ganti Galeri Detail SIP
+**Dikerjakan:**
+- Menyalin 12 screenshot asli dari folder Capstone Project ke `public/projects/sip/detail-01.png` sampai `detail-12.png`
+- Mengubah `cv.projects` untuk proyek `Sistem Informasi Penjualan` agar memakai 12 screenshot tersebut pada field `images`
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Cover SIP tetap menjadi slide pertama karena `ProjectsSection.vue` sudah menambahkan thumbnail sebelum daftar `images`
+- Slide detail memakai urutan angka asli dari file lampiran user
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Review manual modal proyek SIP untuk memastikan urutan visual sudah sesuai
+
+| 2026-07-09 | Cegah crop gambar modal proyek | Mengubah frame media detail proyek agar gambar memakai ukuran `auto` dengan `max-width` dan `max-height`, bukan dipaksa memenuhi frame 16:9 | User melihat beberapa screenshot SIP terpotong pada modal detail |
+
+### Session 2026-07-09 - Cegah Crop Gambar Modal Proyek
+**Dikerjakan:**
+- Menghapus paksaan rasio 16:9 pada area gambar detail proyek
+- Mengatur gambar detail proyek agar selalu tampil utuh dengan `max-width: 100%` dan `max-height: 100%`
+- Menyesuaikan tinggi frame modal pada desktop dan mobile agar screenshot portrait maupun landscape tetap terbaca
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Modal proyek memprioritaskan gambar tampil utuh daripada memenuhi seluruh area frame
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Review manual slide SIP yang portrait dan landscape setelah refresh browser
+
 | 2026-07-09 | Perbarui cover proyek SIP | Mengganti mockup web dan mobile di `public/projects/sip/cover.svg` dengan screenshot asli yang ditanam sebagai data image | User ingin desain cover tetap sama, tetapi tampilan web dan mobile memakai gambar asli dari lampiran |
 
 ### Session 2026-07-09 - Perbarui Cover SIP

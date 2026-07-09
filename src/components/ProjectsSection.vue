@@ -26,6 +26,14 @@ const selectedProjectImages = computed(() => {
 
 const activeProjectImage = computed(() => selectedProjectImages.value[selectedImageIndex.value] || "");
 
+const isMobileProjectImage = computed(() =>
+  /\/projects\/sip\/detail-(09|10|11|12)\.png$/.test(activeProjectImage.value)
+);
+
+const hasPreviousProjectImage = computed(() => selectedImageIndex.value > 0);
+
+const hasNextProjectImage = computed(() => selectedImageIndex.value < selectedProjectImages.value.length - 1);
+
 const activeProjectImageAlt = computed(() => {
   if (!selectedProject.value) return "";
   return `Screenshot ${selectedProject.value.name} ${selectedImageIndex.value + 1}`;
@@ -36,15 +44,13 @@ const showProjectImage = (index: number) => {
 };
 
 const showPreviousImage = () => {
-  const total = selectedProjectImages.value.length;
-  if (total < 2) return;
-  selectedImageIndex.value = (selectedImageIndex.value - 1 + total) % total;
+  if (!hasPreviousProjectImage.value) return;
+  selectedImageIndex.value -= 1;
 };
 
 const showNextImage = () => {
-  const total = selectedProjectImages.value.length;
-  if (total < 2) return;
-  selectedImageIndex.value = (selectedImageIndex.value + 1) % total;
+  if (!hasNextProjectImage.value) return;
+  selectedImageIndex.value += 1;
 };
 
 const projectId = (project: Project) =>
@@ -114,15 +120,15 @@ const projectExternalLabel = (project: Project) => {
           >
             <article class="project-detail" tabindex="-1">
               <button class="modal-close" type="button" aria-label="Tutup detail proyek" autofocus @click="closeProject">x</button>
-              <div class="detail-media" v-if="activeProjectImage">
+              <div class="detail-media" :class="{ 'is-mobile-shot': isMobileProjectImage }" v-if="activeProjectImage">
                 <Transition name="project-image" mode="out-in">
                   <img :key="activeProjectImage" :src="activeProjectImage" :alt="activeProjectImageAlt" />
                 </Transition>
                 <template v-if="selectedProjectImages.length > 1">
-                  <button class="image-nav is-prev" type="button" aria-label="Gambar sebelumnya" @click="showPreviousImage">
+                  <button v-if="hasPreviousProjectImage" class="image-nav is-prev" type="button" aria-label="Gambar sebelumnya" @click="showPreviousImage">
                     <span aria-hidden="true">&lt;</span>
                   </button>
-                  <button class="image-nav is-next" type="button" aria-label="Gambar berikutnya" @click="showNextImage">
+                  <button v-if="hasNextProjectImage" class="image-nav is-next" type="button" aria-label="Gambar berikutnya" @click="showNextImage">
                     <span aria-hidden="true">&gt;</span>
                   </button>
                   <span class="image-count">{{ selectedImageIndex + 1 }} / {{ selectedProjectImages.length }}</span>
@@ -326,7 +332,7 @@ const projectExternalLabel = (project: Project) => {
   align-items: stretch;
   gap: 0;
   width: min(1040px, 100%);
-  max-height: min(86svh, 760px);
+  max-height: min(90svh, 820px);
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--color-accent-warm) 24%, var(--color-border));
   border-radius: 2rem;
@@ -364,8 +370,9 @@ const projectExternalLabel = (project: Project) => {
   display: grid;
   place-items: center;
   align-self: center;
-  aspect-ratio: 16 / 9;
-  min-height: 0;
+  width: calc(100% - 2.2rem);
+  height: min(68svh, 590px);
+  min-height: 330px;
   padding: 0;
   margin: 1.1rem;
   overflow: hidden;
@@ -375,12 +382,37 @@ const projectExternalLabel = (project: Project) => {
     color-mix(in srgb, var(--color-surface-elev) 80%, transparent);
 }
 .detail-media img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   display: block;
-  border-radius: inherit;
-  background: var(--color-surface-elev);
+  border-radius: 1.1rem;
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+}
+.detail-media.is-mobile-shot {
+  height: min(76svh, 690px);
+  overflow: auto;
+  place-items: start center;
+  align-content: start;
+  padding: 0.75rem 0;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-accent-warm) 58%, transparent) transparent;
+}
+.detail-media.is-mobile-shot::-webkit-scrollbar {
+  width: 0.45rem;
+}
+.detail-media.is-mobile-shot::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-accent-warm) 58%, transparent);
+}
+.detail-media.is-mobile-shot img {
+  width: auto;
+  height: auto;
+  max-width: min(100%, 300px);
+  max-height: none;
 }
 .image-nav {
   position: absolute;
@@ -531,13 +563,25 @@ const projectExternalLabel = (project: Project) => {
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-detail { grid-template-columns: 1fr; }
   .detail-media {
+    width: calc(100% - 1.7rem);
+    height: min(54svh, 470px);
+    min-height: 260px;
     margin: 0.85rem;
+  }
+  .detail-media.is-mobile-shot {
+    height: min(70svh, 650px);
   }
 }
 @media (max-width: 640px) {
   .project-grid { grid-template-columns: 1fr; }
   .project-modal {
     padding: 0.85rem;
+  }
+  .detail-media.is-mobile-shot {
+    height: min(68svh, 610px);
+  }
+  .detail-media.is-mobile-shot img {
+    max-width: min(100%, 285px);
   }
   .detail-content {
     padding: 1.35rem;
