@@ -1215,6 +1215,30 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 **Pending Tasks:**
 - Tidak ada
 
+| 2026-07-09 | Polish portfolio menyeluruh | Memperbarui teknologi proyek, menyelaraskan token typography, memperbaiki light mode, merapikan navbar mobile, menambah tombol kembali ke atas, dan menambah animasi ringan | User meminta tampilan lebih konsisten, light mode lebih menarik, mobile lebih rapi, serta navigasi ke atas lebih mudah |
+
+### Session 2026-07-09 - Polish Portfolio Menyeluruh
+**Dikerjakan:**
+- Menyesuaikan teknologi proyek Redmimo, Mimo, Pustaka Rifqi, Baker's Corner, dan Nyatet
+- Menambahkan token typography global untuk section heading, lead, card title, body, label, dan weight
+- Memperbarui palet light mode agar lebih clean dengan base teal-neutral yang tetap sesuai identitas visual
+- Menurunkan beberapa font-weight/ukuran font section agar tampilan lebih seragam
+- Merapikan navbar mobile menjadi susunan dua baris yang lebih lega tanpa mengubah layout desktop
+- Menambahkan `ScrollTopButton.vue` untuk kembali ke bagian atas saat halaman sudah discroll
+- Menambahkan animasi halus pada hero orbit dan micro-interaction global
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Perubahan mobile navbar dibatasi pada breakpoint mobile agar tampilan desktop tetap stabil
+- Light mode diperbaiki melalui token warna global, bukan per-section, agar konsisten dari atas sampai bawah
+- Animasi dibuat ringan dan tetap menghormati `prefers-reduced-motion`
+
+**Technical Debt:**
+- Verifikasi visual langsung di browser perlu dicek manual karena browser bawaan session sebelumnya tidak tersedia
+
+**Pending Tasks:**
+- Review manual light mode, mobile navbar, dan tombol kembali ke atas pada device asli
+
 | 2026-07-09 | Ringkas teknologi proyek SIP | Menghapus `Express` dari tag teknologi proyek SIP | User ingin tag teknologi SIP lebih ringkas tanpa menampilkan Express |
 
 ### Session 2026-07-09 - Ringkas Teknologi SIP
@@ -1406,3 +1430,67 @@ Ringkasan perubahan
 
 **Pending Tasks:**
 - Tidak ada
+
+| 2026-07-10 | Tambah bilingual dan polish visual | Menambahkan locale switch ID/EN, melokalisasi copy portfolio, melembutkan light mode, merapikan navbar mobile, dan menjadikan tombol kembali ke atas icon-only | User ingin portfolio bisa dibaca Indonesia/English, tampilan light mode lebih halus, mobile lebih rapi, serta tombol atas tidak memakai teks |
+
+### Session 2026-07-10 - Bilingual dan Polish Visual Portfolio
+**Dikerjakan:**
+- Menambahkan `useLocale.ts`, `LanguageToggle.vue`, dan data `cvId`/`cvEn` agar seluruh section bisa berpindah Bahasa Indonesia dan English
+- Memindahkan label UI, nav, meta, aria label, not found, proyek, pendidikan, pengalaman, dan kontak ke `siteCopy`
+- Memperbaiki teknologi proyek: Redmimo/Mimo memakai Kotlin, Android, REST API; Pustaka Rifqi/Baker's Corner memakai Firebase Database; Nyatet memakai REST API
+- Melembutkan token font, weight, dan palet light mode agar tidak terlalu hitam dan berat
+- Merapikan navbar mobile menjadi satu baris kontrol yang lebih compact dengan language toggle dan theme toggle
+- Mengubah tombol kembali ke atas menjadi icon-only
+- Menambahkan dukungan bulan English di kalkulasi durasi pengalaman
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Lokalisasi dibuat tanpa library i18n tambahan agar tetap sesuai stack statis dan semua konten tetap bersumber dari `cv.ts`
+- Light mode diperbaiki melalui token global supaya seluruh section terasa konsisten
+
+**Technical Debt:**
+- Browser bawaan Codex tidak tersedia pada session ini, jadi verifikasi visual langsung perlu dicek manual di localhost/device asli
+
+**Pending Tasks:**
+- Review manual tampilan light mode, switch bahasa, navbar mobile, dan tombol kembali ke atas di browser
+
+| 2026-07-10 | Fix bilingual blank dan soft visual | Reveal di-scan ulang setelah switch bahasa, locale diberi transisi, dan token warna/font dibuat lebih lembut untuk light/dark mode | User melihat beberapa section blank saat English dan visual masih terasa terlalu bold/kontras |
+
+### Session 2026-07-10 - Fix Bilingual Blank dan Soft Visual
+**Dikerjakan:**
+- Memperbaiki `useReveal.ts` agar observer lama dibersihkan dan elemen yang sudah berada di viewport langsung diberi `is-visible`
+- Menambahkan refresh reveal di `HomeView.vue` setiap kali bahasa berubah
+- Menambahkan class transisi `is-locale-changing` di `useLocale.ts`
+- Menambahkan animasi halus saat bahasa diganti
+- Melembutkan palet light/dark mode, shadow, font stack, dan font-weight global
+- Menurunkan beberapa font-weight hardcoded di komponen agar tampilan lebih seragam
+- Menjalankan `npm run build` dan build sukses
+- Menyalakan dev server lokal di `http://127.0.0.1:5173`
+
+**Keputusan Penting:**
+- Fix blank dilakukan dari sisi reveal lifecycle, bukan dengan menghapus animasi, agar efek tetap ada tetapi data tidak hilang saat locale berubah
+- Visual smoothing dilakukan lewat token global agar konsisten di seluruh section
+
+**Technical Debt:**
+- Verifikasi visual detail tetap perlu dicek manual di browser/device karena tidak ada Playwright di dependencies project
+
+**Pending Tasks:**
+- Review manual perubahan English mode, light/dark mode, dan animasi switch bahasa di browser lokal
+
+| 2026-07-10 | Perjelas animasi switch bahasa | Mengubah animasi bahasa menjadi dua fase fade-out lalu fade-in dan menambahkan feedback pop pada tombol ID/EN | User merasa animasi bahasa sebelumnya belum terasa smooth/terlihat |
+
+### Session 2026-07-10 - Perjelas Animasi Bahasa
+**Dikerjakan:**
+- Mengubah `useLocale.ts` agar pergantian bahasa berjalan dalam fase `is-locale-leaving` dan `is-locale-entering`
+- Menambahkan animasi fade/slide/blur halus untuk konten section, card, dan nav saat bahasa berubah
+- Menambahkan animasi pop kecil pada tombol bahasa aktif
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Bahasa baru ditampilkan setelah fase keluar singkat agar transisi terasa nyata, bukan update teks mendadak
+
+**Technical Debt:**
+- Durasi animasi bisa disesuaikan lagi setelah dicek manual di browser jika masih terlalu cepat atau terlalu terasa
+
+**Pending Tasks:**
+- Review manual switch ID/EN di beberapa section untuk menilai rasa animasinya

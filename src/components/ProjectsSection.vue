@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
 import type { Project } from "@/types/cv";
 
+const { currentCv, copy } = useLocale();
 const selectedProject = ref<Project | null>(null);
 const selectedImageIndex = ref(0);
 
@@ -36,7 +37,7 @@ const hasNextProjectImage = computed(() => selectedImageIndex.value < selectedPr
 
 const activeProjectImageAlt = computed(() => {
   if (!selectedProject.value) return "";
-  return `Screenshot ${selectedProject.value.name} ${selectedImageIndex.value + 1}`;
+  return `${copy.value.projects.imageAlt} ${selectedProject.value.name} ${selectedImageIndex.value + 1}`;
 });
 
 const showProjectImage = (index: number) => {
@@ -62,9 +63,9 @@ const projectId = (project: Project) =>
 const projectExternalLink = (project: Project) => project.playUrl || project.link || "";
 
 const projectExternalLabel = (project: Project) => {
-  if (project.playUrl) return "Buka Play Store";
-  if (project.link && project.category.toLowerCase().includes("web")) return "Buka website";
-  return "Buka tautan proyek";
+  if (project.playUrl) return copy.value.projects.openPlayStore;
+  if (project.link && project.category.toLowerCase().includes("web")) return copy.value.projects.openWebsite;
+  return copy.value.projects.openProject;
 };
 </script>
 
@@ -72,33 +73,33 @@ const projectExternalLabel = (project: Project) => {
   <section id="projects" class="projects-section reveal">
     <div class="section-frame">
       <header class="section-head reveal reveal-delay-1">
-        <span class="eyebrow">Proyek</span>
+        <span class="eyebrow">{{ copy.projects.eyebrow }}</span>
         <div>
-          <h2 class="section-title">Implementasi proyek dalam pengembangan aplikasi.</h2>
-          <p class="lead">Kumpulan aplikasi yang merepresentasikan pengalaman saya dalam pengembangan mobile, pengelolaan data, integrasi sistem, dan penyelesaian kebutuhan operasional pengguna.</p>
+          <h2 class="section-title">{{ copy.projects.title }}</h2>
+          <p class="lead">{{ copy.projects.lead }}</p>
         </div>
       </header>
 
       <ul class="project-grid">
         <li
-          v-for="(project, idx) in cv.projects"
+          v-for="(project, idx) in currentCv.projects"
           :key="project.name"
           class="project-item reveal"
           :class="`reveal-delay-${(idx % 5) + 1}`"
         >
           <button class="project-card" type="button" @click="openProject(project)">
             <div class="project-media" v-if="project.thumbnail">
-              <img :src="project.thumbnail" :alt="`Screenshot ${project.name}`" loading="lazy" />
+              <img :src="project.thumbnail" :alt="`${copy.projects.imageAlt} ${project.name}`" loading="lazy" />
             </div>
             <div class="project-body">
               <span class="project-badge">{{ project.badge }}</span>
               <h3>{{ project.name }}</h3>
               <p>{{ project.description }}</p>
               <div class="project-footer">
-                <ul v-if="project.tech" class="tech-list" aria-label="Teknologi">
+                <ul v-if="project.tech" class="tech-list" :aria-label="copy.projects.techLabel">
                   <li v-for="tech in project.tech" :key="tech">{{ tech }}</li>
                 </ul>
-                <span class="project-action">Lihat detail</span>
+                <span class="project-action">{{ copy.projects.action }}</span>
               </div>
             </div>
           </button>
@@ -119,16 +120,16 @@ const projectExternalLabel = (project: Project) => {
             @keydown.right.prevent="showNextImage"
           >
             <article class="project-detail" tabindex="-1">
-              <button class="modal-close" type="button" aria-label="Tutup detail proyek" autofocus @click="closeProject">x</button>
+              <button class="modal-close" type="button" :aria-label="copy.projects.close" autofocus @click="closeProject">x</button>
               <div class="detail-media" :class="{ 'is-mobile-shot': isMobileProjectImage }" v-if="activeProjectImage">
                 <Transition name="project-image" mode="out-in">
                   <img :key="activeProjectImage" :src="activeProjectImage" :alt="activeProjectImageAlt" />
                 </Transition>
                 <template v-if="selectedProjectImages.length > 1">
-                  <button v-if="hasPreviousProjectImage" class="image-nav is-prev" type="button" aria-label="Gambar sebelumnya" @click="showPreviousImage">
+                  <button v-if="hasPreviousProjectImage" class="image-nav is-prev" type="button" :aria-label="copy.projects.previous" @click="showPreviousImage">
                     <span aria-hidden="true">&lt;</span>
                   </button>
-                  <button v-if="hasNextProjectImage" class="image-nav is-next" type="button" aria-label="Gambar berikutnya" @click="showNextImage">
+                  <button v-if="hasNextProjectImage" class="image-nav is-next" type="button" :aria-label="copy.projects.next" @click="showNextImage">
                     <span aria-hidden="true">&gt;</span>
                   </button>
                   <span class="image-count">{{ selectedImageIndex + 1 }} / {{ selectedProjectImages.length }}</span>
@@ -139,24 +140,24 @@ const projectExternalLabel = (project: Project) => {
                 <h3 :id="`project-title-${projectId(selectedProject)}`">{{ selectedProject.name }}</h3>
                 <p class="detail-category">{{ selectedProject.category }}</p>
                 <p class="detail-description">{{ selectedProject.description }}</p>
-                <ul v-if="selectedProject.tech" class="tech-list detail-tech" aria-label="Teknologi proyek">
+                <ul v-if="selectedProject.tech" class="tech-list detail-tech" :aria-label="copy.projects.techLabel">
                   <li v-for="tech in selectedProject.tech" :key="tech">{{ tech }}</li>
                 </ul>
                 <div class="detail-actions" v-if="selectedProject.demoUrl || projectExternalLink(selectedProject)">
                   <a v-if="selectedProject.demoUrl" :href="selectedProject.demoUrl" target="_blank" rel="noopener noreferrer">
-                    Lihat video demo
+                    {{ copy.projects.demo }}
                   </a>
                   <a v-if="projectExternalLink(selectedProject)" :href="projectExternalLink(selectedProject)" target="_blank" rel="noopener noreferrer">
                     {{ projectExternalLabel(selectedProject) }}
                   </a>
                 </div>
-                <div v-if="selectedProjectImages.length > 1" class="image-dots" aria-label="Daftar gambar proyek">
+                <div v-if="selectedProjectImages.length > 1" class="image-dots" :aria-label="copy.projects.imageDots">
                   <button
                     v-for="(_, index) in selectedProjectImages"
                     :key="index"
                     type="button"
                     :class="{ 'is-active': selectedImageIndex === index }"
-                    :aria-label="`Tampilkan gambar ${index + 1}`"
+                    :aria-label="`${copy.projects.showImage} ${index + 1}`"
                     @click="showProjectImage(index)"
                   />
                 </div>
@@ -189,7 +190,7 @@ const projectExternalLabel = (project: Project) => {
 .section-title {
   margin: 0;
   max-width: 760px;
-  font-size: clamp(1.45rem, 2.35vw, 2.35rem);
+  font-size: var(--text-section-heading);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -197,7 +198,7 @@ const projectExternalLabel = (project: Project) => {
   max-width: 780px;
   margin: 0.65rem 0 0;
   color: var(--color-text-muted);
-  font-size: 0.92rem;
+  font-size: var(--text-section-lead);
   line-height: 1.55;
 }
 .project-grid {
@@ -266,20 +267,21 @@ const projectExternalLabel = (project: Project) => {
   color: var(--color-accent-contrast);
   border-radius: var(--radius-pill);
   font-size: 0.68rem;
-  font-weight: 900;
+  font-weight: var(--weight-label);
   text-transform: uppercase;
 }
 .project-card h3 {
   margin: 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
   line-height: 1.15;
 }
 .project-card p {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: 0.88rem;
+  font-size: var(--text-card-body);
   line-height: 1.55;
 }
 .tech-list {
@@ -296,13 +298,13 @@ const projectExternalLabel = (project: Project) => {
   border-radius: var(--radius-pill);
   color: var(--color-text);
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: var(--weight-label);
 }
 .project-action {
   justify-self: start;
   color: var(--color-text-strong);
   font-size: 0.88rem;
-  font-weight: 900;
+  font-weight: var(--weight-strong);
   border-bottom: 2px solid var(--color-accent-warm);
 }
 .project-footer {
@@ -427,7 +429,7 @@ const projectExternalLabel = (project: Project) => {
   background: color-mix(in srgb, var(--color-bg) 86%, transparent);
   color: var(--color-text-strong);
   font-size: 1rem;
-  font-weight: 900;
+  font-weight: var(--weight-strong);
   cursor: pointer;
   transform: translateY(-50%);
   transition: transform 0.25s var(--ease-out), background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
@@ -454,7 +456,7 @@ const projectExternalLabel = (project: Project) => {
   background: color-mix(in srgb, var(--color-bg) 86%, transparent);
   color: var(--color-text-strong);
   font-size: 0.72rem;
-  font-weight: 900;
+  font-weight: var(--weight-label);
 }
 .detail-content {
   display: grid;
@@ -479,7 +481,7 @@ const projectExternalLabel = (project: Project) => {
 }
 .detail-category {
   font-size: 0.82rem;
-  font-weight: 900;
+  font-weight: var(--weight-label);
 }
 .detail-description {
   font-size: 0.96rem;
@@ -504,7 +506,7 @@ const projectExternalLabel = (project: Project) => {
   background: var(--color-accent-warm);
   color: var(--color-accent-contrast);
   font-size: 0.85rem;
-  font-weight: 900;
+  font-weight: var(--weight-strong);
 }
 .detail-actions a + a {
   background: color-mix(in srgb, var(--color-surface-elev) 74%, transparent);

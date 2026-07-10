@@ -1,7 +1,9 @@
 ﻿<script setup lang="ts">
 import { useTheme } from "@/composables/useTheme";
+import { useLocale } from "@/composables/useLocale";
 
 const { theme, toggle } = useTheme();
+const { copy } = useLocale();
 const isDark = () => theme.value === "dark";
 </script>
 
@@ -9,7 +11,7 @@ const isDark = () => theme.value === "dark";
   <button
     type="button"
     class="theme-toggle"
-    :aria-label="isDark() ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'"
+    :aria-label="isDark() ? copy.theme.light : copy.theme.dark"
     :aria-pressed="isDark()"
     @click="toggle"
   >

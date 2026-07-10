@@ -1,6 +1,8 @@
 ﻿<script setup lang="ts">
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
 import WatercolorBg from "./WatercolorBg.vue";
+
+const { currentCv, copy } = useLocale();
 </script>
 
 <template>
@@ -8,18 +10,19 @@ import WatercolorBg from "./WatercolorBg.vue";
     <WatercolorBg />
     <div class="section-frame hello-grid">
       <div class="hello-text">
-        <span class="eyebrow reveal">Tentang Saya</span>
+        <span class="eyebrow reveal">{{ copy.about.eyebrow }}</span>
         <h2 class="hello-title reveal">
-          Saya <span class="accent">{{ cv.profile.name }}</span>, fokus pada pengembangan aplikasi Android.
+          <span class="accent">{{ currentCv.profile.name }}</span>
+          <small>{{ currentCv.profile.title }}</small>
         </h2>
         <p class="lead reveal">
-          {{ cv.profile.tagline }}
+          {{ currentCv.profile.tagline }}
         </p>
       </div>
 
       <div class="hello-portrait reveal">
         <div class="portrait-frame">
-          <img src="/profile/portrait.jpg" alt="Farhan Reninda Budiansyah" loading="lazy" />
+          <img src="/profile/portrait.jpg" :alt="currentCv.profile.name" loading="lazy" />
         </div>
         <div class="portrait-reflection" aria-hidden="true"></div>
       </div>
@@ -65,14 +68,23 @@ import WatercolorBg from "./WatercolorBg.vue";
   margin: 0.2rem 0 0.4rem;
   color: var(--color-text-strong);
   letter-spacing: -0.02em;
-  font-weight: 800;
+  font-weight: var(--weight-heading);
 }
 .hello-title .accent {
+  display: block;
   color: var(--color-teal);
   background: linear-gradient(135deg, var(--color-teal), var(--color-sky-deep));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.hello-title small {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--color-text-muted);
+  font-size: 0.48em;
+  font-weight: var(--weight-strong);
+  line-height: 1.3;
 }
 
 

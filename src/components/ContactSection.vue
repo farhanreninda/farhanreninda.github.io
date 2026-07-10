@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
 
 interface ContactAction {
   label: string;
@@ -12,50 +12,51 @@ interface ContactAction {
   variant: "primary" | "secondary" | "ghost" | "wide";
 }
 
-const waNumber = computed(() => (cv.profile.social.whatsapp || "62895332536530").replace(/\D/g, ""));
-const waMessage = encodeURIComponent("Halo Farhan, saya ingin berdiskusi mengenai project, kolaborasi, atau peluang kerja.");
-const waHref = computed(() => `https://wa.me/${waNumber.value}?text=${waMessage}`);
-const emailSubject = encodeURIComponent("Diskusi project, kolaborasi, atau peluang kerja");
-const emailHref = computed(() => `mailto:${cv.profile.social.email}?subject=${emailSubject}`);
-const cvHref = computed(() => cv.profile.social.cvUrl || "/CV.pdf");
-const githubHref = computed(() => cv.profile.social.github || "https://github.com/farhanreninda");
+const { currentCv, copy } = useLocale();
+const waNumber = computed(() => (currentCv.value.profile.social.whatsapp || "62895332536530").replace(/\D/g, ""));
+const waMessage = computed(() => encodeURIComponent(copy.value.contact.whatsappMessage));
+const waHref = computed(() => `https://wa.me/${waNumber.value}?text=${waMessage.value}`);
+const emailSubject = computed(() => encodeURIComponent(copy.value.contact.emailSubject));
+const emailHref = computed(() => `mailto:${currentCv.value.profile.social.email}?subject=${emailSubject.value}`);
+const cvHref = computed(() => currentCv.value.profile.social.cvUrl || "/CV.pdf");
+const githubHref = computed(() => currentCv.value.profile.social.github || "https://github.com/farhanreninda");
 
 const contactActions = computed<ContactAction[]>(() => [
   {
-    label: "Email",
-    title: "Kirim Email",
-    detail: cv.profile.social.email,
+    label: copy.value.contact.actions.email.label,
+    title: copy.value.contact.actions.email.title,
+    detail: currentCv.value.profile.social.email,
     href: emailHref.value,
     variant: "wide",
   },
   {
-    label: "WhatsApp",
-    title: "Chat WhatsApp",
-    detail: cv.profile.social.phone,
+    label: copy.value.contact.actions.whatsapp.label,
+    title: copy.value.contact.actions.whatsapp.title,
+    detail: currentCv.value.profile.social.phone,
     href: waHref.value,
     external: true,
     variant: "primary",
   },
   {
-    label: "LinkedIn",
-    title: "Buka LinkedIn",
-    detail: "Profil profesional",
-    href: cv.profile.social.linkedin,
+    label: copy.value.contact.actions.linkedin.label,
+    title: copy.value.contact.actions.linkedin.title,
+    detail: copy.value.contact.actions.linkedin.detail,
+    href: currentCv.value.profile.social.linkedin,
     external: true,
     variant: "secondary",
   },
   {
-    label: "GitHub",
-    title: "Buka GitHub",
-    detail: "Repository dan project",
+    label: copy.value.contact.actions.github.label,
+    title: copy.value.contact.actions.github.title,
+    detail: copy.value.contact.actions.github.detail,
     href: githubHref.value,
     external: true,
     variant: "secondary",
   },
   {
-    label: "CV",
-    title: "Unduh CV",
-    detail: "Curriculum Vitae PDF",
+    label: copy.value.contact.actions.cv.label,
+    title: copy.value.contact.actions.cv.title,
+    detail: copy.value.contact.actions.cv.detail,
     href: cvHref.value,
     download: "CV-Farhan-Reninda-Budiansyah.pdf",
     variant: "ghost",
@@ -67,13 +68,13 @@ const contactActions = computed<ContactAction[]>(() => [
   <section id="contact" class="contact-section reveal">
     <div class="section-frame contact-layout">
       <header class="contact-copy reveal reveal-delay-1">
-        <span class="eyebrow">Kontak</span>
-        <h2>Terbuka untuk diskusi project, kolaborasi, atau peluang kerja.</h2>
-        <p>Saya siap membahas kebutuhan aplikasi, integrasi sistem, dan pengembangan produk dengan komunikasi yang jelas dan responsif.</p>
+        <span class="eyebrow">{{ copy.contact.eyebrow }}</span>
+        <h2>{{ copy.contact.title }}</h2>
+        <p>{{ copy.contact.lead }}</p>
       </header>
 
       <article class="contact-card reveal reveal-delay-2">
-        <div class="contact-actions" aria-label="Aksi kontak">
+        <div class="contact-actions" :aria-label="copy.contact.actionLabel">
           <a
             v-for="item in contactActions"
             :key="item.label"
@@ -119,15 +120,16 @@ const contactActions = computed<ContactAction[]>(() => [
   margin: 1rem 0 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.45vw, 3.55rem);
-  line-height: 1;
+  font-size: clamp(1.65rem, 3vw, 3rem);
+  font-weight: var(--weight-heading);
+  line-height: 1.04;
   letter-spacing: 0;
 }
 .contact-copy p {
   max-width: 640px;
   margin: 1rem 0 0;
   color: var(--color-text-muted);
-  font-size: 0.98rem;
+  font-size: var(--text-section-lead);
   line-height: 1.65;
 }
 .contact-card {
@@ -165,15 +167,15 @@ const contactActions = computed<ContactAction[]>(() => [
 }
 .contact-action span {
   color: var(--color-accent-warm);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   text-transform: uppercase;
 }
 .contact-action strong {
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 900;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
   line-height: 1.2;
 }
 .contact-action em {
@@ -182,7 +184,7 @@ const contactActions = computed<ContactAction[]>(() => [
   white-space: nowrap;
   font-size: clamp(0.68rem, 0.78vw, 0.76rem);
   font-style: normal;
-  font-weight: 800;
+  font-weight: var(--weight-label);
   line-height: 1.4;
 }
 .contact-action.is-primary {

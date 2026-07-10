@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
+
+const { currentCv, copy } = useLocale();
 </script>
 
 <template>
   <section id="education" class="credentials-section reveal">
     <div class="section-frame credentials-layout">
       <header class="section-head reveal reveal-delay-1">
-        <span class="eyebrow">Pendidikan</span>
-        <h2 class="section-title">Riwayat pendidikan dan sertifikasi pendukung.</h2>
+        <span class="eyebrow">{{ copy.education.eyebrow }}</span>
+        <h2 class="section-title">{{ copy.education.title }}</h2>
       </header>
 
       <div class="credentials-board">
         <article class="education-panel reveal reveal-delay-2">
           <div class="panel-head">
-            <span>Pendidikan Formal</span>
+            <span>{{ copy.education.formal }}</span>
           </div>
 
           <ol class="education-list">
-            <li v-for="edu in cv.educations" :key="edu.school">
+            <li v-for="edu in currentCv.educations" :key="edu.school">
               <div class="edu-content">
                 <h3>{{ edu.school }}</h3>
                 <p class="major">{{ edu.major }}</p>
-                <p v-if="edu.gpa" class="edu-detail">IPK {{ edu.gpa }}</p>
+                <p v-if="edu.gpa" class="edu-detail">{{ copy.education.gpaLabel }} {{ edu.gpa }}</p>
                 <p v-if="edu.note" class="note">{{ edu.note }}</p>
               </div>
             </li>
@@ -30,11 +32,11 @@ import { cv } from "@/data/cv";
 
         <aside class="certificate-panel reveal reveal-delay-3">
           <div class="panel-head">
-            <span>Sertifikasi</span>
+            <span>{{ copy.education.certificates }}</span>
           </div>
 
           <ul class="certificate-list">
-            <li v-for="cert in cv.certificates" :key="cert.name">
+            <li v-for="cert in currentCv.certificates" :key="cert.name">
               <span>{{ cert.period }}</span>
               <h3>{{ cert.name }}</h3>
               <p>{{ cert.issuer }}</p>
@@ -68,7 +70,7 @@ import { cv } from "@/data/cv";
 .section-title {
   max-width: 660px;
   margin: 0.75rem 0 0;
-  font-size: clamp(1.35rem, 2vw, 2.05rem);
+  font-size: var(--text-section-heading);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -106,8 +108,8 @@ import { cv } from "@/data/cv";
 .panel-head span {
   color: var(--color-accent-warm);
   font-family: var(--font-display);
-  font-size: 0.88rem;
-  font-weight: 900;
+  font-size: 0.9rem;
+  font-weight: var(--weight-heading);
 }
 .education-list,
 .certificate-list {
@@ -135,7 +137,8 @@ import { cv } from "@/data/cv";
   margin: 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
   line-height: 1.2;
 }
 .major,
@@ -150,7 +153,7 @@ import { cv } from "@/data/cv";
 .edu-detail {
   color: var(--color-text);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
 }
 .note {
   max-width: 700px;
@@ -165,8 +168,8 @@ import { cv } from "@/data/cv";
 }
 .certificate-list span {
   color: var(--color-accent-warm);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
 }
 @media (max-width: 920px) {
   .credentials-board {

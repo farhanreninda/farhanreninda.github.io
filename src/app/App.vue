@@ -3,14 +3,19 @@ import { onMounted, nextTick } from "vue";
 import { useHead } from "@unhead/vue";
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
+import ScrollTopButton from "@/components/ScrollTopButton.vue";
 import { useTheme } from "@/composables/useTheme";
+import { useLocale } from "@/composables/useLocale";
+
+const { locale, copy } = useLocale();
 
 useHead({
-  htmlAttrs: { lang: "id" },
+  title: () => copy.value.app.ogTitle,
+  htmlAttrs: { lang: () => locale.value },
   meta: [
-    { name: "description", content: "Portofolio Farhan Reninda Budiansyah — Android Developer & Backend Developer." },
-    { property: "og:title", content: "Farhan Reninda — Portfolio" },
-    { property: "og:description", content: "Android Developer (Kotlin) & Backend Developer (Laravel)." },
+    { name: "description", content: () => copy.value.app.description },
+    { property: "og:title", content: () => copy.value.app.ogTitle },
+    { property: "og:description", content: () => copy.value.app.ogDescription },
     { property: "og:type", content: "website" },
   ],
 });
@@ -28,13 +33,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <a class="skip-link" href="#main">{{ copy.app.skip }}</a>
   <AppHeader />
   <main id="main">
     <RouterView v-slot="{ Component }">
       <component :is="Component" />
     </RouterView>
   </main>
+  <ScrollTopButton />
   <AppFooter />
 </template>
 

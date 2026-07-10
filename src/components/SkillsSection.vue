@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
+
+const { currentCv, copy } = useLocale();
 </script>
 
 <template>
@@ -7,16 +9,16 @@ import { cv } from "@/data/cv";
     <div class="section-frame skills-layout">
       <header class="section-head reveal reveal-delay-1">
         <div class="section-copy">
-          <span class="eyebrow">Keahlian</span>
-          <h2 class="section-title">Keahlian teknis untuk membangun aplikasi Android.</h2>
-          <p class="lead">Teknologi yang saya gunakan untuk merancang fitur, menghubungkan API, mengelola data, dan menjaga proses pengembangan tetap rapi.</p>
+          <span class="eyebrow">{{ copy.skills.eyebrow }}</span>
+          <h2 class="section-title">{{ copy.skills.title }}</h2>
+          <p class="lead">{{ copy.skills.lead }}</p>
         </div>
       </header>
 
       <div class="skills-showcase reveal reveal-delay-2">
         <div class="skill-board">
           <article
-            v-for="(group, idx) in cv.skills"
+            v-for="(group, idx) in currentCv.skills"
             :key="group.category"
             class="skill-card reveal"
             :class="`reveal-delay-${(idx % 5) + 1}`"
@@ -66,7 +68,7 @@ import { cv } from "@/data/cv";
   margin: 0.75rem 0 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: clamp(1.26rem, 1.75vw, 1.72rem);
+  font-size: var(--text-section-heading);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -74,7 +76,7 @@ import { cv } from "@/data/cv";
   max-width: 760px;
   margin: 0.65rem 0 0;
   color: var(--color-text-muted);
-  font-size: 0.88rem;
+  font-size: var(--text-section-lead);
   line-height: 1.5;
 }
 .skills-showcase {
@@ -126,14 +128,15 @@ import { cv } from "@/data/cv";
   margin: 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
   line-height: 1.14;
 }
 .skill-card p {
   max-width: 92%;
   margin: 0;
   color: var(--color-text-muted);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   line-height: 1.5;
 }
 .skill-card ul {
@@ -152,8 +155,8 @@ import { cv } from "@/data/cv";
   background: color-mix(in srgb, var(--color-bg) 66%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
   color: var(--color-text);
-  font-size: 0.78rem;
-  font-weight: 800;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   position: relative;
   z-index: 1;
 }

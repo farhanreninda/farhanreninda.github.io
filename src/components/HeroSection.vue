@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
 
+const { currentCv, copy } = useLocale();
 const nameLines = computed(() => {
-  const parts = cv.profile.name.split(" ");
+  const parts = currentCv.value.profile.name.split(" ");
   return [parts.slice(0, 2).join(" "), parts.slice(2).join(" ")];
 });
 </script>
@@ -12,14 +13,14 @@ const nameLines = computed(() => {
   <section id="top" class="hero reveal">
     <div class="section-frame hero-frame">
       <div class="hero-copy">
-        <p class="hero-kicker reveal">Halo, saya</p>
+        <p class="hero-kicker reveal">{{ copy.hero.kicker }}</p>
         <h1 class="hero-name reveal">
           <span v-for="line in nameLines" :key="line">{{ line }}</span>
         </h1>
         <div class="hero-intro reveal reveal-delay-1">
-          <p class="intro-label">{{ cv.profile.title }}</p>
-          <h2>Berbasis Kotlin, REST API, dan MySQL.</h2>
-          <p>{{ cv.profile.tagline }}</p>
+          <p class="intro-label">{{ currentCv.profile.title }}</p>
+          <h2>{{ copy.hero.headline }}</h2>
+          <p>{{ currentCv.profile.tagline }}</p>
         </div>
       </div>
 
@@ -30,7 +31,7 @@ const nameLines = computed(() => {
           <span class="orbit-dot dot-one"></span>
           <span class="orbit-dot dot-two"></span>
           <div class="portrait-frame">
-            <img src="/profile/portrait.jpg" alt="Farhan Reninda Budiansyah" loading="eager" />
+            <img src="/profile/portrait.jpg" :alt="currentCv.profile.name" loading="eager" />
           </div>
         </div>
       </div>
@@ -66,7 +67,7 @@ const nameLines = computed(() => {
   color: var(--color-accent-warm);
   font-family: var(--font-display);
   font-size: 0.88rem;
-  font-weight: 800;
+  font-weight: var(--weight-label);
   letter-spacing: 0;
 }
 .hero-name {
@@ -74,7 +75,7 @@ const nameLines = computed(() => {
   color: var(--color-text-strong);
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 4.7vw, 4.45rem);
-  font-weight: 900;
+  font-weight: var(--weight-heading);
   line-height: 0.95;
   letter-spacing: 0;
 }
@@ -90,7 +91,7 @@ const nameLines = computed(() => {
 .intro-label {
   margin: 0 0 0.5rem;
   color: var(--color-accent-warm);
-  font-weight: 800;
+  font-weight: var(--weight-label);
 }
 .hero-intro h2 {
   margin: 0;
@@ -180,6 +181,32 @@ const nameLines = computed(() => {
   object-fit: cover;
   object-position: top center;
   filter: saturate(0.96) contrast(1.04);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .orbit-one {
+    animation: hero-orbit-drift 18s var(--ease-in-out) infinite;
+  }
+  .orbit-two {
+    animation: hero-orbit-breathe 14s var(--ease-in-out) infinite;
+  }
+  .orbit-dot {
+    animation: hero-dot-float 7s var(--ease-in-out) infinite;
+  }
+  .dot-two {
+    animation-delay: -2.5s;
+  }
+}
+@keyframes hero-orbit-drift {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50% { transform: rotate(-7deg) scale(1.025); }
+}
+@keyframes hero-orbit-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+@keyframes hero-dot-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
 }
 @media (max-width: 820px) {
   .hero {

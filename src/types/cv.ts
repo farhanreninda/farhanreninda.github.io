@@ -77,3 +77,5 @@ export interface Cv {
   certificates: Certificate[];
   educations: Education[];
 }
+
+export type Locale = "id" | "en";

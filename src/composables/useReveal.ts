@@ -11,6 +11,9 @@ export function useReveal() {
 
   function setup(rootEl: HTMLElement) {
     root = rootEl;
+    const previousObserver = observers.get(rootEl);
+    if (previousObserver) previousObserver.disconnect();
+
     const targets = rootEl.querySelectorAll<HTMLElement>(".reveal");
     if (targets.length === 0) return;
 
@@ -26,7 +29,17 @@ export function useReveal() {
       { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
     );
 
-    targets.forEach((el) => io.observe(el));
+    targets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const isAlreadyVisible = rect.top < window.innerHeight * 0.96 && rect.bottom > 0;
+
+      if (isAlreadyVisible) {
+        el.classList.add("is-visible");
+        return;
+      }
+
+      io.observe(el);
+    });
     observers.set(rootEl, io);
   }
 

@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/components/NotFoundView.vue"),
-    meta: { title: "Halaman tidak ditemukan | Farhan Reninda" },
+    meta: { title: "Not Found | Farhan Reninda" },
   },
 ];
 

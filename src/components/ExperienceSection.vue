@@ -1,29 +1,30 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
 import type { Experience } from "@/types/cv";
 
-const workExperiences = computed(() => cv.experiences.filter((item) => item.type === "work"));
-const projectExperiences = computed(() => cv.experiences.filter((item) => item.type === "internship"));
-const organizationExperiences = computed(() => cv.experiences.filter((item) => item.type === "organization"));
+const { currentCv, copy, locale } = useLocale();
+const workExperiences = computed(() => currentCv.value.experiences.filter((item) => item.type === "work"));
+const projectExperiences = computed(() => currentCv.value.experiences.filter((item) => item.type === "internship"));
+const organizationExperiences = computed(() => currentCv.value.experiences.filter((item) => item.type === "organization"));
 
 const experienceGroups = computed(() => [
   {
     key: "work",
-    title: "Pengalaman Kerja",
-    description: "Peran profesional dalam pengembangan aplikasi Android untuk kebutuhan bisnis dan operasional.",
+    title: copy.value.experience.groups.work.title,
+    description: copy.value.experience.groups.work.description,
     items: workExperiences.value,
   },
   {
     key: "project",
-    title: "Pengalaman Magang & Proyek",
-    description: "Pengalaman berbasis proyek yang memperkuat pengembangan Android, backend, dan kolaborasi UI/UX.",
+    title: copy.value.experience.groups.project.title,
+    description: copy.value.experience.groups.project.description,
     items: projectExperiences.value,
   },
   {
     key: "organization",
-    title: "Pengalaman Organisasi",
-    description: "Aktivitas pendukung yang memperkuat kepemimpinan, koordinasi, dan tanggung jawab tim.",
+    title: copy.value.experience.groups.organization.title,
+    description: copy.value.experience.groups.organization.description,
     items: organizationExperiences.value,
   },
 ]);
@@ -41,10 +42,19 @@ const monthMap: Record<string, number> = {
   Oktober: 10,
   November: 11,
   Desember: 12,
+  January: 1,
+  February: 2,
+  March: 3,
+  June: 6,
+  May: 5,
+  July: 7,
+  August: 8,
+  October: 10,
+  December: 12,
 };
 
 const parsePeriod = (value: string) => {
-  if (value === "Sekarang") {
+  if (value === "Sekarang" || value === "Present") {
     const now = new Date();
     return { month: now.getMonth() + 1, year: now.getFullYear() };
   }
@@ -64,21 +74,27 @@ const formatDuration = (experience: Experience) => {
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
 
+  if (locale.value === "en") {
+    if (years && months) return `${years} yrs ${months} mos`;
+    if (years) return `${years} yr${years > 1 ? "s" : ""}`;
+    return `${months} mo${months > 1 ? "s" : ""}`;
+  }
+
   if (years && months) return `${years} thn ${months} bln`;
   if (years) return `${years} thn`;
   return `${months} bln`;
 };
 
-const isCurrent = (experience: Experience) => experience.end === "Sekarang";
+const isCurrent = (experience: Experience) => experience.end === "Sekarang" || experience.end === "Present";
 </script>
 
 <template>
   <section id="experience" class="experience-section reveal">
     <div class="section-frame experience-layout">
       <header class="section-head reveal reveal-delay-1">
-        <span class="eyebrow">Pengalaman</span>
-        <h2 class="section-title">Pengalaman profesional dalam pengembangan aplikasi.</h2>
-        <p class="lead">Riwayat kerja, proyek, dan organisasi yang relevan dengan Android development, integrasi sistem, serta kolaborasi lintas tim.</p>
+        <span class="eyebrow">{{ copy.experience.eyebrow }}</span>
+        <h2 class="section-title">{{ copy.experience.title }}</h2>
+        <p class="lead">{{ copy.experience.lead }}</p>
       </header>
 
       <div class="experience-board">
@@ -99,7 +115,7 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
                 <time>{{ item.start }} - {{ item.end }}</time>
                 <div class="meta-badges">
                   <span class="duration-pill">{{ formatDuration(item) }}</span>
-                  <span v-if="isCurrent(item)" class="current-badge">Posisi saat ini</span>
+                  <span v-if="isCurrent(item)" class="current-badge">{{ copy.experience.currentBadge }}</span>
                 </div>
               </div>
               <h3>{{ item.role }}</h3>
@@ -134,7 +150,7 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
 .section-title {
   max-width: 680px;
   margin: 0.75rem 0 0;
-  font-size: clamp(1.25rem, 1.75vw, 1.75rem);
+  font-size: var(--text-section-heading);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -142,7 +158,7 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
   max-width: 760px;
   margin: 0.65rem 0 0;
   color: var(--color-text-muted);
-  font-size: 0.88rem;
+  font-size: var(--text-section-lead);
   line-height: 1.5;
 }
 .experience-board {
@@ -185,8 +201,8 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
 .experience-panel header span {
   color: var(--color-accent-warm);
   font-family: var(--font-display);
-  font-size: 0.86rem;
-  font-weight: 900;
+  font-size: 0.9rem;
+  font-weight: var(--weight-heading);
 }
 .experience-panel header p {
   margin: 0;
@@ -244,7 +260,7 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
   display: block;
   color: var(--color-accent-warm);
   font-size: 0.72rem;
-  font-weight: 900;
+  font-weight: var(--weight-label);
   line-height: 1.4;
   overflow-wrap: anywhere;
 }
@@ -265,14 +281,15 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
   background: color-mix(in srgb, var(--color-accent-warm) 12%, transparent);
   color: var(--color-text);
   font-size: 0.68rem;
-  font-weight: 900;
+  font-weight: var(--weight-label);
   white-space: nowrap;
 }
 .experience-panel h3 {
   margin: 0.62rem 0 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
   line-height: 1.2;
 }
 .experience-panel.is-organization h3 {
@@ -293,14 +310,14 @@ const isCurrent = (experience: Experience) => experience.end === "Sekarang";
   background: var(--color-accent-warm);
   color: var(--color-accent-contrast);
   font-size: 0.68rem;
-  font-weight: 900;
+  font-weight: var(--weight-label);
   white-space: nowrap;
 }
 .company {
   margin: 0.28rem 0 0;
   color: var(--color-text-muted);
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
 }
 .description-list {
   display: grid;

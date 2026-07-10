@@ -1,5 +1,7 @@
 ﻿<script setup lang="ts">
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
+
+const { currentCv } = useLocale();
 const year = new Date().getFullYear();
 </script>
 
@@ -9,8 +11,8 @@ const year = new Date().getFullYear();
       <div class="footer-brand">
         <span class="footer-mark" aria-hidden="true">FR</span>
         <div>
-          <strong>{{ cv.profile.name }}</strong>
-          <p>{{ cv.profile.title }} · {{ cv.profile.social.location }}</p>
+          <strong>{{ currentCv.profile.name }}</strong>
+          <p>{{ currentCv.profile.title }} · {{ currentCv.profile.social.location }}</p>
         </div>
       </div>
       <p class="footer-copy">© {{ year }}</p>
@@ -53,7 +55,7 @@ const year = new Date().getFullYear();
   background: var(--color-accent-warm);
   color: var(--color-accent-contrast);
   font-size: 0.78rem;
-  font-weight: 900;
+  font-weight: var(--weight-heading);
 }
 .footer-brand strong {
   display: block;
@@ -67,7 +69,7 @@ const year = new Date().getFullYear();
   margin: 0;
   color: var(--color-text-muted);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: var(--weight-strong);
 }
 .footer-copy {
   padding: 0.45rem 0.85rem;

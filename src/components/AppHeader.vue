@@ -1,20 +1,16 @@
 ﻿<script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
+import LanguageToggle from "./LanguageToggle.vue";
 import ThemeToggle from "./ThemeToggle.vue";
-import { cv } from "@/data/cv";
 import { useActiveSection } from "@/composables/useActiveSection";
+import { useLocale } from "@/composables/useLocale";
 
-const navItems = [
-  { id: "top", label: "Profil" },
-  { id: "skills", label: "Keahlian" },
-  { id: "experience", label: "Pengalaman" },
-  { id: "projects", label: "Proyek" },
-  { id: "education", label: "Pendidikan" },
-  { id: "contact", label: "Kontak" },
-];
+const navIds = ["top", "skills", "experience", "projects", "education", "contact"] as const;
+const { currentCv, copy } = useLocale();
+const navItems = computed(() => navIds.map((id) => ({ id, label: copy.value.nav[id] })));
 
 const scrolled = ref(false);
-const { active } = useActiveSection(navItems.map((n) => n.id), 80);
+const { active } = useActiveSection([...navIds], 80);
 
 onMounted(() => {
   const onScroll = () => {
@@ -42,12 +38,12 @@ const scrollToSection = (id: string) => {
 <template>
   <header class="app-header" :class="headerClass">
     <div class="header-inner">
-      <a class="brand" href="#top" :aria-label="'Beranda ' + cv.profile.name" @click.prevent="scrollToSection('top')">
+      <a class="brand" href="#top" :aria-label="copy.nav.top + ' ' + currentCv.profile.name" @click.prevent="scrollToSection('top')">
         <span class="brand-mark">FR</span>
-        <span class="brand-name">{{ cv.profile.name }}</span>
+        <span class="brand-name">{{ currentCv.profile.name }}</span>
       </a>
       <div class="header-controls">
-        <nav aria-label="Navigasi utama">
+        <nav :aria-label="copy.nav.top">
           <ul class="nav-list">
             <li v-for="item in navItems" :key="item.id">
               <a :href="'#' + item.id" :class="itemClass(item.id)" @click.prevent="scrollToSection(item.id)">
@@ -56,6 +52,7 @@ const scrollToSection = (id: string) => {
             </li>
           </ul>
         </nav>
+        <LanguageToggle />
         <ThemeToggle />
       </div>
     </div>
@@ -102,7 +99,7 @@ const scrollToSection = (id: string) => {
   align-items: center;
   gap: 0.5rem;
   color: var(--color-text-strong);
-  font-weight: 700;
+  font-weight: var(--weight-strong);
   font-family: var(--font-display);
   font-size: 0.84rem;
   white-space: nowrap;
@@ -118,7 +115,7 @@ const scrollToSection = (id: string) => {
   color: var(--color-accent-contrast);
   border-radius: 14px;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: var(--weight-heading);
   box-shadow: 0 4px 10px -4px rgba(31, 112, 128, 0.5);
   transition: transform 0.4s var(--ease-out);
 }
@@ -173,22 +170,77 @@ nav {
   background: var(--color-accent-warm);
 }
 @media (max-width: 700px) {
-  .brand-name { display: none; }
+  .app-header {
+    width: calc(100% - 1rem);
+    top: max(0.75rem, env(safe-area-inset-top));
+    border-radius: 1.45rem;
+  }
+  .brand-name {
+    display: none;
+  }
+  .header-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem;
+  }
+  .brand {
+    min-width: 0;
+    font-size: 0.78rem;
+  }
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 16px;
+  }
   .header-controls {
-    flex: 1 1 auto;
-    gap: 0.4rem;
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.38rem;
+    width: 100%;
   }
   nav {
-    flex: 1 1 auto;
+    grid-column: 1;
+    width: 100%;
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
     scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 1rem, #000 calc(100% - 1rem), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 1rem, #000 calc(100% - 1rem), transparent 100%);
   }
   nav::-webkit-scrollbar { display: none; }
+  :deep(.language-toggle) {
+    grid-column: 2;
+  }
+  :deep(.theme-toggle) {
+    grid-column: 3;
+    justify-self: end;
+    width: 38px;
+    height: 38px;
+  }
   .nav-list {
     width: max-content;
     min-width: max-content;
+    gap: 0.25rem;
+    padding: 0.22rem;
+    background: color-mix(in srgb, var(--color-surface) 66%, transparent);
   }
-  .nav-list a { font-size: 0.72rem; padding: 0.3rem 0.55rem; }
-  .header-inner { gap: 0.4rem; }
+  .nav-list a {
+    min-height: 2rem;
+    font-size: 0.74rem;
+    padding: 0.34rem 0.68rem;
+  }
+}
+@media (max-width: 420px) {
+  .header-controls {
+    gap: 0.3rem;
+  }
+  .nav-list a {
+    font-size: 0.72rem;
+    padding-inline: 0.58rem;
+  }
 }
 </style>

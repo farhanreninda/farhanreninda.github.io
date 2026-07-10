@@ -1,28 +1,29 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { cv } from "@/data/cv";
+import { useLocale } from "@/composables/useLocale";
 
-const currentWork = computed(() => cv.experiences.find((item) => item.type === "work"));
-const currentEducation = computed(() => cv.educations.find((item) => item.period === "Sedang Berjalan") || cv.educations[0]);
+const { currentCv, copy } = useLocale();
+const currentWork = computed(() => currentCv.value.experiences.find((item) => item.type === "work"));
+const currentEducation = computed(() => currentCv.value.educations[0]);
 </script>
 
 <template>
   <section id="about" class="about-section reveal">
     <div class="section-frame about-layout">
       <header class="about-heading reveal reveal-delay-1">
-        <span class="eyebrow">Tentang Saya</span>
-        <h2 class="section-title">Membangun aplikasi Android yang rapi, stabil, dan mudah dipakai.</h2>
+        <span class="eyebrow">{{ copy.about.eyebrow }}</span>
+        <h2 class="section-title">{{ copy.about.title }}</h2>
       </header>
 
       <div class="about-content reveal reveal-delay-2">
         <article class="story-card">
           <div class="story-copy">
-            <p v-for="(paragraph, idx) in cv.profile.about" :key="idx">
+            <p v-for="(paragraph, idx) in currentCv.profile.about" :key="idx">
               {{ paragraph }}
             </p>
           </div>
-          <ul class="workflow-list" aria-label="Fokus kerja">
-            <li v-for="focus in cv.profile.aboutFocus" :key="focus.label">
+          <ul class="workflow-list" :aria-label="copy.about.workflowLabel">
+            <li v-for="focus in currentCv.profile.aboutFocus" :key="focus.label">
               <span>{{ focus.label }}</span>
               <strong>{{ focus.title }}</strong>
               <small>{{ focus.description }}</small>
@@ -32,20 +33,20 @@ const currentEducation = computed(() => cv.educations.find((item) => item.period
 
         <aside class="about-panel reveal reveal-delay-3">
           <div v-if="currentWork" class="panel-item featured">
-            <span>Posisi Saat Ini</span>
+            <span>{{ copy.about.currentPosition }}</span>
             <strong>{{ currentWork.role }}</strong>
             <small>{{ currentWork.company }}</small>
           </div>
 
           <div v-if="currentEducation" class="panel-item">
-            <span>Pendidikan Saat Ini</span>
+            <span>{{ copy.about.education }}</span>
             <strong>{{ currentEducation.school }}</strong>
             <small>{{ currentEducation.major }}</small>
           </div>
 
           <div class="panel-item">
-            <span>Domisili</span>
-            <strong>{{ cv.profile.social.location }}</strong>
+            <span>{{ copy.about.domicile }}</span>
+            <strong>{{ currentCv.profile.social.location }}</strong>
           </div>
         </aside>
       </div>
@@ -74,7 +75,7 @@ const currentEducation = computed(() => cv.educations.find((item) => item.period
 .about-heading .section-title {
   margin: 0.8rem 0 0;
   max-width: 720px;
-  font-size: clamp(1.55rem, 2.55vw, 2.45rem);
+  font-size: var(--text-section-heading);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -109,8 +110,8 @@ const currentEducation = computed(() => cv.educations.find((item) => item.period
 }
 .story-card p:first-child {
   color: var(--color-text);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.96rem;
+  font-weight: var(--weight-strong);
 }
 .workflow-list {
   display: grid;
@@ -133,13 +134,14 @@ const currentEducation = computed(() => cv.educations.find((item) => item.period
 }
 .workflow-list span {
   color: var(--color-accent-warm);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
 }
 .workflow-list strong {
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 0.98rem;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
 }
 .workflow-list small {
   color: var(--color-text-muted);
@@ -165,14 +167,15 @@ const currentEducation = computed(() => cv.educations.find((item) => item.period
 }
 .panel-item span {
   color: var(--color-accent-warm);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   text-transform: uppercase;
 }
 .panel-item strong {
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-heading);
   line-height: 1.25;
 }
 .panel-item small {

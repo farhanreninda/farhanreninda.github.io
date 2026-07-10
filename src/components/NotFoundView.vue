@@ -1,17 +1,20 @@
 ﻿<script setup lang="ts">
 import { useHead } from "@unhead/vue";
-useHead({ title: "Halaman tidak ditemukan" });
+import { useLocale } from "@/composables/useLocale";
+
+const { copy } = useLocale();
+useHead({ title: () => copy.value.notFound.title });
 </script>
 
 <template>
   <section class="not-found">
     <div class="section-frame nf-inner">
       <p class="nf-code reveal reveal-delay-1">404</p>
-      <h1 class="nf-title reveal reveal-delay-2">Halaman tidak ditemukan</h1>
+      <h1 class="nf-title reveal reveal-delay-2">{{ copy.notFound.title }}</h1>
       <p class="nf-lead reveal reveal-delay-3">
-        Maaf, halaman yang kamu cari tidak ada. Coba kembali ke beranda.
+        {{ copy.notFound.lead }}
       </p>
-      <a class="button reveal reveal-delay-4" href="#top">Kembali ke Beranda</a>
+      <a class="button reveal reveal-delay-4" href="#top">{{ copy.notFound.button }}</a>
     </div>
   </section>
 </template>
@@ -35,7 +38,7 @@ useHead({ title: "Halaman tidak ditemukan" });
 .nf-code {
   font-family: var(--font-display);
   font-size: clamp(4rem, 12vw, 7rem);
-  font-weight: 900;
+  font-weight: var(--weight-heading);
   margin: 0;
   background: linear-gradient(135deg, var(--color-teal), var(--color-sky-deep));
   -webkit-background-clip: text;
