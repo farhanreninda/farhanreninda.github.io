@@ -24,7 +24,6 @@ const currentEducation = computed(() => currentCv.value.educations[0]);
           </div>
           <ul class="workflow-list" :aria-label="copy.about.workflowLabel">
             <li v-for="focus in currentCv.profile.aboutFocus" :key="focus.label">
-              <span>{{ focus.label }}</span>
               <strong>{{ focus.title }}</strong>
               <small>{{ focus.description }}</small>
             </li>
@@ -123,19 +122,15 @@ const currentEducation = computed(() => currentCv.value.educations[0]);
 }
 .workflow-list li {
   display: grid;
-  gap: 0.25rem;
-  min-height: 112px;
+  align-content: center;
+  gap: 0.38rem;
+  min-height: 106px;
   padding: 0.85rem;
   border-radius: var(--radius-md);
   background:
     linear-gradient(150deg, color-mix(in srgb, var(--color-accent-warm) 12%, transparent), transparent 72%),
     color-mix(in srgb, var(--color-surface) 62%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-accent-warm) 22%, var(--color-border));
-}
-.workflow-list span {
-  color: var(--color-accent-warm);
-  font-size: var(--text-label);
-  font-weight: var(--weight-label);
 }
 .workflow-list strong {
   color: var(--color-text-strong);

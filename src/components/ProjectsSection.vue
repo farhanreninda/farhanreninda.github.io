@@ -120,7 +120,7 @@ const projectExternalLabel = (project: Project) => {
             @keydown.right.prevent="showNextImage"
           >
             <article class="project-detail" tabindex="-1">
-              <button class="modal-close" type="button" :aria-label="copy.projects.close" autofocus @click="closeProject">x</button>
+              <button class="modal-close" type="button" :aria-label="copy.projects.close" autofocus @click="closeProject" />
               <div class="detail-media" :class="{ 'is-mobile-shot': isMobileProjectImage }" v-if="activeProjectImage">
                 <Transition name="project-image" mode="out-in">
                   <img :key="activeProjectImage" :src="activeProjectImage" :alt="activeProjectImageAlt" />
@@ -322,6 +322,9 @@ const projectExternalLabel = (project: Project) => {
   display: grid;
   place-items: center;
   padding: clamp(1rem, 3vw, 2rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--color-bg) 88%, transparent), color-mix(in srgb, var(--color-surface) 62%, transparent)),
     color-mix(in srgb, var(--color-bg) 78%, transparent);
@@ -353,14 +356,33 @@ const projectExternalLabel = (project: Project) => {
   place-items: center;
   width: 2.35rem;
   height: 2.35rem;
+  padding: 0;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--color-bg) 78%, transparent);
   color: var(--color-text-strong);
-  font-size: 1.45rem;
-  line-height: 1;
+  font-size: 0;
+  line-height: 0;
   cursor: pointer;
   transition: transform 0.25s var(--ease-out), background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+.modal-close::before,
+.modal-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  transform-origin: center;
+}
+.modal-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.modal-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 .modal-close:hover {
   transform: scale(1.04);
@@ -563,7 +585,15 @@ const projectExternalLabel = (project: Project) => {
 }
 @media (max-width: 980px) {
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .project-detail { grid-template-columns: 1fr; }
+  .project-modal {
+    place-items: start center;
+  }
+  .project-detail {
+    grid-template-columns: 1fr;
+    width: min(720px, 100%);
+    max-height: none;
+    margin: auto 0;
+  }
   .detail-media {
     width: calc(100% - 1.7rem);
     height: min(54svh, 470px);
@@ -577,7 +607,16 @@ const projectExternalLabel = (project: Project) => {
 @media (max-width: 640px) {
   .project-grid { grid-template-columns: 1fr; }
   .project-modal {
-    padding: 0.85rem;
+    padding: max(0.85rem, env(safe-area-inset-top)) 0.85rem max(1.4rem, env(safe-area-inset-bottom));
+  }
+  .project-detail {
+    border-radius: 1.45rem;
+  }
+  .modal-close {
+    top: 0.85rem;
+    right: 0.85rem;
+    width: 2.15rem;
+    height: 2.15rem;
   }
   .detail-media.is-mobile-shot {
     height: min(68svh, 610px);

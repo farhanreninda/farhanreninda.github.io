@@ -1494,3 +1494,38 @@ Ringkasan perubahan
 
 **Pending Tasks:**
 - Review manual switch ID/EN di beberapa section untuk menilai rasa animasinya
+
+| 2026-07-10 | Hapus nomor fokus About | Menghapus label angka 01/02/03 dari kartu fokus About dan merapikan alignment kartu | User merasa angka pada kartu fokus About tidak perlu ditampilkan |
+
+### Session 2026-07-10 - Hapus Nomor Fokus About
+**Dikerjakan:**
+- Menghapus tampilan angka `01/02/03` dari `AboutSection.vue`
+- Merapikan kartu fokus About dengan alignment tengah dan spacing yang lebih pas
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Data label tetap dibiarkan di `cv.ts`, tetapi tidak dirender agar perubahan tampilan tetap scoped pada komponen
+
+**Technical Debt:**
+- Tidak ada
+
+**Pending Tasks:**
+- Review manual section About setelah refresh browser
+
+| 2026-07-10 | Fix modal proyek mobile | Membuat overlay modal proyek dapat discroll di mobile dan mengganti tombol close menjadi ikon CSS yang center | User melihat detail proyek di HP terpotong dan tombol silang tidak simetris |
+
+### Session 2026-07-10 - Fix Modal Proyek Mobile
+**Dikerjakan:**
+- Mengubah overlay modal proyek agar menjadi scroll container di layar kecil
+- Menghapus batas tinggi modal pada breakpoint tablet/mobile supaya detail bawah tidak terpotong
+- Mengganti tombol close dari teks `x` menjadi ikon silang berbasis pseudo-element CSS agar center di laptop dan HP
+- Menjalankan `npm run build` dan build sukses
+
+**Keputusan Penting:**
+- Perbaikan difokuskan pada modal proyek tanpa mengubah layout card proyek dan section lain
+
+**Technical Debt:**
+- Verifikasi browser otomatis tidak bisa dilakukan karena browser plugin membutuhkan Node runtime yang lebih baru dari environment saat ini
+
+**Pending Tasks:**
+- Review manual modal detail proyek di HP setelah refresh halaman
