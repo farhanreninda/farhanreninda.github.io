@@ -187,3 +187,13 @@ Teknologi, video demo, Play Store, tautan, thumbnail dan galeri memakai kartu be
 - Tes HTTP legacy lulus. Tes GitHub tiruan: state/origin/PKCE, client secret tidak masuk callback HTML, repository ID, izin push, read/save SHA/revision, konflik 409, logout, upload/manifest/blob preview dan SVG ditolak.
 - Preview build statis 4173: admin login GitHub tersedia dengan tombol disabled saat auth URL belum diisi; portfolio ID/EN tampil tanpa API Node. Mobile 390 tanpa overflow dan light/dark diperiksa. Screenshot github-pages-admin-login.png dan github-pages-admin-mobile.png.
 - Login GitHub real, deployment Worker, pengaturan App/Pages dan commit online belum diuji karena akun/konfigurasi belum tersedia. User belum punya Cloudflare. Panduan setup: github-pages.md.
+
+
+## Redesign akses admin Stitch (2026-10-03)
+
+- Brand Portfolio CMS pada header dan tema berupa ikon berlabel; ikon akses dipusatkan (offset browser 0px).
+- Inter existing, kotak repository/branch, tombol GitHub, tautan kembali sesuai referensi; otorisasi dan konten tetap.
+- TypeScript, build, diff check lulus. Browser desktop memeriksa light/dark, Enter pada tema, kedua tautan kembali.
+- Override viewport tidak efektif (tetap 1280px); visual ponsel belum diuji ulang. CSS fluid dan wrapping digunakan agar tidak memotong nama repository.
+- Antislop: hard gate PASS untuk perubahan yang diperiksa: kontrol berlabel, focus-visible, tautan nyata, data dan auth tetap; purpose gate PASS: gradien hanya menekankan login sesuai referensi; liveliness PASS: ENERGY/RHYTHM/MOTION 1, satu kartu akses; craftsmanship PASS: icon offset 0, tema dan link diuji, build lulus. Batas verifikasi mobile dicatat di atas.
+- Screenshot: verification/admin-access-redesign.png.

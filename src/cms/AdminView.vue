@@ -199,20 +199,23 @@ onBeforeUnmount(() => {
   <div class="cms-shell" :class="{ 'cms-dark': theme === 'dark', 'cms-authenticated': !!session && !loading }">
     <p v-if="loading" class="loading" role="status">Memeriksa sesi admin…</p>
     <div v-else-if="!session" class="login-page">
+      <header class="login-header">
+        <a class="login-brand" href="/"><AdminIcon name="terminal" />Portfolio CMS</a>
+        <button class="login-theme" type="button" :aria-label="theme === 'dark' ? 'Mode terang' : 'Mode gelap'" :title="theme === 'dark' ? 'Mode terang' : 'Mode gelap'" @click="toggle"><AdminIcon :name="theme === 'dark' ? 'sun' : 'moon'" /></button>
+      </header>
       <form class="login-form" @submit.prevent="unlock">
-        <a class="login-brand" href="/">Portfolio <span>/ Admin</span></a>
         <span class="access-icon"><AdminIcon name="lock" /></span>
         <h1>Buka akses admin</h1>
         <p>{{ githubMode ? 'Masuk dengan akun GitHub yang memiliki akses ke repository portfolio.' : 'Masukkan magic word untuk mengelola portfolio.' }}</p>
-        <p v-if="githubMode" class="github-repository">{{ githubRepo }} · {{ githubBranch }}</p>
-        <p v-if="githubMode && !oauthUrl" role="status">Login GitHub belum tersedia. Pengelola perlu menyelesaikan konfigurasi akses.</p>
+        <div v-if="githubMode" class="github-repository"><AdminIcon name="code" /><span>{{ githubRepo }}</span><span class="login-branch">{{ githubBranch }}</span></div>
+        <p v-if="githubMode && !oauthUrl" class="login-setup" role="status">Login GitHub belum tersedia. Pengelola perlu menyelesaikan konfigurasi akses.</p>
         <label v-if="!githubMode" for="admin-magic-word">Magic word</label>
         <input v-if="!githubMode" id="admin-magic-word" v-model="magicWord" type="password" autocomplete="current-password" required maxlength="128" />
         <p v-if="error" role="alert" class="error-message">{{ error }}</p>
-        <button class="primary" :disabled="busy || (githubMode && !oauthUrl)" type="submit">{{ busy ? 'Memeriksa…' : githubMode ? 'Masuk dengan GitHub' : 'Buka admin' }}<AdminIcon name="arrow" /></button>
-        <a href="/">Kembali ke portfolio</a>
-        <button type="button" @click="toggle">{{ theme === 'dark' ? 'Mode terang' : 'Mode gelap' }}</button>
+        <button class="primary login-submit" :disabled="busy || (githubMode && !oauthUrl)" type="submit"><svg v-if="githubMode" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" /></svg>{{ busy ? 'Memeriksa…' : githubMode ? 'Masuk dengan GitHub' : 'Buka admin' }}<AdminIcon name="arrow" /></button>
+        <a class="login-back" href="/"><AdminIcon name="arrow_back" />Kembali ke portfolio</a>
       </form>
+      <footer class="login-footer">{{ githubMode ? 'Akses melalui GitHub' : 'Pengelolaan portfolio' }}</footer>
     </div>
     <template v-else>
       <a class="cms-skip" href="#cms-main">Lewati navigasi</a>
