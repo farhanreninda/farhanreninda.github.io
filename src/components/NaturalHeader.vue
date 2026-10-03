@@ -250,8 +250,12 @@ nav a.active {
     display: none;
   }
   .brand-mark {
-    display: none;
+    display: grid;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 34px;
   }
+  .brand { gap: 6px; }
   .mobile-menu { display: flex; align-items: center; justify-content: center; gap: 8px; order: 3; grid-column: 1 / -1; width: 100%; min-height: 44px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-bg-soft); color: var(--color-text-strong); font: inherit; cursor: pointer; }
   nav { display: none; grid-column: 1 / -1; order: 4; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   nav.is-open { display: grid; }

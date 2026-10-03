@@ -1005,3 +1005,13 @@
   .contact-links strong { font-size: 13px; }
   .contact-grid { padding: 20px !important; }
 }
+
+@media (max-width: 650px) {
+  .natural-projects :deep(.project-filters) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .natural-projects :deep(.project-filters button) { width: 100%; justify-content: center; padding: 8px; font-size: 11px; white-space: normal; }
+  .natural-projects :deep(.project-filters button:first-child) { grid-column: 1 / -1; }
+  .certificate-list { width: 100%; }
+  .natural-footer { gap: 20px; }
+  .natural-footer nav { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 8px; }
+  .natural-footer nav a { font-size: 12px; }
+}

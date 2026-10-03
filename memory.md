@@ -1851,3 +1851,11 @@ Ringkasan perubahan
 **Dikerjakan:** checkout feature/portfolio-natural-theme dan sinkronkan main. Header mobile menggunakan tombol Menu dengan aria-expanded/controls dan enam tujuan, menutup sebelum menghitung scroll. Header grid tetap dua kolom di320px. Hero mengurangi ruang pembuka, CTA selebar konten, sosial terpusat. Keahlian satu kolom pada layar480px. Tablet651–900px menyusun hero, konteks dan kontak satu kolom. Email dan tombol Salin terpisah baris. Galeri dot dan tutup target44px; header detail sticky agar tombol tutup tetap terlihat saat scroll.
 **Validasi:** ukuran320/360/390/430/768/1024/1280px tidak menyebabkan overflow halaman. Bahasa Inggris/mode terang320px dan bahasa Indonesia/mode gelap390px diperiksa. Menu membuka seluruh pilihan dan menutup setelah navigasi. Galeri gambar13 bisa dipilih, header tetap tersedia saat PageDown. Pendidikan satu kolom. TypeScript/build Vite dan diff-check lulus. Bukti portfolio-natural-mobile-qc-hero/menu/contact.png.
 **Publikasi:** commit fix: rapikan tampilan mobile tema Natural, push branch, merge main, push main sesuai permintaan pengguna.
+
+
+| 2026-10-04 | Detail mobile lanjutan | Logo F30px tetap terlihat, filter dua kolom, sertifikasi100%, footer tiga kolom rapat khusus breakpoint mobile | Permintaan pengguna mempertahankan seluruh tampilan desktop |
+
+### Session 2026-10-04 - Logo, filter, sertifikasi dan footer mobile
+**Dikerjakan:** hanya CSS pada media max700px (logo) dan max650px (filter, sertifikasi, footer). Logo F tampil30x34px. Filter Semua satu baris penuh dan empat kategori dua kolom; label panjang membungkus. Sertifikasi width100%. Navigasi cepat tiga kolom tanpa row-gap, tetap tinggi target44px; gap footer20px.
+**Validasi:** mobile320/390px tidak overflow; filter tidak terpotong; sertifikasi sama lebar dengan pendidikan340px pada390px; footer tiga kolom108px dan target44px. Desktop1280 tetap filterflex, logo38px, sertifikasi fit-content479px dan footerdua kolom/gap8px. TypeScript/build dan diff-check lulus. Screenshot mobile-filters-grid dan mobile-footer-compact.
+**Publikasi:** melanjutkan push branch dan merge/push main untuk perubahan mobile yang diminta.
