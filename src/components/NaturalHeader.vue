@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from "vue";
+import NaturalActionIcon from "./NaturalActionIcon.vue";
 import { useLocale } from "@/composables/useLocale";
 import { useTheme } from "@/composables/useTheme";
 import { useActiveSection } from "@/composables/useActiveSection";
@@ -38,7 +39,7 @@ const email = computed(() => "mailto:" + cv.value.profile.social.email);
         ><small>{{ cv.profile.title }}</small>
       </div></a
     >
-    <button class="mobile-menu" :aria-expanded="menuOpen" aria-controls="natural-navigation" @click="menuOpen = !menuOpen"><span class="natural-icon" aria-hidden="true">{{ menuOpen ? 'close' : 'menu' }}</span>Menu</button>
+    <button class="mobile-menu" :aria-expanded="menuOpen" aria-controls="natural-navigation" @click="menuOpen = !menuOpen"><NaturalActionIcon :name="menuOpen ? 'close' : 'menu'" />Menu</button>
     <nav id="natural-navigation" :class="{ 'is-open': menuOpen }" :aria-label="copy.nav.top">
       <a
         v-for="id in ids"
@@ -64,14 +65,12 @@ const email = computed(() => "mailto:" + cv.value.profile.social.email);
         :aria-label="theme === 'dark' ? copy.theme.light : copy.theme.dark"
         @click="toggle"
       >
-        <span class="natural-icon" aria-hidden="true">{{
-          theme === "dark" ? "light_mode" : "dark_mode"
-        }}</span></button
+        <NaturalActionIcon :name="theme === 'dark' ? 'light_mode' : 'dark_mode'" /></button
       ><a class="send" :href="email"
         ><span class="natural-icon" aria-hidden="true">send</span
         ><span>{{ copy.contact.actions.email.title }}</span></a
       ><a class="mode" href="/admin/" aria-label="Admin"
-        ><span class="natural-icon" aria-hidden="true">person</span></a
+        ><NaturalActionIcon name="person" /></a
       >
     </div>
   </header>
@@ -270,8 +269,10 @@ nav a.active {
     padding: 8px;
   }
   .mode {
-    min-height: 44px;
-    min-width: 44px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    flex: 0 0 44px;
   }
   .languages button { min-width: 32px; }
   .brand { min-width: 0; flex-shrink: 1; }
