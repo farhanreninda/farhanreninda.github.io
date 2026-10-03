@@ -2,6 +2,8 @@
 
 ## Overview
 
+> Pembaruan 2026-10-03: arsitektur aktif memakai CMS Node 24 + SQLite dan API. `cv.ts` adalah seed; data publik berasal dari `usePortfolio` melalui `useLocale`. Admin `/admin` memakai shell terpisah. Uraian statis di bawah merekam baseline sebelum CMS. Acuan terbaru: [CMS](../cms/README.md) dan [audit](../cms/audit.md). Home saat ini memiliki tujuh section, dengan konten Indonesia/English; HelloSection tidak dirender.
+
 **farhanreninda.github.io** is a **single-page portfolio website** for Farhan Reninda Budiansyah — an Android Developer & Backend Developer. It is a purely static, client-side application with no server-side rendering, no database, and no API backend. The entire site is a one-page scroll experience built around structured CV data.
 
 ## High-Level Architecture Diagram

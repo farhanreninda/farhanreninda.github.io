@@ -4,9 +4,11 @@ import LanguageToggle from "./LanguageToggle.vue";
 import ThemeToggle from "./ThemeToggle.vue";
 import { useActiveSection } from "@/composables/useActiveSection";
 import { useLocale } from "@/composables/useLocale";
+import { usePortfolio } from "@/composables/usePortfolio";
 
 const navIds = ["top", "skills", "experience", "projects", "education", "contact"] as const;
 const { currentCv, copy } = useLocale();
+const { settings } = usePortfolio();
 const navItems = computed(() => navIds.map((id) => ({ id, label: copy.value.nav[id] })));
 
 const scrolled = ref(false);
@@ -39,7 +41,7 @@ const scrollToSection = (id: string) => {
   <header class="app-header" :class="headerClass">
     <div class="header-inner">
       <a class="brand" href="#top" :aria-label="copy.nav.top + ' ' + currentCv.profile.name" @click.prevent="scrollToSection('top')">
-        <span class="brand-mark">FR</span>
+        <span class="brand-mark">{{ settings.brandMark }}</span>
         <span class="brand-name">{{ currentCv.profile.name }}</span>
       </a>
       <div class="header-controls">

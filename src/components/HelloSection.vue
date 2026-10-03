@@ -1,8 +1,10 @@
 ﻿<script setup lang="ts">
 import { useLocale } from "@/composables/useLocale";
+import { usePortfolio } from "@/composables/usePortfolio";
 import WatercolorBg from "./WatercolorBg.vue";
 
 const { currentCv, copy } = useLocale();
+const { settings } = usePortfolio();
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const { currentCv, copy } = useLocale();
 
       <div class="hello-portrait reveal">
         <div class="portrait-frame">
-          <img src="/profile/portrait.jpg" :alt="currentCv.profile.name" loading="lazy" />
+          <img :src="settings.portraitUrl" :alt="currentCv.profile.name" loading="lazy" />
         </div>
         <div class="portrait-reflection" aria-hidden="true"></div>
       </div>

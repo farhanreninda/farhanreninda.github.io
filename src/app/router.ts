@@ -2,6 +2,12 @@
 
 const routes: RouteRecordRaw[] = [
   {
+    path: "/admin/:pathMatch(.*)*",
+    name: "admin",
+    component: () => import("@/cms/AdminView.vue"),
+    meta: { title: "Admin Portfolio", admin: true },
+  },
+  {
     path: "/",
     name: "home",
     component: () => import("@/components/HomeView.vue"),

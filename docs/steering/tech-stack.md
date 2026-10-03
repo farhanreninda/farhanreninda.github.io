@@ -2,6 +2,8 @@
 
 ## Core Framework
 
+> Pembaruan CMS 2026-10-03: Node.js minimal 24; backend HTTP, crypto, SQLite, dan test runner bawaan tanpa paket runtime baru. `npm run dev` menjalankan API 3001 + Vite 5173. Database memerlukan disk permanen di host Node terpisah dari Pages. Detail: [CMS](../cms/README.md). Bagian tanpa backend di bawah merekam baseline.
+
 | Technology | Version | Purpose |
 |---|---|---|
 | **Vue 3** | ^3.5.13 | Reactive UI framework (Composition API with `<script setup>`) |

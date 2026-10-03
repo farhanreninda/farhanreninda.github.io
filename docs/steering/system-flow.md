@@ -2,6 +2,8 @@
 
 ## Application Lifecycle
 
+> Pembaruan CMS 2026-10-03: bootstrap mengambil `/api/content` dan menunggu router sebelum mount; revisi baru menyegarkan data/reveal. Admin memakai sesi server, PUT berversi, dan upload SQLite. Flow tema/navigasi publik dipertahankan. Acuan terbaru: [CMS](../cms/README.md); uraian statis di bawah adalah baseline.
+
 ### 1. Boot Sequence
 
 ```

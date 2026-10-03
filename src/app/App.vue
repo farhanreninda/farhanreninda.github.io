@@ -6,11 +6,13 @@ import AppFooter from "@/components/AppFooter.vue";
 import ScrollTopButton from "@/components/ScrollTopButton.vue";
 import { useTheme } from "@/composables/useTheme";
 import { useLocale } from "@/composables/useLocale";
+import { useRoute } from "vue-router";
 
 const { locale, copy } = useLocale();
+const route = useRoute();
 
 useHead({
-  title: () => copy.value.app.ogTitle,
+  title: () => route.meta.admin ? "Admin Portfolio" : copy.value.app.ogTitle,
   htmlAttrs: { lang: () => locale.value },
   meta: [
     { name: "description", content: () => copy.value.app.description },
@@ -33,6 +35,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <RouterView v-if="route.meta.admin" />
+  <template v-else>
   <a class="skip-link" href="#main">{{ copy.app.skip }}</a>
   <AppHeader />
   <main id="main">
@@ -42,6 +46,7 @@ onMounted(async () => {
   </main>
   <ScrollTopButton />
   <AppFooter />
+  </template>
 </template>
 
 <style scoped>

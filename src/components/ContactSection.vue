@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useLocale } from "@/composables/useLocale";
+import { usePortfolio } from "@/composables/usePortfolio";
 
 interface ContactAction {
   label: string;
@@ -13,6 +14,7 @@ interface ContactAction {
 }
 
 const { currentCv, copy } = useLocale();
+const { settings } = usePortfolio();
 const waNumber = computed(() => (currentCv.value.profile.social.whatsapp || "62895332536530").replace(/\D/g, ""));
 const waMessage = computed(() => encodeURIComponent(copy.value.contact.whatsappMessage));
 const waHref = computed(() => `https://wa.me/${waNumber.value}?text=${waMessage.value}`);
@@ -58,7 +60,7 @@ const contactActions = computed<ContactAction[]>(() => [
     title: copy.value.contact.actions.cv.title,
     detail: copy.value.contact.actions.cv.detail,
     href: cvHref.value,
-    download: "CV-Farhan-Reninda-Budiansyah.pdf",
+    download: settings.value.cvDownloadName,
     variant: "ghost",
   },
 ]);

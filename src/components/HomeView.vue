@@ -9,10 +9,12 @@ import CertificatesSection from "./CertificatesSection.vue";
 import ContactSection from "./ContactSection.vue";
 import { useLocale } from "@/composables/useLocale";
 import { useReveal } from "@/composables/useReveal";
+import { usePortfolio } from "@/composables/usePortfolio";
 
 const root = ref<HTMLElement | null>(null);
 const { setup } = useReveal();
 const { locale } = useLocale();
+const { revision } = usePortfolio();
 
 const refreshReveal = async () => {
   await nextTick();
@@ -23,7 +25,7 @@ onMounted(() => {
   void refreshReveal();
 });
 
-watch(locale, () => {
+watch([locale, revision], () => {
   void refreshReveal();
 });
 </script>

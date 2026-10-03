@@ -1,7 +1,9 @@
 ﻿<script setup lang="ts">
 import { useLocale } from "@/composables/useLocale";
+import { usePortfolio } from "@/composables/usePortfolio";
 
 const { currentCv } = useLocale();
+const { settings } = usePortfolio();
 const year = new Date().getFullYear();
 </script>
 
@@ -9,7 +11,7 @@ const year = new Date().getFullYear();
   <footer class="app-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="footer-mark" aria-hidden="true">FR</span>
+        <span class="footer-mark" aria-hidden="true">{{ settings.brandMark }}</span>
         <div>
           <strong>{{ currentCv.profile.name }}</strong>
           <p>{{ currentCv.profile.title }} · {{ currentCv.profile.social.location }}</p>

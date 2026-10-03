@@ -21,10 +21,22 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
       - run: npm ci
+      - name: Periksa konfigurasi backend CMS
+        run: |
+          if [ -z "$VITE_API_URL" ] || [ -z "$VITE_ADMIN_URL" ]; then
+            echo "Isi repository variables VITE_API_URL dan VITE_ADMIN_URL sebelum deploy CMS."
+            exit 1
+          fi
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_ADMIN_URL: ${{ vars.VITE_ADMIN_URL }}
       - run: npm run build
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_ADMIN_URL: ${{ vars.VITE_ADMIN_URL }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,5 +1,5 @@
 import { computed, ref, watchEffect } from "vue";
-import { localizedCv, siteCopy } from "@/data/cv";
+import { portfolio } from "@/composables/usePortfolio";
 import type { Locale } from "@/types/cv";
 
 const STORAGE_KEY = "locale";
@@ -62,8 +62,8 @@ const ensureLocaleSync = () => {
 export const useLocale = () => {
   ensureLocaleSync();
 
-  const currentCv = computed(() => localizedCv[locale.value]);
-  const copy = computed(() => siteCopy[locale.value]);
+  const currentCv = computed(() => portfolio.value!.data.localizedCv[locale.value]);
+  const copy = computed(() => portfolio.value!.data.siteCopy[locale.value]);
   const isEnglish = computed(() => locale.value === "en");
 
   const setLocale = (value: Locale) => {

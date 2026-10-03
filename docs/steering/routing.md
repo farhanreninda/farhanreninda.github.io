@@ -2,6 +2,8 @@
 
 ## Router Configuration
 
+> Pembaruan CMS 2026-10-03: `/admin/:pathMatch(.*)*` memuat AdminView secara lazy dengan shell terpisah (`route.meta.admin`). Menu admin memakai query `section`. Hash anchor publik dipertahankan. Backend menyediakan SPA fallback; bookmark admin pada deployment Pages memakai URL backend langsung. Detail: [CMS](../cms/README.md).
+
 The application uses **Vue Router 4** with **HTML5 History mode** (`createWebHistory`).
 
 ```typescript

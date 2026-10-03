@@ -2,6 +2,8 @@
 
 ## Overview
 
+> Pembaruan CMS 2026-10-03: CSS publik, breakpoint, dan animasi existing dipertahankan. Tema default override kosong/terkunci; tema tambahan mengatur token warna/font dengan preview. Panel admin memiliki scoped CSS serta mode terang/gelap sendiri. Detail: [CMS](../cms/README.md).
+
 The design system is built on **pure CSS custom properties** defined in `src/styles/main.css`. There is no CSS framework. Every visual token is a CSS variable, enabling seamless light/dark theme switching and consistent styling.
 
 ## Color System

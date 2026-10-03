@@ -4,8 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Personal portfolio of Farhan Reninda Budiansyah built with Vue 3 + Vite.",
+  "engines": { "node": ">=24.0.0" },
   "scripts": {
-    "dev": "vite",
+    "dev": "node --env-file-if-exists=.env server/dev.mjs",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "cms:migrate": "node --env-file-if-exists=.env server/migrate.mjs",
+    "test": "node --test server/*.test.mjs",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 4173",
     "deploy": "npm run build && gh-pages -d dist"

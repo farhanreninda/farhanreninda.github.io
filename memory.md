@@ -1,4 +1,4 @@
-﻿# Memory � farhanreninda-portfolio
+# Memory � farhanreninda-portfolio
 
 > **File ini adalah memori persisten antar-session untuk AI agent.**
 > Agent WAJIB membaca file ini di awal setiap session baru.
@@ -43,12 +43,114 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
+| 2026-10-03 | Posisi Batalkan edit | Memindahkan pembatalan dari status draft ke baris aksi simpan, warna danger dan ikon silang; tombol bawah profil memakai gaya yang sama | User meminta lokasi lain dan penanda warna batal |
+| 2026-10-03 | Redesign opsi proyek | Kartu opsi berikon, penjelasan dan switch kanan untuk teknologi/video/Play Store/tautan/thumbnail/galeri; header Informasi dan Media Proyek | Mengganti checkbox lepas dengan kontrol konsisten, sejajar dan responsif tanpa mengubah konten |
+| 2026-10-03 | Dropdown CMS dan jenis pengalaman | Panah select konsisten 12px dari kanan; input/select 44px; pengalaman dibagi Pekerjaan, Magang, Organisasi dengan ikon berbeda dan indeks array asli | Merapikan kesejajaran serta menjaga data dan urutan jenis lain saat pengurutan |
+| 2026-10-03 | Penyederhanaan CMS dan redesign tema | Menghapus menu copy/media serta tab koleksi, menyatukan header disclosure/aksi, mengganti Settings dengan Identitas Website dan kartu tema/palet/editor warna | User meminta menu lebih relevan, penanda buka/tutup, alignment simetris, serta redesign identitas/tema |
+| 2026-10-03 | QC CMS setelah review user | Renderer proyek memeriksa struktur schema; halaman skill/pengalaman terpisah; toolbar dan kontrol sejajar; AssetPicker galeri/file/link dan MP4/WebM | Memperbaiki halaman Website kosong, navigasi tidak berbeda, scrollbar ganda, celah form, serta pilihan upload yang kurang lengkap |
+| 2026-10-03 | Stitch Comprehensive Blue Edition | Empat desain CMS memakai sidebar biru, Jakarta/Inter/Material Symbols lokal, profile live preview, project search/filter, skill chips dan editor pengalaman | Mengikuti seluruh referensi terbaru user dengan semua data portfolio tersimpan tetap identik |
+| 2026-10-03 | Scrollbar dan kontrol item admin | Scrollbar tipis sesuai tema; grip drag dan ikon hapus di kanan judul dengan dukungan keyboard | User meminta tampilan lebih modern dan menghilangkan tombol teks Naik/Turun/Hapus di bawah field |
+| 2026-10-03 | Redesign admin Stitch | Sidebar gelap, aksen turquoise, judul serif, profil tersimpan, koleksi nyata, dan pintasan editor; mode terang/mobile dipertahankan | Mengikuti referensi user dengan antislop tanpa membuat grafik atau metrik palsu |
+| 2026-10-03 | Akses admin magic word | Mengganti akun/login dengan CMS_ACCESS_WORD backend, endpoint unlock, sesi cookie/CSRF, dan migrasi sesi v3 | User meminta akses satu kata tanpa pendaftaran; admin tetap terkunci tanpa magic word yang benar |
+| 2026-10-03 | Login username dan password pendek | Mengganti email admin menjadi username, migrasi kolom tanpa mengubah akun lama, password tidak kosong maksimal 128 karakter tanpa minimum 12 | User meminta login user/pass dan menghapus syarat minimal password |
+| 2026-10-03 | Implementasi CMS admin | Node 24 HTTP/crypto/SQLite bawaan, dokumen JSON dua bahasa dengan revision, sesi cookie + CSRF, media BLOB, tema token terpisah | Memindahkan pengelolaan seluruh data existing ke database tanpa mengubah desain, isi, urutan, atau menambah dependency backend |
+| 2026-10-03 | Hosting CMS | Frontend Pages dapat memakai VITE_API_URL dan VITE_ADMIN_URL; API/admin harus memakai host Node HTTPS dengan disk permanen | GitHub Pages tidak dapat menjalankan database/backend; deploy berhenti jika URL backend belum dikonfigurasi |
 | 2026-06-18 | Inisialisasi mekanisme Memory | Membuat file `memory.md` dan protokol auto-load/auto-write di AGENTS.md | Agar konteks antar-session tidak hilang dan agent selalu aware keputusan sebelumnya |
 | 2026-06-18 | Auto-hide Header | Menambahkan perilaku hide-on-scroll-down pada AppHeader.vue | Membuat tampilan lebih rapih dan memberi ruang baca lebih luas |
 
 | 2026-06-19 | Hapus teks pendahuluan | Menghapus paragraf intro di HelloSection.vue | Agar tampilan lebih ringkas dan tidak redundan |
 
 ## Session History
+
+### Session 2026-10-03 — Tombol Batalkan edit
+**Dikerjakan:** tombol batal di samping simpan pada desktop, bertumpuk penuh pada ponsel; warna merah/ikon silang juga pada footer profil.
+**Validasi:** draft perubahan nama diuji, dialog pembatalan berhasil dan nilai asli pulih; mobile 390px tanpa overflow. TypeScript/build/diff check lulus.
+**Keputusan Penting:** memakai reloadData dan konfirmasi existing; tidak mengubah data tersimpan.
+**Technical Debt:** tidak ada tambahan.
+**Pending Tasks:** tidak ada untuk permintaan ini.
+
+
+### Session 2026-10-03 — Redesign opsi proyek
+**Dikerjakan:** opsi proyek memakai kartu dan switch kanan dengan header 76px pada desktop, input muncul saat aktif; kolom Informasi/Media Proyek.
+**Validasi:** toggle video/Play Store dan Space keyboard berhasil; desktop 1600 dan mobile 390 tanpa overflow; light/dark diperiksa. TypeScript/build/diff check lulus; snapshot konten API tetap sama dan draft pengujian dibuang.
+**Keputusan Penting:** tetap checkbox native dengan fokus keyboard dan hit area 44px; tidak ada dependency baru.
+**Technical Debt:** tidak ada tambahan.
+**Pending Tasks:** tidak ada untuk permintaan ini; belum commit/push/deploy.
+
+
+### Session 2026-10-03 — Dropdown dan section pengalaman
+**Dikerjakan:** panah dropdown seragam, tinggi kontrol selaras, tiga section pengalaman dengan ikon work/school/groups termasuk ponsel.
+**Keputusan Penting:** section merupakan filter terhadap array pengalaman asli; tambah mengikuti jenis section dan reorder hanya mengubah slot jenis yang sama.
+**Validasi:** TypeScript, build, tes HTTP CMS, diff check lulus; tambah Magang, pindah jenis, reorder keyboard, ID/EN, light/dark, desktop dan ponsel diperiksa. Snapshot konten tersimpan tetap sama.
+**Technical Debt:** tidak ada tambahan.
+**Pending Tasks:** tidak ada untuk permintaan ini.
+
+
+### Session 2026-10-03 - Menu ringkas dan redesign tema/identitas
+**Dikerjakan:** menu Teks Website/Media & Berkas serta pintasan terkait dihapus dari UI; data/API dipertahankan. Tab skill/pengalaman dihapus. Badge/panah/aksi berada pada satu summary flex; semua item memiliki panah disclosure. Identitas Website memakai panel foto/browser/dokumen. Tema memakai palet asli, toolbar rata, aksi terpisah, editor warna native/hex dan label font/warna yang mudah dibaca.
+**Keputusan Penting:** upload tetap melalui AssetPicker di masing-masing field. Route menu lama jatuh ke Ringkasan. Posisi tengah badge/panah/aksi diukur dan sama. Draft uji tema/urutan dipulihkan; API tetap identik revisi 3.
+**Technical Debt:** contoh palet hanya ringkasan; Preview tema memakai portfolio nyata. Responsive diuji lewat viewport.
+**Pending Tasks:** tidak ada untuk permintaan ini; commit/push/deploy belum dilakukan. Strict/build/HTTP lulus; bukti di docs/cms/verification.md.
+
+
+### Session 2026-10-03 - QC CMS seluruh menu
+**Dikerjakan:** memperbaiki crash kelompok copy Proyek, halaman skill/pengalaman terpisah dan tab route, toolbar penuh/rata, inset kontak, gap narasi/skill, serta scrollbar ganda akibat status absolute. AssetPicker menyediakan galeri/file/link dengan filter tipe; backend menambah MP4/WebM. Sebelas menu diperiksa pada desktop/mobile/tablet; ID/EN, mode terang, pilihan galeri dan pemulihan draft diuji. Build strict, HTTP termasuk video, dan diff check lulus. Data API identik/revisi 3.
+**Keputusan Penting:** tetap memakai Vue/Node/browser bawaan tanpa dependency baru. Unggahan masuk library, URL konten perlu simpan. Server lokal dimuat ulang agar video aktif.
+**Technical Debt:** dokumen dibatasi PDF, video MP4/WebM, maksimal 10 MB; identifikasi file berdasarkan signature/MIME, bukan decoding penuh. Uji responsive memakai viewport.
+**Pending Tasks:** tidak ada untuk QC ini; commit/push/deploy belum dilakukan. Bukti ada di docs/cms/verification.md.
+
+### Session 2026-10-03 - Implementasi Stitch Blue Edition
+**Dikerjakan:** empat desain CMS diimplementasikan; sidebar/topbar, font, ikon, warna, tombol, profile dua kolom/live widget/perbandingan draft, project search/filter/editor dua kolom, dan skill chip editable. Menu mobile, scroll, grip dan hapus dipertahankan. Build strict dan integration HTTP lulus; browser desktop/mobile/tablet/tema diperiksa, tanpa console warning/error. Deep equality konten API sebelum/sesudah lulus; revisi 3 tetap.
+**Keputusan Penting:** font lokal diberi nama keluarga CMS agar portfolio publik tidak berubah. Konten contoh desain diganti data asli; metrik/2FA/storage/pipeline tanpa sumber tidak dibuat. Tidak ada library baru. Sidebar lipat di bawah 900 px.
+**Technical Debt:** font lokal sekitar 2.5 MB; responsive diuji lewat viewport, bukan perangkat fisik. Drag tidak menyediakan auto-scroll ke tepi.
+**Pending Tasks:** tidak ada untuk implementasi ini; commit/push/deploy belum dilakukan. Bukti dan adaptasi ada di docs/cms/admin-design.md dan verification.md.
+
+### Session 2026-10-03 - Scrollbar dan kontrol item admin
+**Dikerjakan:** scrollbar sidebar transparan/tipis dan scrollbar halaman sesuai tema. Kontrol daftar pada FieldEditor menjadi pegangan drag enam titik serta ikon hapus di kanan. Pointer Events mendukung mouse/sentuh; panah keyboard mengubah urutan dan live status mengumumkan hasil. Build strict/diff check lulus; browser menguji drag dua jenis item, keyboard, konfirmasi hapus, kedua tema, serta mobile 390 piksel tanpa overflow.
+**Keputusan Penting:** memakai API browser dan ikon SVG existing tanpa dependency tambahan. Penghapusan tetap melalui konfirmasi dan hanya diterapkan setelah simpan. Seluruh draft uji dibuang, database tetap revisi 3.
+**Technical Debt:** seret mengikuti item yang terlihat dalam viewport; tidak menambahkan auto-scroll ketika menyeret ke tepi layar.
+**Pending Tasks:** tidak ada untuk perubahan ini; commit/push/deploy belum dilakukan. Screenshot dan gate ada di docs/cms/admin-design.md.
+
+### Session 2026-10-03 - Redesign admin dari referensi Stitch
+**Dikerjakan:** admin dan gate magic word mengikuti referensi; ikon SVG lokal serta stylesheet scoped terpisah. Build strict, integration HTTP, dan diff check lulus. Browser memeriksa semua menu, pintasan, ID/EN, draft/reload, preview, keyboard, unlock/keluar, kedua tema, serta lebar 320/390/768/1440. Screenshot dan laporan gate tersimpan di docs/cms.
+**Keputusan Penting:** statistik ringkasan berasal dari konten tersimpan. Tidak membuat trafik, uptime, log aktivitas, atau profil admin palsu. Desain publik tidak diubah oleh redesign ini. Secret yang diberikan user hanya dipakai untuk login lokal, tidak dicatat dalam source/dokumentasi.
+**Technical Debt:** analitik kunjungan dan log aktivitas belum tersedia sehingga tidak ditampilkan. Gangguan tool terminal sementara sudah pulih; build dan tes berhasil dijalankan.
+**Pending Tasks:** deployment backend/domain tetap mengikuti panduan CMS; belum melakukan commit/push/deploy. Data pengujian draft dibuang melalui reload dan database user tetap revisi 3.
+
+### Session 2026-10-03 - Gerbang admin magic word
+**Dikerjakan:**
+- Form satu magic word tanpa username/password akun; setup akun dan endpoint login lama dihapus.
+- Secret dari CMS_ACCESS_WORD backend, hash scrypt di memori, fail closed jika konfigurasi kosong, semua API admin tetap memerlukan sesi.
+- Migrasi v3 membatalkan sesi akun lama; akun legacy tetap di database tetapi tidak digunakan. Konten/media tidak diubah.
+- Sesi dibatalkan saat restart untuk mencabut akses setelah rotasi secret; cookie/CSRF/rate limit tetap berlaku.
+- Uji HTTP magic word salah/benar, deep endpoint unauthorized, secret kosong, rotasi/restart, legacy sesi, serta CRUD/build lulus.
+
+**Keputusan Penting:**
+- Tidak menanamkan magic word di frontend atau membuat kata rahasia otomatis. User mengisinya sendiri di .env/hosting.
+- Backend satu instance; sesi maksimal 8 jam dan harus dibuka ulang sesudah restart.
+
+**Technical Debt:**
+- Hosting production/domain belum tersedia; advisory dependency existing tetap terpisah.
+
+**Pending Tasks:**
+- User menentukan CMS_ACCESS_WORD pribadi dan environment domain production.
+
+### Session 2026-10-03 - Login username tanpa minimum 12 karakter
+**Dikerjakan:**
+- Mengubah form login, API/session, setup CLI, dan dokumentasi menjadi username/password.
+- Migrasi SQLite v2 mengganti kolom email menjadi username tanpa mengganti identitas, ID, atau hash akun lama.
+- Password satu karakter diuji berhasil dibuat dan dipakai login; password kosong tetap ditolak.
+- Uji akun legacy, duplikat username, normalisasi huruf, rate limit, serta integrasi CMS lulus; build dan migrasi lokal lulus.
+
+**Keputusan Penting:**
+- Identitas email lama tetap dapat dimasukkan pada field Username. Username baru tidak memerlukan format email.
+- Hash password, sesi, CSRF, dan rate limit dipertahankan.
+
+**Technical Debt:**
+- Advisory dependency existing tetap menjadi task terpisah.
+
+**Pending Tasks:**
+- User membuat akun sesuai username/password pilihannya dan menjalankan ulang server.
 
 ### Session 2026-06-18 � Inisialisasi Memory System
 **Dikerjakan:**
@@ -68,7 +170,26 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 - Tidak ada pending task saat ini
 
 
-## Known Context (Persisten)
+## Known Context
+
+- CMS pengalaman menampilkan section Pekerjaan/Magang/Organisasi dengan ikon terpisah, memakai array asli tanpa migrasi. Select CMS memakai panah SVG di kanan 12px; tinggi field 44px.
+ (Persisten)
+- Navigasi CMS terbaru: 7 menu Konten, Identitas Website, Tema & Tampilan. Copy/media tidak memiliki halaman UI; data tersimpan/API tetap ada dan AssetPicker berada pada field. IdentityEditor.vue mengelompokkan settings; tema memakai panel palet/konfigurasi. Header FieldEditor menggabungkan disclosure/badge/aksi dalam satu baris flex.
+
+
+- Desain admin terbaru mengikuti Stitch Comprehensive Blue Edition: sidebar biru, font lokal CMS Plus Jakarta Sans/CMS Inter, Material Symbols, tema terang/gelap, menu lipat di bawah 900 px. ProfileEditor.vue menyediakan panel profil/live preview; FieldEditor.vue menyediakan pencarian/filter proyek dan editable skill/tech chips. Data tersimpan tidak berubah saat redesign.
+
+### Pembaruan CMS 2026-10-03 (menggantikan catatan arsitektur statis lama)
+- Akses admin terbaru memakai magic word dari CMS_ACCESS_WORD backend, tanpa akun/daftar. Schema sesi v3; endpoint /api/admin/unlock. Instruksi username atau cms:admin sebelumnya telah digantikan. .env/secret tidak masuk Git/frontend. Restart membatalkan semua sesi.
+- Login terbaru memakai username/password; schema akun v2. Setup tidak mewajibkan password minimal 12 karakter, tetapi password harus tidak kosong (maksimal 128). Akun email lama otomatis dipertahankan sebagai username.
+- Branch implementasi `feature/admin-cms`, tanpa prefix codex sesuai pilihan user.
+- Data aktif dari `/api/content` dan `data/cms.sqlite`; `src/data/cv.ts` menjadi seed migrasi yang tidak diubah. Kedua bahasa dipertahankan.
+- Node.js minimal 24; `npm.cmd run dev` menjalankan API 3001 dan Vite 5173. Admin `/admin`; akun pertama dibuat via `npm.cmd run cms:admin`.
+- Tidak ada akun/password bawaan. Database real lokal telah di-seed revisi 1 dengan nol akun; fixture uji terpisah.
+- Tema default `existing` override kosong/terkunci. Tema baru hanya konfigurasi token warna/font; preview sebelum simpan.
+- Semua CSS publik dan aset existing dipertahankan. Dokumentasi operasional terbaru `docs/cms/README.md`, audit dan bukti `docs/cms/verification.md`.
+- Backend production belum dihosting. Repository variables Pages wajib diisi sebelum deploy. SQLite/upload tidak masuk Git dan perlu backup.
+- Advisory dependency existing masih ada; upgrade major Vite/Unhead dan dependency deploy belum termasuk task CMS.
 
 > Bagian ini berisi konteks penting yang harus selalu diingat agent, terlepas dari session.
 
@@ -158,6 +279,30 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 | 2026-06-19 | Hapus teks pendahuluan | Menghapus paragraf intro di HelloSection.vue | Agar tampilan lebih ringkas dan tidak redundan |
 
 ## Session History
+
+### Session 2026-10-03 - Portfolio dinamis dan CMS admin
+**Dikerjakan:**
+- Audit komponen, data ID/EN, styling, aset, routing, dan hosting; dokumentasi pemetaan serta screenshot baseline.
+- Migrasi idempotent langsung dari ekspor existing; backend SQLite permanen, API publik/admin, sesi scrypt/cookie/CSRF, validasi dan rate limit.
+- Dashboard aktual, CRUD/reorder dua bahasa, settings, media library/upload, serta fondasi tema dengan preview.
+- Integrasi public composable tanpa perubahan CSS publik; refresh revisi dan reveal, loading/error API.
+- Build dan integrasi HTTP lulus; browser menguji edit/tambah/hapus/reorder proyek, upload/pemakaian/hapus foto, preview/aktivasi/default tema, responsive admin dan locale.
+- Setup akun CLI disamarkan dan hash diverifikasi pada database terpisah. Data real tetap identik seed, revisi 1, tanpa akun/test content.
+
+**Keputusan Penting:**
+- Satu dokumen JSON berversi untuk menjaga struktur existing; semua mutasi dilindungi backend.
+- Upload BLOB disimpan dalam SQLite; media yang dirujuk ditolak penghapusannya.
+- Default theme tidak menyuntikkan token sehingga CSS existing tetap berlaku.
+
+**Technical Debt:**
+- Advisory dependency existing dan upgrade major tooling/head library perlu task terpisah.
+- Snapshot baseline memiliki perbedaan pemuatan lazy thumbnail; perbandingan desain memakai CSS/source invariants dan screenshot dalam state yang dicatat.
+
+**Pending Tasks:**
+- User membuat akun admin sendiri melalui setup CLI.
+- Menyediakan host Node HTTPS/disk permanen, mengisi repository variables API/admin, dan deploy production.
+- Tidak melakukan commit/push/deploy dalam task ini.
+- Preview real API 3001 + Vite existing 5173 tetap berjalan. Fixture 3002 dihentikan; cleanup file uji `.cache` ditolak approval otomatis (blocked by policy), sehingga file ignored tersebut tetap ada.
 
 ### Session 2026-06-18 � Inisialisasi Memory System
 **Dikerjakan:**

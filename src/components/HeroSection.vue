@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useLocale } from "@/composables/useLocale";
+import { usePortfolio } from "@/composables/usePortfolio";
 
 const { currentCv, copy } = useLocale();
+const { settings } = usePortfolio();
 const nameLines = computed(() => {
   const parts = currentCv.value.profile.name.split(" ");
   return [parts.slice(0, 2).join(" "), parts.slice(2).join(" ")];
@@ -31,7 +33,7 @@ const nameLines = computed(() => {
           <span class="orbit-dot dot-one"></span>
           <span class="orbit-dot dot-two"></span>
           <div class="portrait-frame">
-            <img src="/profile/portrait.jpg" :alt="currentCv.profile.name" loading="eager" />
+            <img :src="settings.portraitUrl" :alt="currentCv.profile.name" loading="eager" />
           </div>
         </div>
       </div>
