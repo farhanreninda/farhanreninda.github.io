@@ -7,6 +7,7 @@ import ExperienceSection from "./ExperienceSection.vue";
 import ProjectsSection from "./ProjectsSection.vue";
 import CertificatesSection from "./CertificatesSection.vue";
 import ContactSection from "./ContactSection.vue";
+import NaturalHome from "./NaturalHome.vue";
 import { useLocale } from "@/composables/useLocale";
 import { useReveal } from "@/composables/useReveal";
 import { usePortfolio } from "@/composables/usePortfolio";
@@ -14,7 +15,7 @@ import { usePortfolio } from "@/composables/usePortfolio";
 const root = ref<HTMLElement | null>(null);
 const { setup } = useReveal();
 const { locale } = useLocale();
-const { revision } = usePortfolio();
+const { revision, natural } = usePortfolio();
 
 const refreshReveal = async () => {
   await nextTick();
@@ -25,13 +26,14 @@ onMounted(() => {
   void refreshReveal();
 });
 
-watch([locale, revision], () => {
+watch([locale, revision, natural], () => {
   void refreshReveal();
 });
 </script>
 
 <template>
-  <div ref="root" class="home">
+  <NaturalHome v-if="natural" />
+  <div v-else ref="root" class="home">
     <HeroSection />
     <AboutSection />
     <SkillsSection />

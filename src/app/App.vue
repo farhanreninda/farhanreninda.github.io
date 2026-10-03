@@ -3,6 +3,9 @@ import { onMounted, nextTick } from "vue";
 import { useHead } from "@unhead/vue";
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
+import NaturalHeader from "@/components/NaturalHeader.vue";
+import { usePortfolio } from "@/composables/usePortfolio";
+import '@/styles/natural.css';
 import ScrollTopButton from "@/components/ScrollTopButton.vue";
 import { useTheme } from "@/composables/useTheme";
 import { useLocale } from "@/composables/useLocale";
@@ -10,6 +13,7 @@ import { useRoute } from "vue-router";
 
 const { locale, copy } = useLocale();
 const route = useRoute();
+const { natural } = usePortfolio();
 
 useHead({
   title: () => route.meta.admin ? "Admin Portfolio" : copy.value.app.ogTitle,
@@ -38,14 +42,15 @@ onMounted(async () => {
   <RouterView v-if="route.meta.admin" />
   <template v-else>
   <a class="skip-link" href="#main">{{ copy.app.skip }}</a>
-  <AppHeader />
+  <NaturalHeader v-if="natural" />
+  <AppHeader v-else />
   <main id="main">
     <RouterView v-slot="{ Component }">
       <component :is="Component" />
     </RouterView>
   </main>
   <ScrollTopButton />
-  <AppFooter />
+  <AppFooter v-if="!natural" />
   </template>
 </template>
 

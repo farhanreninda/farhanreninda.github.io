@@ -11,7 +11,7 @@ const updateVisibility = () => {
 
 const scrollToTop = () => {
   window.history.pushState(null, "", "#top");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 };
 
 onMounted(() => {
@@ -31,6 +31,7 @@ onBeforeUnmount(() => {
       class="scroll-top-button"
       type="button"
       :aria-label="copy.scrollTop.label"
+      :title="copy.scrollTop.label"
       @click="scrollToTop"
     >
       <span class="scroll-top-arrow" aria-hidden="true"></span>

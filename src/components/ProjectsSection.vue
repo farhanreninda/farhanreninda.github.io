@@ -1,11 +1,39 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import { useLocale } from "@/composables/useLocale";
 import type { Project } from "@/types/cv";
 
 const { currentCv, copy } = useLocale();
+const props = defineProps<{ filterable?: boolean }>();
+const category = ref('');
+const categoryIcon = (value: string) => /android/i.test(value) ? 'phone_android' : /desktop/i.test(value) ? 'desktop_windows' : /web/i.test(value) ? 'language' : 'code';
+const categories = computed(() => [...new Set(currentCv.value.projects.map(project => project.category))]);
+watch(categories, values => { if (!values.includes(category.value)) category.value = ''; });
+const projects = computed(() => props.filterable && category.value ? currentCv.value.projects.filter(project => project.category === category.value) : currentCv.value.projects);
 const selectedProject = ref<Project | null>(null);
 const selectedImageIndex = ref(0);
+const dialog = ref<HTMLElement | null>(null);
+let returnFocus: HTMLElement | null = null;
+let previousOverflow = '';
+watch(selectedProject, async (project) => {
+  if (project) {
+    returnFocus = document.activeElement as HTMLElement;
+    previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    await nextTick();
+    dialog.value?.querySelector<HTMLButtonElement>('.modal-close')?.focus();
+  } else {
+    document.body.style.overflow = previousOverflow;
+    returnFocus?.focus();
+  }
+});
+onBeforeUnmount(() => { if (selectedProject.value) document.body.style.overflow = previousOverflow; });
+const trapFocus = (event: KeyboardEvent) => {
+  const controls = [...(dialog.value?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [])];
+  const first = controls[0], last = controls[controls.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+};
 
 const openProject = (project: Project) => {
   selectedImageIndex.value = 0;
@@ -80,9 +108,13 @@ const projectExternalLabel = (project: Project) => {
         </div>
       </header>
 
+      <div v-if="filterable" class="project-filters" role="group" :aria-label="copy.nav.projects">
+        <button type="button" :aria-pressed="!category" @click="category = ''"><span class="filter-icon" aria-hidden="true">grid_view</span>{{ copy.language.current === 'English' ? 'All' : 'Semua' }}</button>
+        <button v-for="value in categories" :key="value" type="button" :aria-pressed="category === value" @click="category = value"><span class="filter-icon" aria-hidden="true">{{ categoryIcon(value) }}</span>{{ value }}</button>
+      </div>
       <ul class="project-grid">
         <li
-          v-for="(project, idx) in currentCv.projects"
+          v-for="(project, idx) in projects"
           :key="project.name"
           class="project-item reveal"
           :class="`reveal-delay-${(idx % 5) + 1}`"
@@ -92,14 +124,18 @@ const projectExternalLabel = (project: Project) => {
               <img :src="project.thumbnail" :alt="`${copy.projects.imageAlt} ${project.name}`" loading="lazy" />
             </div>
             <div class="project-body">
-              <span class="project-badge">{{ project.badge }}</span>
+              <span class="project-badge">{{ filterable ? project.category : project.badge }}</span>
               <h3>{{ project.name }}</h3>
               <p>{{ project.description }}</p>
+              <ul v-if="filterable && project.tech?.length" class="tech-list" :aria-label="copy.projects.techLabel">
+                <li v-for="tech in project.tech" :key="tech">{{ tech }}</li>
+              </ul>
               <div class="project-footer">
-                <ul v-if="project.tech" class="tech-list" :aria-label="copy.projects.techLabel">
+                <ul v-if="!filterable && project.tech" class="tech-list" :aria-label="copy.projects.techLabel">
                   <li v-for="tech in project.tech" :key="tech">{{ tech }}</li>
                 </ul>
-                <span class="project-action">{{ copy.projects.action }}</span>
+                <small v-if="filterable" class="project-period">{{ project.badge }}<template v-if="project.period"> · {{ project.period }}</template></small>
+                <span class="project-action">{{ copy.projects.action }}<span v-if="filterable" aria-hidden="true"> →</span></span>
               </div>
             </div>
           </button>
@@ -110,7 +146,9 @@ const projectExternalLabel = (project: Project) => {
         <Transition name="project-modal">
           <div
             v-if="selectedProject"
+            ref="dialog"
             class="project-modal"
+            :class="{ 'natural-modal': filterable }"
             role="dialog"
             aria-modal="true"
             :aria-labelledby="`project-title-${projectId(selectedProject)}`"
@@ -118,9 +156,16 @@ const projectExternalLabel = (project: Project) => {
             @keydown.esc="closeProject"
             @keydown.left.prevent="showPreviousImage"
             @keydown.right.prevent="showNextImage"
+            @keydown.tab="trapFocus"
           >
             <article class="project-detail" tabindex="-1">
-              <button class="modal-close" type="button" :aria-label="copy.projects.close" autofocus @click="closeProject" />
+              <header v-if="filterable" class="showcase-header">
+                <span class="showcase-label"><span class="showcase-icon" aria-hidden="true">code</span>{{ copy.projects.eyebrow }}</span>
+                <span class="showcase-category">/ {{ selectedProject.category }}</span>
+                <span class="showcase-close"><kbd>ESC</kbd><button class="modal-close" type="button" :aria-label="copy.projects.close" @click="closeProject" /></span>
+              </header>
+              <button v-else class="modal-close" type="button" :aria-label="copy.projects.close" autofocus @click="closeProject" />
+              <div class="detail-gallery">
               <div class="detail-media" :class="{ 'is-mobile-shot': isMobileProjectImage }" v-if="activeProjectImage">
                 <Transition name="project-image" mode="out-in">
                   <img :key="activeProjectImage" :src="activeProjectImage" :alt="activeProjectImageAlt" />
@@ -135,23 +180,33 @@ const projectExternalLabel = (project: Project) => {
                   <span class="image-count">{{ selectedImageIndex + 1 }} / {{ selectedProjectImages.length }}</span>
                 </template>
               </div>
+              <div v-if="filterable && selectedProjectImages.length > 1" class="gallery-pagination">
+                <div class="gallery-strip" :aria-label="copy.projects.imageDots">
+                  <button v-for="(src, index) in selectedProjectImages" :key="src" type="button" :aria-label="`${copy.projects.showImage} ${index + 1}`" :aria-pressed="selectedImageIndex === index" @click="showProjectImage(index)" />
+                </div>
+                <span class="gallery-position" aria-live="polite">{{ selectedImageIndex + 1 }}<span>/ {{ selectedProjectImages.length }}</span></span>
+              </div>
+              </div>
               <div class="detail-content">
                 <span class="project-badge">{{ selectedProject.badge }}</span>
                 <h3 :id="`project-title-${projectId(selectedProject)}`">{{ selectedProject.name }}</h3>
                 <p class="detail-category">{{ selectedProject.category }}</p>
+                <small v-if="filterable && selectedProject.period" class="detail-period">{{ selectedProject.period }}</small>
                 <p class="detail-description">{{ selectedProject.description }}</p>
+                <h4 v-if="filterable && selectedProject.tech?.length" class="detail-tech-title">{{ copy.projects.techLabel }}</h4>
                 <ul v-if="selectedProject.tech" class="tech-list detail-tech" :aria-label="copy.projects.techLabel">
                   <li v-for="tech in selectedProject.tech" :key="tech">{{ tech }}</li>
                 </ul>
-                <div class="detail-actions" v-if="selectedProject.demoUrl || projectExternalLink(selectedProject)">
+                <div class="detail-actions" v-if="filterable || selectedProject.demoUrl || projectExternalLink(selectedProject)">
                   <a v-if="selectedProject.demoUrl" :href="selectedProject.demoUrl" target="_blank" rel="noopener noreferrer">
                     {{ copy.projects.demo }}
                   </a>
                   <a v-if="projectExternalLink(selectedProject)" :href="projectExternalLink(selectedProject)" target="_blank" rel="noopener noreferrer">
                     {{ projectExternalLabel(selectedProject) }}
+                    <span v-if="filterable" class="showcase-icon" aria-hidden="true">open_in_new</span>
                   </a>
                 </div>
-                <div v-if="selectedProjectImages.length > 1" class="image-dots" :aria-label="copy.projects.imageDots">
+                <div v-if="!filterable && selectedProjectImages.length > 1" class="image-dots" :aria-label="copy.projects.imageDots">
                   <button
                     v-for="(_, index) in selectedProjectImages"
                     :key="index"
@@ -170,7 +225,29 @@ const projectExternalLabel = (project: Project) => {
   </section>
 </template>
 
+<style scoped src="../styles/natural-project-detail.css">.detail-media, .detail-media.is-mobile-shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 0;
+  padding: 16px;
+  overflow: hidden;
+}
+.detail-media img, .detail-media.is-mobile-shot img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 60svh;
+  object-fit: contain;
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+</style>
 <style scoped>
+.detail-gallery { display: contents; }
+.project-filters{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:6px;margin:0 0 16px}.project-filters button{min-height:44px;padding:8px 12px;border:1px solid var(--color-border);border-radius:4px;background:var(--color-surface);color:var(--color-text);font:inherit;font-size:12px;cursor:pointer}.project-filters button[aria-pressed=true]{background:#006bfd;color:#fff}
 .projects-section {
   position: relative;
   min-height: 100svh;
@@ -627,5 +704,24 @@ const projectExternalLabel = (project: Project) => {
   .detail-content {
     padding: 1.35rem;
   }
+}
+.detail-media, .detail-media.is-mobile-shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 0;
+  padding: 16px;
+  overflow: hidden;
+}
+.detail-media img, .detail-media.is-mobile-shot img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 60svh;
+  object-fit: contain;
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 0;
 }
 </style>

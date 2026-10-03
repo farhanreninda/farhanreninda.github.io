@@ -43,6 +43,8 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
+| 2026-10-03 | Login GitHub lokal | Tambahkan VITE_GITHUB_AUTH_URL di .env.local yang diabaikan Git; localhost masih ditolak Worker (403) | Tombol dinonaktifkan karena URL OAuth kosong; pengguna perlu menambahkan origin localhost ke ADMIN_ORIGINS |
+| 2026-10-03 | Tema portfolio Natural | Branch feature/portfolio-natural-theme; existing menjadi Portfolio Original, Natural memakai layout khusus dari Stitch; data CMS dan tema aktif awal dipertahankan | Dua tampilan bisa dipilih/di-preview dan dikembalikan tanpa duplikasi atau perubahan konten |
 | 2026-10-03 | Samakan gerbang admin dengan screenshot final | Badge Portfolio / Admin, gembok kiri, footer OAuth, repository ellipsis dan kolom grid minmax(0,1fr) | Screenshot terbaru menggantikan arahan sebelumnya; min-content repository menyebabkan kartu melebar pada ponsel |
 | 2026-10-03 | Redesign akses CMS Stitch | Header Portfolio CMS, ikon akses di tengah kartu, ikon tema di kanan atas, Inter dan tombol GitHub sesuai referensi | User meminta redesign lalu commit/push feature/admin-cms dan merge/push main |
 | 2026-10-03 | Merge dan publikasi CMS Pages | Fast-forward feature/admin-cms f4bb968 ke main lalu push origin/main; Actions 37128661907 sukses | User telah commit/push fitur dan meminta menyelesaikan merge serta deploy |
@@ -1719,3 +1721,123 @@ Ringkasan perubahan
 **Keputusan Penting:** instruksi screenshot terbaru mengembalikan logo kiri dan brand Portfolio / Admin; konten dan auth dipertahankan.
 **Technical Debt:** tidak ada tambahan.
 **Pending Tasks:** commit/push branch dan merge/push main serta pemantauan workflow sesuai izin user.
+
+
+### Session 2026-10-03 - Portfolio Original dan Natural
+**Dikerjakan:** membuat branch feature/portfolio-natural-theme setelah persetujuan; implementasi layout dari stitch_redesain_ui_natural.zip, font lokal Geist/Plus Jakarta Sans, header responsif, profil editor, grid skill/proyek, pengalaman per jenis, pendidikan/sertifikasi, kontak. CMS menyediakan preview/aktivasi dua tema bawaan yang tidak dapat dihapus. Tema warna khusus existing tetap didukung.
+**Keputusan Penting:** semua konten memakai localizedCv/siteCopy/settings yang sama; Original tetap aktif di public/cms/content.json. Preview dapat memilih layout tanpa menyimpan. ENERGY 2 / RHYTHM 2 / MOTION 1 mengikuti referensi; warna royal blue/cyan dan kartu rapat, tanpa klaim atau angka contoh Stitch. Ringkasan dihitung dari CMS.
+**Validasi:** TypeScript dan empat pengujian otomatis lulus; browser 320/390/768/1440 px tanpa overflow, ID/EN, light/dark, navbar, filter proyek, galeri SIP gambar 2/13. CMS lokal dengan database terpisah diuji Natural → simpan → reload → Original; perbandingan data kedua bahasa, copy, settings identik dengan HEAD sebelumnya. Screenshot di docs/cms/verification/portfolio-natural-*.png.
+**Technical Debt:** tidak ada dependency runtime baru; font dan lisensi disimpan lokal.
+**Pending Tasks:** review pengguna; belum commit/push/merge/deploy untuk task tema baru ini.
+**Known Context Update:** ID existing tetap merujuk susunan Original; ID natural memilih NaturalHome/NaturalHeader; pilihan tema bawaan ditambahkan ke dokumen lama tanpa mengganti tema aktif.
+
+
+### Session 2026-10-03 - Konfigurasi OAuth localhost
+**Dikerjakan:** mengonfirmasi .env tidak memiliki variabel Vite OAuth; menambahkan .env.local berisi URL Worker publik. Request Worker /auth untuk http://localhost:5173 dengan state valid ditolak 403.
+**Keputusan Penting:** tema Original tetap aktif; Natural bisa dilihat lewat URL preview tanpa login.
+**Pending Tasks:** pengguna menambahkan http://localhost:5173 ke ADMIN_ORIGINS Cloudflare dan restart Vite; login GitHub interaktif belum diuji. Simpan CMS mode GitHub tetap menulis repository/branch yang dikonfigurasi, default main.
+
+| 2026-10-03 | Polish Natural dan proyek tersembunyi | Radius Natural 8/12/16px; section proyek dan anak reveal tampil langsung | Reveal Original menyembunyikan root proyek karena Natural tidak memakai observer tersebut |
+
+### Session 2026-10-03 - Rounded Natural dan visibilitas proyek
+**Dikerjakan:** menyeragamkan radius header, tombol, kartu, panel, label dan filter proyek Natural dengan token 8/12/16px; memperbaiki selector reveal agar mencakup root section proyek.
+**Validasi:** TypeScript dan build lulus; browser menampilkan 9 kartu proyek, opacity section 1, radius header dan kartu 16px.
+**Keputusan Penting:** perubahan hanya presentasi tema Natural, data CMS dan tema Original dipertahankan.
+**Pending Tasks:** review pengguna; perubahan tema masih belum commit/push/deploy.
+
+| 2026-10-03 | Detail profil Natural | Foto kotak rounded dengan titik status, badge posisi aktif, ikon perusahaan dan animasi float 8px/6s | Menyesuaikan referensi profil terbaru dan permintaan gimmick naik turun tanpa mengubah data |
+
+### Session 2026-10-03 - Profil Natural dan animasi kartu
+**Dikerjakan:** merapikan kartu DeveloperProfile.kt, foto 64px rounded, badge posisi saat ini, ikon perusahaan, ikon sapaan dan panah proyek ke bawah. Animasi float memakai transform; berhenti saat hover/focus-within dan dinonaktifkan untuk prefers-reduced-motion.
+**Validasi:** TypeScript/build lulus; browser desktop1440 tanpa overflow, animasi aktif dengan transform bergerak, radius foto12px. Screenshot docs/cms/verification/portfolio-natural-profile.png.
+**Keputusan Penting:** teks, angka ringkasan dan kode profil tetap berasal dari CMS; data contoh screenshot tidak menggantikan data pengguna.
+**Pending Tasks:** review pengguna; belum commit/push/deploy tema baru.
+
+| 2026-10-03 | Header dan pengalaman Natural | Float dipercepat 4.5s, tombol bahasa segmented dan ikon bulat, offset anchor dikurangi, kartu kerja dua kolom desktop | Mengurangi jarak kosong yang ditandai pengguna |
+
+### Session 2026-10-03 - Polish header dan pengalaman Natural
+**Dikerjakan:** animasi float 6s menjadi4.5s; tombol ID/EN dalam satu kontrol, ikon tema/admin bulat dengan target44px dan hover; offset anchor72px desktop,110/124/174px responsif; kartu kerja dua kolom desktop dengan identitas di atas uraian dan satu kolom <=1000px.
+**Validasi:** TypeScript/build lulus; desktop1440 judul pengalaman37px di bawah header, ponsel390 judul13px di bawah header, tanpa overflow; screenshot portfolio-natural-experience-compact.png.
+**Pending Tasks:** review pengguna; tema dan polish masih belum commit/push/deploy.
+
+| 2026-10-03 | Scroll seluruh menu Natural | Hitung tinggi header dan konten section saat klik; konten panjang berjarak24px, konten pendek dipusatkan | Menghindari penjumlahan offset anchor dan padding serta mempertahankan section pendek di tengah |
+
+### Session 2026-10-03 - Navigasi Natural dengan posisi konten adaptif
+**Dikerjakan:** handler anchor bersama untuk header, CTA proyek, footer dan kembali atas; menghitung tinggi konten tanpa padding, jarak minimal24px dari bawah header, memusatkan section pendek. Profil kembali scroll0. Scrollspy Natural menggunakan tengah viewport yang tersedia; reduced-motion memakai scroll instan. Ctrl/Meta/Shift/Alt klik tetap berfungsi native.
+**Validasi:** TypeScript/build lulus. Lima menu desktop1440: Pengalaman/Proyek gap24px, section pendek di tengah; ponsel390 seluruh menu terlihat di bawah header tanpa overflow, penanda aktif sesuai setiap menu. Screenshot portfolio-natural-contact-centered.png.
+**Pending Tasks:** review pengguna; belum commit/push/deploy tema baru.
+
+| 2026-10-03 | Proyek, kontak dan footer Natural | Mengikuti referensi terbaru dengan galeri kiri/detail kanan, thumbnail strip, kartu proyek ringkas, salin email dan footer tiga kolom | Menyesuaikan redesign tanpa mengganti isi atau menambahkan klaim contoh Stitch |
+
+### Session 2026-10-03 - Redesign detail proyek, kontak dan footer
+**Dikerjakan:** membaca ZIP stitch_redesain_ui_natural (1).zip; kartu proyek memakai kategori, nama, deskripsi tiga baris, teknologi, badge/periode, ikon mata dan aksi detail. Dialog Natural memakai header metadata/ESC, galeri dengan strip thumbnail kiri dan detail CMS kanan; satu kolom di ponsel. Fokus keyboard dibatasi ke dialog, Escape menutup, fokus kembali ke kartu dan scroll body dikunci selama terbuka. Kontak dengan tombol salin email/feedback, ikon kanal dan sosial dua kolom. Footer profil, navigasi, koneksi/CV dan baris copyright dinamis.
+**Validasi:** TypeScript/build lulus; sembilan kartu; galeri SIP1/13→2/13; Escape mengembalikan fokus; Shift+Tab dari close ke tombol tutup bawah. Desktop light/dark dan ponsel390 tanpa overflow; salin email sukses. Dialog Original tetap dua kolom dan tanpa header Natural. Screenshot proyek/detail/mobile/kontak-footer di docs/cms/verification.
+**Keputusan Penting:** hanya data CMS yang sudah tersedia ditampilkan; klaim status live, fitur, perusahaan proyek dan catatan arsitektur contoh tidak ditambahkan karena belum ada field-nya. Data konten tidak diubah.
+**Pending Tasks:** review pengguna; belum commit/push/deploy tema baru.
+
+| 2026-10-03 | Teks footer login admin | Menggunakan teks Login GitHub melalui OAuth 2.0 dan copyright © 2026 Farhan Reninda Budiansyah | Sesuai alur login yang diterapkan dan nama/tahun yang diminta pengguna |
+
+### Session 2026-10-03 - Teks footer login admin
+**Dikerjakan:** mengganti klaim Secured with OAuth 2.0 & GitHub API menjadi Login GitHub melalui OAuth 2.0; mengganti copyright menjadi © 2026 Farhan Reninda Budiansyah.
+**Validasi:** memeriksa Worker yang memakai endpoint authorize dan pertukaran authorization code GitHub; memeriksa teks footer pada komponen. Perubahan hanya teks.
+**Pending Tasks:** perubahan tema dan polish masih belum commit/push/deploy.
+
+| 2026-10-03 | Koreksi kartu/detail proyek Natural | Menghapus pewarisan grid dan badge Original; memakai pagination titik, aksi satu baris dan scrollbar berbasis token Natural | Mendekatkan layout ke referensi Stitch serta memperbaiki jarak dan warna yang tidak konsisten |
+
+### Session 2026-10-03 - Koreksi detail proyek dan palet Natural
+**Dikerjakan:** detail memakai flex vertikal dengan jarak eksplisit, badge cyan transparan, teknologi pill, galeri dengan titik navigasi dan petunjuk keyboard, tombol eksternal dan tutup satu baris. Desktop galeri tetap di kiri, detail di kanan dengan scroll mandiri saat panjang. Scrollbar global Natural mengikuti token light/dark. Kartu memakai gambar 16:9 tanpa minimum tinggi Original, deskripsi tiga baris dengan tinggi konsisten dan chip ringkas.
+**Validasi:** TypeScript/build lulus; sembilan kartu; galeri1/13→2/13; ponsel390 tanpa overflow; warna badge/scrollbar terverifikasi untuk mode terang dan gelap. Screenshot portfolio-natural-detail-refined.png.
+**Keputusan Penting:** isi tetap dari CMS; modul, status live dan catatan arsitektur pada contoh belum ditampilkan karena belum tersedia di data proyek.
+**Pending Tasks:** review pengguna; perubahan masih belum commit/push/deploy.
+
+| 2026-10-04 | Bingkai galeri dan header detail | Ukuran gambar mengikuti rasio intrinsik dan batas viewport; header diperkecil, tombol tutup bawah dihapus, pagination ringkas | Menghilangkan crop dan pembesaran gambar serta ruang kosong pada detail |
+
+### Session 2026-10-04 - Gambar detail utuh dan galeri ringkas
+**Dikerjakan:** seluruh detail proyek memakai bingkai flex dengan ukuran gambar otomatis, max-width100%, max-height viewport, tanpa memaksa pembesaran; berlaku Natural dan Original. Header Natural padding8px vertikal; hapus tombol tutup bawah; navigasi titik dengan counter dalam satu panel, menggantikan petunjuk keyboard. Tutup lewat ikon atas dan Escape tetap tersedia.
+**Validasi:** TypeScript/build lulus; gambar landscape1280x720 dan portrait295x514 tampil utuh, rasio sesuai dan tidak diperbesar; ponsel390 tidak overflow dan portrait utuh; gambar Original juga utuh. Screenshot portfolio-natural-gallery-full.png.
+**Pending Tasks:** review; belum commit/push/deploy. Ketajaman maksimum tetap mengikuti resolusi file gambar CMS.
+
+| 2026-10-04 | Branding dan CTA profil Natural | Logo inisial F, nama Farhan Reninda dari CMS, bahasa ringkas, badge peluang dan CTA referensi, IPK menggantikan sertifikasi | Membuat identitas lebih jelas dan ringkasan profil relevan tanpa mengubah data CMS |
+
+### Session 2026-10-04 - Branding dan ringkasan profil
+**Dikerjakan:** logo dari inisial nama dan merek dua kata pertama nama CMS; ID/EN tinggi28px; badge Portfolio Android Developer dan Terbuka untuk Peluang Baru; CTA Lihat Proyek Pilihan dan Unduh Resume / CV memakai font display700 ukuran14px/tinggi50px; ikon sosial dikelompokkan supaya tidak terpisah saat mobile. Ringkasan ketiga IPK3.55/Cumlaude dari education.gpa. Universitas Terbuka tetap sama.
+**Validasi:** TypeScript/build lulus; desktop dan mobile390 tanpa overflow; ID/EN menampilkan data dan label sesuai. Screenshot portfolio-natural-hero-brand.png.
+**Pending Tasks:** review pengguna; perubahan belum commit/push/deploy.
+
+| 2026-10-04 | Redesign filter proyek | Kontrol kategori dalam satu panel ringkas dengan ikon dan penanda aktif mengikuti token tema | Merapikan filter dan membedakan kategori aktif tanpa tombol biru besar |
+
+### Session 2026-10-04 - Filter proyek Natural
+**Dikerjakan:** filter sejajar kiri dengan kartu, panel rounded14px, tombol36px desktop/44px ponsel, ikon semua/web/android/desktop, active state tint dan border warna tema. Label/kategori tetap dari data CMS; aria-pressed dan role group dipertahankan.
+**Validasi:** TypeScript/build lulus; Android menampilkan5 kartu, Semua9 kartu; mobile390 tanpa overflow dengan target44px. Screenshot portfolio-natural-project-filters.png.
+**Pending Tasks:** review; belum commit/push/deploy.
+
+| 2026-10-04 | Penyederhanaan footer Natural | Kontak sosial hanya di panel kontak, footer identitas/navigasi/CV dan satu tombol kembali ke atas | Mengurangi pengulangan bio, tautan kontak dan aksi kembali ke atas |
+
+### Session 2026-10-04 - Footer ringkas dan tombol atas
+**Dikerjakan:** menghapus tagline panjang dan GitHub/LinkedIn/email dari footer; navigasi footer dua kolom, identitas/lokasi singkat dan CV. Tombol kembali ke atas dalam footer dihapus; tombol mengambang Natural44px rounded12 memakai palet tema, hover/focus dan title. Scroll menghormati reduced-motion.
+**Validasi:** build lulus; tombol membawa scrollY0/hash#top; footer ponsel390 tanpa overflow. Screenshot portfolio-natural-footer-clean.png.
+**Pending Tasks:** review; belum commit/push/deploy.
+
+| 2026-10-04 | Penyelarasan kartu Natural | Hapus overlay mata, sejajarkan CTA/statistik dan divider kerja, rapikan konteks profil serta pendidikan | Mengurangi gangguan visual dan ruang kosong tanpa mengubah sumber data CMS |
+
+### Session 2026-10-04 - Kartu profil, pengalaman dan pendidikan
+**Dikerjakan:** overlay mata kartu proyek dihapus; aksi Lihat detail tetap tersedia. Lebar CTA dan statistik hero sama. Kartu konteks mengikuti referensi dengan status posisi, rincian pendidikan CMS dan pin domisili di kanan. Subgrid menyamakan divider kartu kerja. Pendidikan tiga kolom dengan sertifikasi dua kolom di bawah; mobile satu kolom. Ikon kuliah berupa topi wisuda dan SMK berupa gedung.
+**Validasi:** TypeScript/build lulus; browser mengukur lebar CTA/statistik sama dan posisi divider kedua kartu kerja sama. Mobile390 tanpa overflow; pendidikan/sertifikasi satu kolom. Screenshot portfolio-natural-education-balanced.png.
+**Batasan gambar:** cover1280x720; screenshot SIP295–940px, login508x428. SVG lama adalah ilustrasi tiruan, bukan sumber screenshot resolusi tinggi. Tidak mengubah gambar menjadi FHD semu; membutuhkan sumber asli lebih besar atau screenshot ulang untuk ketajaman nyata.
+**Pending Tasks:** sumber gambar resolusi tinggi dan review pengguna; belum commit/push/deploy.
+
+
+| 2026-10-04 | Hover dan ruang kosong kartu | Hover menu berlatar lembut; tinggi pendidikan mengikuti isi, sertifikasi fit-content, badge kerja sejajar periode | Mengurangi ruang kosong dan pengulangan Cumlaude |
+
+### Session 2026-10-04 - Kartu ringkas dan hover menu
+**Dikerjakan:** hover nav tanpa underline dengan latar lembut. Pendidikan tidak stretch; metadata tanpa margin auto. Sertifikasi mengikuti lebar isi. Badge posisi kerja satu baris dengan periode agar divider tetap sejajar. Cumlaude hanya di pendidikan; hero menampilkan IPK, konteks tentang tidak mengulang GPA.
+**Validasi:** Vite merender perubahan tanpa error overlay; satu kemunculan Cumlaude, divider sejajar, mobile390 tanpa overflow. Screenshot portfolio-natural-education-compact.png. Build belum terverifikasi karena terminal tidak merespons pada sesi ini.
+**Pending:** review; belum commit/push/deploy.
+
+
+| 2026-10-04 | Publikasi tema Natural | Commit berbahasa Indonesia; push feature/portfolio-natural-theme lalu merge ke main | Permintaan pengguna setelah review tampilan |
+
+### Session 2026-10-04 - Persiapan publikasi tema Natural
+**Validasi:** vue-tsc dan build Vite lulus; seluruh empat tes CMS/GitHub Pages/tema lulus. Konten remote main revisi4 sama dengan file lokal, termasuk tema Natural aktif.
+**Keputusan:** pesan commit disetujui dalam bahasa Indonesia: feat: tambah tema Natural dan rapikan tampilan portfolio berbasis CMS. Berikutnya push branch, merge main, dan push main.
+**Batasan:** ketajaman screenshot mengikuti sumber asli; file FHD masih diperlukan untuk gambar kecil.

@@ -5,18 +5,19 @@
  * A section is considered "active" when its top edge is at or above the header
  * offset line and its bottom is still below that line.
  */
-export function useActiveSection(ids: string[], headerOffset = 80) {
+export function useActiveSection(ids: string[], headerOffset: number | (() => number) = 80) {
   const active = ref<string>(ids[0] ?? "");
   let raf = 0;
 
   const compute = () => {
-    let bestId = active.value;
+    let bestId = ids[0] ?? '';
+    const offset = typeof headerOffset === 'function' ? headerOffset() : headerOffset;
     // Pick the last section whose top is <= headerOffset (i.e. already scrolled past it).
     for (const id of ids) {
       const el = document.getElementById(id);
       if (!el) continue;
       const rect = el.getBoundingClientRect();
-      if (rect.top - headerOffset <= 0 && rect.bottom > headerOffset) {
+      if (rect.top - offset <= 0 && rect.bottom > offset) {
         bestId = id;
       }
     }
