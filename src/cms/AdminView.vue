@@ -3,6 +3,7 @@ import { computed, onMounted, onBeforeUnmount, ref, watch, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { ApiError, mediaUrl, request } from "./api";
 import { githubMode, githubRepo, githubBranch, loginGithub, oauthUrl } from "./github";
+import { isBuiltInTheme, withBuiltInThemes } from "@/cms/themes";
 import { copySchema, cvSchema, themeSchema, validateDocument, validateField } from "./schema";
 import type { AdminSession, ContentResponse, MediaItem, PortfolioDocument, ThemeConfig } from "./types";
 import type { Cv, Locale } from "@/types/cv";
@@ -101,8 +102,9 @@ async function run(action: () => Promise<void>) {
 async function loadData() {
   const content = await request<ContentResponse>("/admin/content");
   const assets = await request<MediaItem[]>("/admin/media");
-  saved.value = content;
-  draft.value = structuredClone(content.data);
+  const data = withBuiltInThemes(content.data);
+  saved.value = { ...content, data };
+  draft.value = structuredClone(data);
   media.value = assets;
   if (!draft.value.themes.some(item => item.id === themeId.value)) themeId.value = "existing";
 }
@@ -156,7 +158,7 @@ function newTheme() {
   themeId.value = id;
 }
 async function removeTheme() {
-  if (themeId.value === "existing") return;
+  if (isBuiltInTheme(themeId.value)) return;
   if (!await confirmAction("Hapus tema ini dari draft?")) return;
   if (draft.value!.activeThemeId === themeId.value) draft.value!.activeThemeId = "existing";
   draft.value!.themes = draft.value!.themes.filter(item => item.id !== themeId.value);
@@ -166,7 +168,7 @@ function openPreview() {
   const errors = validateField(selectedTheme.value, themeSchema);
   if (errors.length) { error.value = "Lengkapi konfigurasi tema sebelum preview"; details.value = errors; return; }
   preview.value!.showModal();
-  previewFrame.value!.src = "/?cms-preview=1&noreveal=1";
+  previewFrame.value!.src = "/?cms-preview=1&noreveal=1&portfolio-theme=" + encodeURIComponent(themeId.value);
 }
 function sendPreview() {
   if (selectedTheme.value) previewFrame.value?.contentWindow?.postMessage({ type: "portfolio-theme-preview", theme: JSON.parse(JSON.stringify(selectedTheme.value)) }, location.origin);
@@ -176,7 +178,7 @@ const previewReady = (event: MessageEvent) => {
 };
 window.addEventListener("message", previewReady);
 function updateThemeMode(mode: "light" | "dark", value: unknown) {
-  if (selectedTheme.value && themeId.value !== "existing") selectedTheme.value[mode] = value as ThemeConfig["light"];
+  if (selectedTheme.value && !isBuiltInTheme(themeId.value)) selectedTheme.value[mode] = value as ThemeConfig["light"];
 }
 async function uploadAsset(file: File): Promise<MediaItem> {
   if (file.size > 10 * 1024 * 1024) throw new Error("Ukuran file maksimal 10 MB");
@@ -215,7 +217,7 @@ onBeforeUnmount(() => {
         <button class="primary login-submit" :disabled="busy || (githubMode && !oauthUrl)" type="submit"><svg v-if="githubMode" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" /></svg>{{ busy ? 'Memeriksa…' : githubMode ? 'Masuk dengan GitHub' : 'Buka admin' }}<AdminIcon name="arrow" /></button>
         <a class="login-back" href="/"><AdminIcon name="arrow_back" />Kembali ke portfolio</a>
       </form>
-      <footer class="login-footer"><p v-if="githubMode"><AdminIcon name="verified_user" />Secured with OAuth 2.0 &amp; GitHub API</p><p v-else>Pengelolaan portfolio</p><small>Portfolio Admin Dashboard © 2025</small></footer>
+      <footer class="login-footer"><p v-if="githubMode"><AdminIcon name="verified_user" />Login GitHub melalui OAuth 2.0</p><p v-else>Pengelolaan portfolio</p><small>© 2026 Farhan Reninda Budiansyah</small></footer>
     </div>
     <template v-else>
       <a class="cms-skip" href="#cms-main">Lewati navigasi</a>
@@ -288,11 +290,11 @@ onBeforeUnmount(() => {
             <section v-else-if="section.id === 'themes'" class="theme-workspace">
               <div class="theme-toolbar"><label for="theme-select">Tema portfolio<select id="theme-select" v-model="themeId"><option v-for="item in draft.themes" :key="item.id" :value="item.id">{{ item.name || 'Tema belum diberi nama' }}{{ item.id === draft.activeThemeId ? ' (aktif)' : '' }}</option></select></label><button type="button" @click="newTheme"><AdminIcon name="plus" />Tambah tema</button></div>
               <template v-if="selectedTheme">
-                <article class="theme-card"><header><span class="theme-card-icon"><AdminIcon name="themes" /></span><div><h2>{{ selectedTheme.name || 'Tema Baru' }}</h2><p>{{ themeId === 'existing' ? 'Desain portfolio asli. Buat tema baru untuk menyesuaikan warna dan font.' : 'Konfigurasi tema pilihan. Nilai kosong mengikuti desain portfolio asli.' }}</p></div><span class="cms-badge">{{ draft.activeThemeId === themeId ? 'Aktif' : 'Belum aktif' }}</span></header>
+                <article class="theme-card"><header><span class="theme-card-icon"><AdminIcon name="themes" /></span><div><h2>{{ selectedTheme.name || 'Tema Baru' }}</h2><p>{{ themeId === 'existing' ? 'Desain portfolio awal, tetap tersedia untuk digunakan kembali.' : themeId === 'natural' ? 'Desain Natural dari Stitch. Susunan baru dengan data CMS yang sama.' : 'Warna dan font khusus dengan susunan Portfolio Original.' }}</p></div><span class="cms-badge">{{ draft.activeThemeId === themeId ? 'Aktif' : 'Belum aktif' }}</span></header>
                   <div class="theme-mode-previews"><div v-for="mode in ['light', 'dark'] as const" :key="mode" class="theme-sample" :class="mode" :style="{ background: sampleColor(mode, '--color-bg'), color: sampleColor(mode, '--color-text'), fontFamily: selectedTheme[mode]['--font-sans'] }"><small>{{ mode === 'light' ? 'Mode Terang' : 'Mode Gelap' }}</small><strong>{{ currentProfile?.name }}</strong><span>{{ currentProfile?.title }}</span><div class="theme-swatches"><i v-for="token in ['--color-bg', '--color-surface', '--color-text', '--color-teal']" :key="token" :style="{ background: sampleColor(mode, token) }" /></div></div></div>
-                  <div class="theme-actions"><button type="button" @click="openPreview"><AdminIcon name="external" />Preview tema</button><button type="button" class="primary" :disabled="draft.activeThemeId === themeId" @click="draft.activeThemeId = themeId"><AdminIcon name="check" />{{ draft.activeThemeId === themeId ? 'Tema aktif' : 'Jadikan tema aktif' }}</button><button v-if="themeId !== 'existing'" class="danger" type="button" @click="removeTheme"><AdminIcon name="trash" />Hapus tema</button></div>
+                  <div class="theme-actions"><button type="button" @click="openPreview"><AdminIcon name="external" />Preview tema</button><button type="button" class="primary" :disabled="draft.activeThemeId === themeId" @click="draft.activeThemeId = themeId"><AdminIcon name="check" />{{ draft.activeThemeId === themeId ? 'Tema aktif' : 'Jadikan tema aktif' }}</button><button v-if="!isBuiltInTheme(themeId)" class="danger" type="button" @click="removeTheme"><AdminIcon name="trash" />Hapus tema</button></div>
                 </article>
-                <section v-if="themeId !== 'existing'" class="theme-config"><label for="theme-name">Nama tema</label><input id="theme-name" v-model="selectedTheme.name" required maxlength="200" /><details v-for="mode in ['light', 'dark'] as const" :key="mode" class="theme-mode"><summary><AdminIcon :name="mode === 'light' ? 'sun' : 'moon'" /><span>{{ mode === 'light' ? 'Warna & Font Mode Terang' : 'Warna & Font Mode Gelap' }}</span><AdminIcon name="expand_more" /></summary><FieldEditor :model-value="selectedTheme[mode]" :schema="themeSchema.fields![mode]" :path="'theme.' + mode" :media="[]" @update:model-value="updateThemeMode(mode, $event)" /></details></section>
+                <section v-if="!isBuiltInTheme(themeId)" class="theme-config"><label for="theme-name">Nama tema</label><input id="theme-name" v-model="selectedTheme.name" required maxlength="200" /><details v-for="mode in ['light', 'dark'] as const" :key="mode" class="theme-mode"><summary><AdminIcon :name="mode === 'light' ? 'sun' : 'moon'" /><span>{{ mode === 'light' ? 'Warna & Font Mode Terang' : 'Warna & Font Mode Gelap' }}</span><AdminIcon name="expand_more" /></summary><FieldEditor :model-value="selectedTheme[mode]" :schema="themeSchema.fields![mode]" :path="'theme.' + mode" :media="[]" @update:model-value="updateThemeMode(mode, $event)" /></details></section>
                 <p class="theme-save-hint">Perubahan konfigurasi dan tema aktif diterapkan setelah Simpan dan publikasikan.</p>
               </template>
             </section>

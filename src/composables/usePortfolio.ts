@@ -2,11 +2,15 @@ import { computed, shallowRef } from "vue";
 import { mediaUrl, request } from "@/cms/api";
 import { copySchema, validateDocument, validateField, themeSchema } from "@/cms/schema";
 import type { ContentResponse, PortfolioDocument, ThemeConfig } from "@/cms/types";
+import { withBuiltInThemes } from "@/cms/themes";
 
 export const portfolio = shallowRef<ContentResponse>();
+const displayedThemeId = shallowRef('existing');
 let refreshing: Promise<void> | undefined;
 
 function applyThemeConfig(theme: ThemeConfig) {
+  displayedThemeId.value = theme.id;
+  document.documentElement.dataset.portfolioTheme = theme.id === 'natural' ? 'natural' : 'original';
   const existing = document.getElementById("cms-theme-tokens");
   existing?.remove();
   if (!Object.keys(theme.light).length && !Object.keys(theme.dark).length) return;
@@ -26,8 +30,11 @@ function resolveUploads(value: unknown): unknown {
 export function setPortfolio(content: ContentResponse) {
   const errors = validateDocument(content.data, copySchema);
   if (errors.length) throw new Error("Data portfolio tidak valid");
-  portfolio.value = { ...content, data: resolveUploads(content.data) as PortfolioDocument };
-  applyThemeConfig(content.data.themes.find(theme => theme.id === content.data.activeThemeId)!);
+  const data = withBuiltInThemes(content.data);
+  portfolio.value = { ...content, data: resolveUploads(data) as PortfolioDocument };
+  const params = new URLSearchParams(location.search);
+  const previewId = params.get('cms-preview') === '1' ? params.get('portfolio-theme') : null;
+  applyThemeConfig(data.themes.find(theme => theme.id === (previewId || data.activeThemeId)) || data.themes.find(theme => theme.id === data.activeThemeId)!);
   document.querySelector<HTMLLinkElement>('link[rel="icon"]')?.setAttribute("href", mediaUrl(content.data.settings.faviconUrl));
   document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute("content", content.data.settings.themeColor);
 }
@@ -54,6 +61,7 @@ export function setupPortfolioRefresh() {
 }
 
 export const usePortfolio = () => ({
+  natural: computed(() => displayedThemeId.value === 'natural'),
   settings: computed(() => portfolio.value!.data.settings),
   revision: computed(() => portfolio.value!.revision),
 });

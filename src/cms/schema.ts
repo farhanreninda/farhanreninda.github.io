@@ -59,7 +59,7 @@ export const colorTokens = [
   "--color-cream", "--color-blob-1", "--color-blob-2", "--color-blob-3", "--color-blob-4",
   "--color-accent", "--color-accent-strong", "--color-accent-contrast",
 ];
-export const fontChoices = ["system-ui, sans-serif", '"Segoe UI", sans-serif', "Georgia, serif"];
+export const fontChoices = ["system-ui, sans-serif", '"Segoe UI", sans-serif', "Georgia, serif", '"Portfolio Geist", sans-serif', '"CMS Plus Jakarta Sans", sans-serif'];
 const tokenLabels: Record<string, string> = {
   "--color-bg": "Latar utama",
   "--color-bg-soft": "Latar sekunder",

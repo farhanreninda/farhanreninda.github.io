@@ -1,0 +1,46 @@
+@import "../cms/fonts.css";
+@font-face {
+  font-family: "Portfolio Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/natural/Geist-latin.woff2") format("woff2");
+}
+html[data-portfolio-theme="natural"],
+html[data-portfolio-theme="natural"] body {
+  background: var(--color-bg);
+}
+html[data-portfolio-theme="natural"] {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  color-scheme: light;
+}
+html[data-portfolio-theme="natural"][data-theme="dark"] { color-scheme: dark; }
+html[data-portfolio-theme="natural"],
+html[data-portfolio-theme="natural"] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-bg-soft);
+}
+html[data-portfolio-theme="natural"] ::-webkit-scrollbar { width: 6px; height: 6px; }
+html[data-portfolio-theme="natural"] ::-webkit-scrollbar-track { background: var(--color-bg-soft); }
+html[data-portfolio-theme="natural"] ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 999px; }
+
+html[data-portfolio-theme="natural"] .scroll-top-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elev);
+  color: var(--color-teal);
+  box-shadow: 0 4px 16px #0002;
+}
+html[data-portfolio-theme="natural"] .scroll-top-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-teal);
+  background: var(--color-surface);
+}
+html[data-portfolio-theme="natural"] .scroll-top-button:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 4px;
+}
