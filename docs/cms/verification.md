@@ -197,3 +197,12 @@ Teknologi, video demo, Play Store, tautan, thumbnail dan galeri memakai kartu be
 - Override viewport tidak efektif (tetap 1280px); visual ponsel belum diuji ulang. CSS fluid dan wrapping digunakan agar tidak memotong nama repository.
 - Antislop: hard gate PASS untuk perubahan yang diperiksa: kontrol berlabel, focus-visible, tautan nyata, data dan auth tetap; purpose gate PASS: gradien hanya menekankan login sesuai referensi; liveliness PASS: ENERGY/RHYTHM/MOTION 1, satu kartu akses; craftsmanship PASS: icon offset 0, tema dan link diuji, build lulus. Batas verifikasi mobile dicatat di atas.
 - Screenshot: verification/admin-access-redesign.png.
+
+
+## Akses admin mengikuti screenshot final (2026-10-03)
+
+- Referensi terbaru menggantikan posisi logo tengah/brand CMS: badge Portfolio / Admin, gembok kiri, footer OAuth dan 2025 sesuai gambar.
+- Grid minmax(0,1fr) dan form min-width:0 mengatasi min-content repository; repository ellipsis/title lengkap.
+- Browser 390x600 dan 390x844: form x20..370, tidak overflow. Tema light/dark dan Enter pada tombol tema lulus. TypeScript/build/diff check lulus.
+- Hard gate PASS: ukuran/fokus/label dan batas mobile diperiksa; data/auth tetap. Purpose gate PASS: aksen/glow hanya mengikuti referensi akses. Liveliness PASS: ENERGY 1/RHYTHM 1/MOTION 1, satu kartu/aksi utama. Craftsmanship PASS: screenshot mobile dibandingkan, overflow diperbaiki dan build lulus.
+- Screenshot: verification/admin-access-reference-mobile.png.

@@ -43,6 +43,7 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
+| 2026-10-03 | Samakan gerbang admin dengan screenshot final | Badge Portfolio / Admin, gembok kiri, footer OAuth, repository ellipsis dan kolom grid minmax(0,1fr) | Screenshot terbaru menggantikan arahan sebelumnya; min-content repository menyebabkan kartu melebar pada ponsel |
 | 2026-10-03 | Redesign akses CMS Stitch | Header Portfolio CMS, ikon akses di tengah kartu, ikon tema di kanan atas, Inter dan tombol GitHub sesuai referensi | User meminta redesign lalu commit/push feature/admin-cms dan merge/push main |
 | 2026-10-03 | Merge dan publikasi CMS Pages | Fast-forward feature/admin-cms f4bb968 ke main lalu push origin/main; Actions 37128661907 sukses | User telah commit/push fitur dan meminta menyelesaikan merge serta deploy |
 | 2026-10-03 | CMS GitHub Pages pada feature/admin-cms | Mode default JSON publik + GitHub Contents API, GitHub App login via Worker OAuth PKCE; /admin entry dan deploy Pages; Node/SQLite tetap lokal opsional | User hanya memakai GitHub Pages, bersedia login GitHub, meminta implementasi pada branch feature/admin-cms |
@@ -1710,3 +1711,11 @@ Ringkasan perubahan
 **Validasi:** TypeScript/build/diff check lulus; desktop light/dark, Enter tombol tema, tautan brand dan kembali diuji; ikon tengah offset 0px. Override viewport browser tidak mengubah 1280px, sehingga verifikasi visual ponsel belum tersedia; CSS memakai lebar fluid, wrapping repository, padding 24px pada <=480px dan target 44px.
 **Technical Debt:** tidak ada tambahan.
 **Pending Tasks:** publish branch dan main sesuai instruksi user; login akun GitHub interaktif tetap oleh pemilik akun.
+
+
+### Session 2026-10-03 - Akses admin sesuai screenshot final
+**Dikerjakan:** mengganti brand/ikon/footer dan ukuran sesuai screenshot terbaru; memperbaiki min-content grid dan repository ellipsis.
+**Validasi:** TypeScript/build/diff check lulus; browser 390x600 dan 390x844, tema light/dark, Enter pada tema; form x20..370 di viewport390 tanpa overflow. Screenshot verification/admin-access-reference-mobile.png.
+**Keputusan Penting:** instruksi screenshot terbaru mengembalikan logo kiri dan brand Portfolio / Admin; konten dan auth dipertahankan.
+**Technical Debt:** tidak ada tambahan.
+**Pending Tasks:** commit/push branch dan merge/push main serta pemantauan workflow sesuai izin user.
