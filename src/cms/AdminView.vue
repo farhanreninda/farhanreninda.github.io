@@ -2,6 +2,7 @@
 import { computed, onMounted, onBeforeUnmount, ref, watch, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { ApiError, mediaUrl, request } from "./api";
+import { githubMode, githubRepo, githubBranch, loginGithub, oauthUrl } from "./github";
 import { copySchema, cvSchema, themeSchema, validateDocument, validateField } from "./schema";
 import type { AdminSession, ContentResponse, MediaItem, PortfolioDocument, ThemeConfig } from "./types";
 import type { Cv, Locale } from "@/types/cv";
@@ -121,7 +122,7 @@ function updateEditor(value: unknown) {
 }
 async function unlock() {
   await run(async () => {
-    session.value = await request<AdminSession>("/admin/unlock", { method: "POST", body: JSON.stringify({ magicWord: magicWord.value }) });
+    session.value = githubMode ? await loginGithub() : await request<AdminSession>("/admin/unlock", { method: "POST", body: JSON.stringify({ magicWord: magicWord.value }) });
     magicWord.value = "";
     await loadData();
   });
@@ -142,7 +143,7 @@ async function save() {
     saved.value = content;
     draft.value = structuredClone(content.data);
     setPortfolio(content);
-    notice.value = "Perubahan tersimpan dan sudah tersedia di portfolio publik.";
+    notice.value = githubMode ? "Perubahan tersimpan di GitHub. Portfolio publik diperbarui setelah deploy GitHub Pages selesai." : "Perubahan tersimpan dan sudah tersedia di portfolio publik.";
   });
 }
 async function reloadData() {
@@ -202,11 +203,13 @@ onBeforeUnmount(() => {
         <a class="login-brand" href="/">Portfolio <span>/ Admin</span></a>
         <span class="access-icon"><AdminIcon name="lock" /></span>
         <h1>Buka akses admin</h1>
-        <p>Masukkan magic word untuk mengelola portfolio.</p>
-        <label for="admin-magic-word">Magic word</label>
-        <input id="admin-magic-word" v-model="magicWord" type="password" autocomplete="current-password" required maxlength="128" />
+        <p>{{ githubMode ? 'Masuk dengan akun GitHub yang memiliki akses ke repository portfolio.' : 'Masukkan magic word untuk mengelola portfolio.' }}</p>
+        <p v-if="githubMode" class="github-repository">{{ githubRepo }} · {{ githubBranch }}</p>
+        <p v-if="githubMode && !oauthUrl" role="status">Login GitHub belum tersedia. Pengelola perlu menyelesaikan konfigurasi akses.</p>
+        <label v-if="!githubMode" for="admin-magic-word">Magic word</label>
+        <input v-if="!githubMode" id="admin-magic-word" v-model="magicWord" type="password" autocomplete="current-password" required maxlength="128" />
         <p v-if="error" role="alert" class="error-message">{{ error }}</p>
-        <button class="primary" :disabled="busy" type="submit">{{ busy ? 'Memeriksa…' : 'Buka admin' }}<AdminIcon name="arrow" /></button>
+        <button class="primary" :disabled="busy || (githubMode && !oauthUrl)" type="submit">{{ busy ? 'Memeriksa…' : githubMode ? 'Masuk dengan GitHub' : 'Buka admin' }}<AdminIcon name="arrow" /></button>
         <a href="/">Kembali ke portfolio</a>
         <button type="button" @click="toggle">{{ theme === 'dark' ? 'Mode terang' : 'Mode gelap' }}</button>
       </form>
@@ -218,7 +221,7 @@ onBeforeUnmount(() => {
         <div class="topbar-actions">
           <a href="/" target="_blank" rel="noopener"><AdminIcon name="external" />Lihat portfolio</a>
           <button type="button" :aria-label="theme === 'dark' ? 'Mode terang' : 'Mode gelap'" :title="theme === 'dark' ? 'Mode terang' : 'Mode gelap'" @click="toggle"><AdminIcon :name="theme === 'dark' ? 'moon' : 'sun'" /></button>
-          <div class="access-status"><span class="admin-avatar"><AdminIcon name="profile" /></span><div><strong>{{ saved?.data.localizedCv[locale].profile.name }}</strong><small>Pengelola Portfolio</small></div></div>
+          <div class="access-status"><span class="admin-avatar"><AdminIcon name="profile" /></span><div><strong>{{ saved?.data.localizedCv[locale].profile.name }}</strong><small>{{ githubMode ? session?.login : 'Pengelola Portfolio' }}</small></div></div>
           <button type="button" class="exit-button" aria-label="Keluar" title="Keluar" :disabled="busy" @click="logout"><AdminIcon name="exit" /></button>
         </div>
       </header>
@@ -268,7 +271,7 @@ onBeforeUnmount(() => {
                   <button type="button" @click="navigate('themes')"><span class="quick-icon"><AdminIcon name="themes" /></span><span><strong>Tema & tampilan</strong><small>Konfigurasi dan preview tema</small></span><AdminIcon name="arrow" /></button>
                 </aside>
               </div>
-              <div class="overview-heading"><div><h2>Koleksi Portfolio</h2><p>Ringkasan kuantitatif entri data yang tersimpan pada database CMS</p></div><span class="cms-badge">Total {{ totalItems }} Item</span></div>
+              <div class="overview-heading"><div><h2>Koleksi Portfolio</h2><p>Ringkasan konten portfolio yang tersimpan</p></div><span class="cms-badge">Total {{ totalItems }} Item</span></div>
               <dl class="counts"><div v-for="item in counts" :key="item.id"><dt>{{ item.label }}<span class="collection-icon"><AdminIcon :name="item.id" /></span></dt><dd>{{ item.count }}<small>{{ item.id === 'skills' ? 'skill' : 'entri' }}</small></dd><p>{{ { projects: 'Karya dan aplikasi', skills: 'Kategori stack', experiences: 'Karier & kontribusi tim', educations: 'Formal & vokasi', certificates: 'Sertifikat portfolio' }[item.id] }}</p><button type="button" @click="navigate(item.id)">Kelola {{ item.label.toLowerCase() }}<AdminIcon name="arrow" /></button></div></dl>
               <div class="overview-note"><span class="note-icon"><AdminIcon name="copy" /></span><div><h3>Konten dalam dua bahasa terintegrasi</h3><p>Pilih Indonesia atau English untuk mengelola versi masing-masing secara terpisah. Semua perubahan disimpan di database CMS.</p></div></div>
             </section>

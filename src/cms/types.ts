@@ -22,5 +22,5 @@ export interface PortfolioDocument {
   activeThemeId: string;
 }
 export interface ContentResponse { data: PortfolioDocument; revision: number }
-export interface AdminSession { csrfToken: string }
+export interface AdminSession { csrfToken: string; login?: string }
 export interface MediaItem { id: string; name: string; url: string; mime: string; size: number; source: "existing" | "upload" }

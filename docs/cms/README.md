@@ -1,3 +1,5 @@
+> **Mode default: GitHub Pages.** Lihat [github-pages.md](github-pages.md) untuk login GitHub, JSON konten, upload ke repo, dan setup Worker. Penjelasan Node/SQLite di bawah berlaku untuk mode lokal legacy VITE_CMS_MODE=local.
+
 # CMS portfolio
 
 ## Arsitektur dan database

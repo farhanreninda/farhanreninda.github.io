@@ -259,3 +259,7 @@ The hero section includes hand-drawn SVG doodles of a monitor and phone, using b
 | Screen reader text | `aria-hidden="true"` on decorative SVGs and doodles |
 | Semantic HTML | `<header>`, `<main>`, `<footer>`, `<section>`, `<nav>`, `<article>` |
 | Lang attribute | `lang="id"` (Indonesian) set on `<html>` |
+
+### CMS GitHub Pages (2026-10-03)
+
+Mode default sekarang GitHub: konten public/cms/content.json dan media manifest, login GitHub App melalui Worker OAuth, penyimpanan ke repository memicu deploy Pages. UI existing dipertahankan. Build menyiapkan admin/index.html, 404.html, CNAME dan .nojekyll. Node/SQLite tetap tersedia lewat VITE_CMS_MODE=local dan npm run dev:local. Detail/setup: docs/cms/github-pages.md.

@@ -1,15 +1,12 @@
+import { githubMode, githubRequest, githubMediaPreview } from "./github";
+import { ApiError } from "./errors";
+export { ApiError } from "./errors";
 import type { AdminSession } from "./types";
 
 const origin = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") ?? "";
-export const mediaUrl = (url: string) => url.startsWith("/api/media/") ? `${origin}${url}` : url;
-export class ApiError extends Error {
-  status: number;
-  details: string[];
-  constructor(status: number, message: string, details: string[] = []) {
-    super(message); this.status = status; this.details = details;
-  }
-}
+export const mediaUrl = (url: string) => githubMode ? githubMediaPreview(url) : url.startsWith("/api/media/") ? `${origin}${url}` : url;
 export async function request<T>(path: string, options: RequestInit = {}, session?: AdminSession): Promise<T> {
+  if (githubMode) return githubRequest<T>(path, options);
   const headers = new Headers(options.headers);
   if (typeof options.body === "string") headers.set("Content-Type", "application/json");
   if (session) headers.set("X-CSRF-Token", session.csrfToken);

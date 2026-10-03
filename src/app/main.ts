@@ -2,12 +2,13 @@
 import { createPinia } from "pinia";
 import { createHead } from "@unhead/vue";
 import App from "./App.vue";
+import { githubMode } from "@/cms/github";
 import { router } from "./router";
 import "@/styles/main.css";
 import { loadPortfolio, setupPortfolioRefresh } from "@/composables/usePortfolio";
 
 async function bootstrap() {
-  if (location.pathname.startsWith("/admin") && import.meta.env.VITE_ADMIN_URL && new URL(import.meta.env.VITE_ADMIN_URL).origin !== location.origin) {
+  if (!githubMode && location.pathname.startsWith("/admin") && import.meta.env.VITE_ADMIN_URL && new URL(import.meta.env.VITE_ADMIN_URL).origin !== location.origin) {
     location.replace(import.meta.env.VITE_ADMIN_URL);
     return;
   }
@@ -28,7 +29,7 @@ async function bootstrap() {
     if (!location.pathname.startsWith("/admin")) setupPortfolioRefresh();
   } catch {
     message.setAttribute("role", "alert");
-    message.textContent = "Portfolio belum dapat dimuat. Pastikan backend CMS berjalan, lalu coba lagi. ";
+    message.textContent = "Portfolio belum dapat dimuat. Periksa koneksi dan deployment website, lalu coba lagi. ";
     const retry = document.createElement("button");
     retry.type = "button";
     retry.className = "button";

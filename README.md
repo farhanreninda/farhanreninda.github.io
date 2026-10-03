@@ -1,3 +1,5 @@
+> CMS GitHub Pages: lihat [panduan setup login GitHub dan /admin](docs/cms/github-pages.md). Mode default sekarang menyimpan konten ke repository.
+
 # Portfolio Farhan Reninda dengan CMS
 
 CMS memakai backend Node.js 24 + SQLite. Halaman publik mengambil data Indonesia/English dari API. Panduan lengkap: [docs/cms/README.md](docs/cms/README.md). Hasil pengujian: [docs/cms/verification.md](docs/cms/verification.md).

@@ -179,3 +179,11 @@ Diubah: `package.json`, lockfile, `.gitignore`, `vite.config.ts`, workflow deplo
 ## Redesign opsi proyek — 2026-10-03
 
 Teknologi, video demo, Play Store, tautan, thumbnail dan galeri memakai kartu berikon/switch. Header desktop 76px, posisi kanan switch sama pada setiap kolom. Reflow 390px satu kolom tanpa overflow; mode light/dark diperiksa. Switch video memunculkan sumber galeri/file/link; Space pada Play Store memunculkan input URL. Draft dibuang melalui reload. TypeScript, Vite build, diff check serta deep comparison konten API lulus. Bukti: verification/cms-project-options-desktop.png dan cms-project-options-mobile.png.
+
+## CMS GitHub Pages — 2026-10-03
+
+- Branch feature/admin-cms; JSON hasil ekspor identik snapshot API revisi 3, manifest 33 aset existing.
+- TypeScript/Vite build lulus. dist/admin/index.html, 404.html, CNAME, .nojekyll dan cms JSON tersedia.
+- Tes HTTP legacy lulus. Tes GitHub tiruan: state/origin/PKCE, client secret tidak masuk callback HTML, repository ID, izin push, read/save SHA/revision, konflik 409, logout, upload/manifest/blob preview dan SVG ditolak.
+- Preview build statis 4173: admin login GitHub tersedia dengan tombol disabled saat auth URL belum diisi; portfolio ID/EN tampil tanpa API Node. Mobile 390 tanpa overflow dan light/dark diperiksa. Screenshot github-pages-admin-login.png dan github-pages-admin-mobile.png.
+- Login GitHub real, deployment Worker, pengaturan App/Pages dan commit online belum diuji karena akun/konfigurasi belum tersedia. User belum punya Cloudflare. Panduan setup: github-pages.md.

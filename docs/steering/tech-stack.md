@@ -113,3 +113,7 @@ Modern CSS `color-mix(in srgb, ...)` is used extensively for dynamic transparenc
 - ❌ No i18n library (content is hardcoded in Indonesian)
 - ❌ No image optimization pipeline
 - ❌ No Storybook or component documentation
+
+### CMS GitHub Pages (2026-10-03)
+
+Mode default sekarang GitHub: konten public/cms/content.json dan media manifest, login GitHub App melalui Worker OAuth, penyimpanan ke repository memicu deploy Pages. UI existing dipertahankan. Build menyiapkan admin/index.html, 404.html, CNAME dan .nojekyll. Node/SQLite tetap tersedia lewat VITE_CMS_MODE=local dan npm run dev:local. Detail/setup: docs/cms/github-pages.md.

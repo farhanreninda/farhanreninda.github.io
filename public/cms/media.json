@@ -1,0 +1,266 @@
+[
+  {
+    "id": "CV.pdf",
+    "name": "CV.pdf",
+    "url": "/CV.pdf",
+    "mime": "application/pdf",
+    "size": 1446916,
+    "source": "existing"
+  },
+  {
+    "id": "favicon.svg",
+    "name": "favicon.svg",
+    "url": "/favicon.svg",
+    "mime": "image/svg+xml",
+    "size": 302,
+    "source": "existing"
+  },
+  {
+    "id": "profile/portrait.jpg",
+    "name": "portrait.jpg",
+    "url": "/profile/portrait.jpg",
+    "mime": "image/jpeg",
+    "size": 225630,
+    "source": "existing"
+  },
+  {
+    "id": "projects/bakers-corner.jpg",
+    "name": "bakers-corner.jpg",
+    "url": "/projects/bakers-corner.jpg",
+    "mime": "image/jpeg",
+    "size": 147152,
+    "source": "existing"
+  },
+  {
+    "id": "projects/humanity.jpg",
+    "name": "humanity.jpg",
+    "url": "/projects/humanity.jpg",
+    "mime": "image/jpeg",
+    "size": 139429,
+    "source": "existing"
+  },
+  {
+    "id": "projects/lkm-fit.jpg",
+    "name": "lkm-fit.jpg",
+    "url": "/projects/lkm-fit.jpg",
+    "mime": "image/jpeg",
+    "size": 132687,
+    "source": "existing"
+  },
+  {
+    "id": "projects/mimo.jpg",
+    "name": "mimo.jpg",
+    "url": "/projects/mimo.jpg",
+    "mime": "image/jpeg",
+    "size": 167410,
+    "source": "existing"
+  },
+  {
+    "id": "projects/nyatet.jpg",
+    "name": "nyatet.jpg",
+    "url": "/projects/nyatet.jpg",
+    "mime": "image/jpeg",
+    "size": 136450,
+    "source": "existing"
+  },
+  {
+    "id": "projects/pustaka-rifqi.jpg",
+    "name": "pustaka-rifqi.jpg",
+    "url": "/projects/pustaka-rifqi.jpg",
+    "mime": "image/jpeg",
+    "size": 175118,
+    "source": "existing"
+  },
+  {
+    "id": "projects/redmimo.jpg",
+    "name": "redmimo.jpg",
+    "url": "/projects/redmimo.jpg",
+    "mime": "image/jpeg",
+    "size": 161117,
+    "source": "existing"
+  },
+  {
+    "id": "projects/rental-mobil.jpg",
+    "name": "rental-mobil.jpg",
+    "url": "/projects/rental-mobil.jpg",
+    "mime": "image/jpeg",
+    "size": 132911,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/cover.png",
+    "name": "cover.png",
+    "url": "/projects/sip/cover.png",
+    "mime": "image/png",
+    "size": 169842,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/customer-menu.svg",
+    "name": "customer-menu.svg",
+    "url": "/projects/sip/customer-menu.svg",
+    "mime": "image/svg+xml",
+    "size": 2440,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/customer-order.svg",
+    "name": "customer-order.svg",
+    "url": "/projects/sip/customer-order.svg",
+    "mime": "image/svg+xml",
+    "size": 2319,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/dashboard.svg",
+    "name": "dashboard.svg",
+    "url": "/projects/sip/dashboard.svg",
+    "mime": "image/svg+xml",
+    "size": 3191,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-01.png",
+    "name": "detail-01.png",
+    "url": "/projects/sip/detail-01.png",
+    "mime": "image/png",
+    "size": 29215,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-02.png",
+    "name": "detail-02.png",
+    "url": "/projects/sip/detail-02.png",
+    "mime": "image/png",
+    "size": 158897,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-03.png",
+    "name": "detail-03.png",
+    "url": "/projects/sip/detail-03.png",
+    "mime": "image/png",
+    "size": 173267,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-04.png",
+    "name": "detail-04.png",
+    "url": "/projects/sip/detail-04.png",
+    "mime": "image/png",
+    "size": 103444,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-05.png",
+    "name": "detail-05.png",
+    "url": "/projects/sip/detail-05.png",
+    "mime": "image/png",
+    "size": 79373,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-06.png",
+    "name": "detail-06.png",
+    "url": "/projects/sip/detail-06.png",
+    "mime": "image/png",
+    "size": 124902,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-07.png",
+    "name": "detail-07.png",
+    "url": "/projects/sip/detail-07.png",
+    "mime": "image/png",
+    "size": 69485,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-08.png",
+    "name": "detail-08.png",
+    "url": "/projects/sip/detail-08.png",
+    "mime": "image/png",
+    "size": 90704,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-09.png",
+    "name": "detail-09.png",
+    "url": "/projects/sip/detail-09.png",
+    "mime": "image/png",
+    "size": 35159,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-10.png",
+    "name": "detail-10.png",
+    "url": "/projects/sip/detail-10.png",
+    "mime": "image/png",
+    "size": 69113,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-11.png",
+    "name": "detail-11.png",
+    "url": "/projects/sip/detail-11.png",
+    "mime": "image/png",
+    "size": 44741,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/detail-12.png",
+    "name": "detail-12.png",
+    "url": "/projects/sip/detail-12.png",
+    "mime": "image/png",
+    "size": 84525,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/login.svg",
+    "name": "login.svg",
+    "url": "/projects/sip/login.svg",
+    "mime": "image/svg+xml",
+    "size": 1734,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/menu-modal.svg",
+    "name": "menu-modal.svg",
+    "url": "/projects/sip/menu-modal.svg",
+    "mime": "image/svg+xml",
+    "size": 2112,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/order-status.svg",
+    "name": "order-status.svg",
+    "url": "/projects/sip/order-status.svg",
+    "mime": "image/svg+xml",
+    "size": 2399,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/orders.svg",
+    "name": "orders.svg",
+    "url": "/projects/sip/orders.svg",
+    "mime": "image/svg+xml",
+    "size": 3000,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/reports.svg",
+    "name": "reports.svg",
+    "url": "/projects/sip/reports.svg",
+    "mime": "image/svg+xml",
+    "size": 2955,
+    "source": "existing"
+  },
+  {
+    "id": "projects/sip/transactions.svg",
+    "name": "transactions.svg",
+    "url": "/projects/sip/transactions.svg",
+    "mime": "image/svg+xml",
+    "size": 3224,
+    "source": "existing"
+  }
+]

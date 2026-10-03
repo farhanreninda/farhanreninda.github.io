@@ -11,3 +11,7 @@ dist-ssr
 coverage
 .cache
 data/
+
+# Worker OAuth local secrets and build cache
+.dev.vars
+.wrangler/

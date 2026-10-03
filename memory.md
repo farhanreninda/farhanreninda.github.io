@@ -43,6 +43,7 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
+| 2026-10-03 | CMS GitHub Pages pada feature/admin-cms | Mode default JSON publik + GitHub Contents API, GitHub App login via Worker OAuth PKCE; /admin entry dan deploy Pages; Node/SQLite tetap lokal opsional | User hanya memakai GitHub Pages, bersedia login GitHub, meminta implementasi pada branch feature/admin-cms |
 | 2026-10-03 | Posisi Batalkan edit | Memindahkan pembatalan dari status draft ke baris aksi simpan, warna danger dan ikon silang; tombol bawah profil memakai gaya yang sama | User meminta lokasi lain dan penanda warna batal |
 | 2026-10-03 | Redesign opsi proyek | Kartu opsi berikon, penjelasan dan switch kanan untuk teknologi/video/Play Store/tautan/thumbnail/galeri; header Informasi dan Media Proyek | Mengganti checkbox lepas dengan kontrol konsisten, sejajar dan responsif tanpa mengubah konten |
 | 2026-10-03 | Dropdown CMS dan jenis pengalaman | Panah select konsisten 12px dari kanan; input/select 44px; pengalaman dibagi Pekerjaan, Magang, Organisasi dengan ikon berbeda dan indeks array asli | Merapikan kesejajaran serta menjaga data dan urutan jenis lain saat pengurutan |
@@ -61,6 +62,14 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 | 2026-06-19 | Hapus teks pendahuluan | Menghapus paragraf intro di HelloSection.vue | Agar tampilan lebih ringkas dan tidak redundan |
 
 ## Session History
+
+### Session 2026-10-03 — CMS GitHub Pages
+**Dikerjakan:** checkout feature/admin-cms; ekspor konten revisi 3/33 aset, transport GitHub dan upload/preview, gerbang login GitHub tanpa secret/token persisten, Worker state/PKCE/repository ID, rute admin/index.html + 404/CNAME/.nojekyll, workflow tanpa gate backend; dev Vite default; panduan setup lengkap.
+**Keputusan Penting:** GitHub App Contents read/write dipasang hanya repository portfolio; Worker hanya menukar kode OAuth. Token memori tab; reload perlu login lagi. Konten GitHub memakai SHA untuk konflik. Desain admin/data dipertahankan.
+**Validasi:** TypeScript/build, HTTP legacy dan tes tiruan OAuth/GitHub save/conflict/permission/upload lulus; artefak Pages ada dan deep equality JSON snapshot lulus. Browser build statis /admin/ serta portfolio ID/EN dan mobile diperiksa.
+**Technical Debt:** upload membuat dua commit; kegagalan manifest bisa meninggalkan file orphan. GitHub App/Worker live belum dikonfigurasi, sehingga login real dan save production belum diuji.
+**Pending Tasks:** user membuat akun Cloudflare (belum punya), deploy Worker, buat/install GitHub App dan isi client secret di Worker, VITE_GITHUB_AUTH_URL, Pages Source GitHub Actions, commit/push/review merge main. Tidak membuat credential, commit production, atau deploy eksternal dalam sesi ini.
+
 
 ### Session 2026-10-03 — Tombol Batalkan edit
 **Dikerjakan:** tombol batal di samping simpan pada desktop, bertumpuk penuh pada ponsel; warna merah/ikon silang juga pada footer profil.
@@ -171,6 +180,9 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 
 ## Known Context
+
+- Hosting pilihan user tetap GitHub Pages pada farhanreninda.my.id. Mode default CMS GitHub: public/cms/content.json dan media.json; commit ke main memicu workflow Pages. Login GitHub App via Worker oauth/worker.mjs. Setup akun Cloudflare/GitHub App/variable auth belum selesai; user belum punya akun Cloudflare. Branch implementasi feature/admin-cms. Node/SQLite tersedia melalui VITE_CMS_MODE=local dan npm run dev:local.
+
 
 - CMS pengalaman menampilkan section Pekerjaan/Magang/Organisasi dengan ikon terpisah, memakai array asli tanpa migrasi. Select CMS memakai panah SVG di kanan 12px; tinggi field 44px.
  (Persisten)
