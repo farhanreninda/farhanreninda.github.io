@@ -1859,3 +1859,11 @@ Ringkasan perubahan
 **Dikerjakan:** hanya CSS pada media max700px (logo) dan max650px (filter, sertifikasi, footer). Logo F tampil30x34px. Filter Semua satu baris penuh dan empat kategori dua kolom; label panjang membungkus. Sertifikasi width100%. Navigasi cepat tiga kolom tanpa row-gap, tetap tinggi target44px; gap footer20px.
 **Validasi:** mobile320/390px tidak overflow; filter tidak terpotong; sertifikasi sama lebar dengan pendidikan340px pada390px; footer tiga kolom108px dan target44px. Desktop1280 tetap filterflex, logo38px, sertifikasi fit-content479px dan footerdua kolom/gap8px. TypeScript/build dan diff-check lulus. Screenshot mobile-filters-grid dan mobile-footer-compact.
 **Publikasi:** melanjutkan push branch dan merge/push main untuk perubahan mobile yang diminta.
+
+
+| 2026-10-04 | QC CMS mobile | Branch fix/cms-mobile; menu rapat, toolbar penuh, kartu editor dan dialog responsif; scroll halaman kembali ke atas saat pindah bagian | Memperbaiki CMS pada ponsel tanpa mengubah layout desktop |
+
+### Session 2026-10-04 - Perbaikan CMS mobile
+**Dikerjakan:** menu mobile dua kolom per kelompok dan kelompok Website tidak stretch pada tablet. Toolbar proyek satu kolom penuh, ringkasan kartu dengan ikon/judul/disclosure sejajar dan tombol aksi44px. Tombol simpan profil penuh, dialog preview fleksibel, input select16px. Navigasi mobile mereset scroll window setelah render; desktop tetap scroll panel.
+**Validasi:** seluruh sembilan bagian CMS pada320px tanpa overflow; editor pendidikan, sertifikasi, pengalaman, proyek dan identitas dibuka pada390px; dialog tema/diff diperiksa; menu tablet768px dan desktop1280px diperiksa. TypeScript dan build lulus. QC menggunakan database sementara terpisah, tanpa publikasi konten. Bukti docs/cms/verification/cms-mobile-project-editor.png.
+**Publikasi:** commit berbahasa Indonesia, push fix/cms-mobile lalu merge dan push main sesuai permintaan pengguna.

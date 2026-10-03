@@ -93,4 +93,8 @@ footer a { color: var(--cms-highlight); text-decoration: none; min-height: 44px;
 @media (max-width: 600px) { .profile-panel { padding: 16px; } .bio-fields { grid-template-columns: 1fr; } header small { display: none; } }
 .cancel-edit { color: var(--cms-danger); border-color: color-mix(in srgb, var(--cms-danger) 55%, var(--cms-line)); background: color-mix(in srgb, var(--cms-danger) 10%, var(--cms-surface)); }
 .cancel-edit:hover:not(:disabled) { border-color: var(--cms-danger); background: color-mix(in srgb, var(--cms-danger) 18%, var(--cms-surface)); }
+@media (max-width: 600px) {
+  .profile-save-bar { display: grid; grid-template-columns: auto minmax(0, 1fr); }
+  .profile-save-bar button { grid-column: 1 / -1; width: 100%; min-height: 44px; justify-content: center; }
+}
 </style>

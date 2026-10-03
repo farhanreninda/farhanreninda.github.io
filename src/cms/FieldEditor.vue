@@ -323,4 +323,18 @@ button:disabled { cursor: default; opacity: .5; }
   .editable-chip button { min-height: 40px; }
   .add-chip { min-height: 44px; }
 }
+@media (max-width: 650px) {
+  .list-toolbar { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .list-toolbar select, .list-toolbar button, .add-item-top { width: 100%; min-height: 44px; }
+  .collection-editor > .entry { padding: 12px; }
+  .collection-editor > .entry > details > summary { display: grid; grid-template-columns: 34px minmax(0, 1fr) 24px; }
+  .collection-editor .entry-caption { grid-column: 2; }
+  .collection-editor .entry-caption strong { font-size: 15px; line-height: 22px; }
+  .collection-editor .disclosure-icon { grid-column: 3; grid-row: 1; margin-left: 0; }
+  .collection-editor .entry-tags { grid-column: 1 / -1; margin-left: 0; }
+  .collection-editor .row-actions { grid-column: 1 / -1; justify-self: end; }
+  .project-option-header { padding: 12px; gap: 8px; }
+  .project-option-body { padding: 12px; }
+  .new-project { padding: 24px 16px; }
+}
 </style>
