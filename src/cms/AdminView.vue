@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onBeforeUnmount, ref, watch, provide } from "vue";
+import { computed, nextTick, onMounted, onBeforeUnmount, ref, watch, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { ApiError, mediaUrl, request } from "./api";
 import { githubMode, githubRepo, githubBranch, loginGithub, oauthUrl } from "./github";
@@ -113,7 +113,11 @@ onMounted(async () => {
   catch (cause) { if (!(cause instanceof ApiError && cause.status === 401)) showError(cause); }
   finally { loading.value = false; }
 });
-watch(() => route.query.section, () => { document.getElementById("cms-main")?.scrollTo({ top: 0 }); });
+watch(() => route.query.section, async () => {
+  await nextTick();
+  if (window.matchMedia("(max-width: 900px)").matches) window.scrollTo({ top: 0, behavior: "instant" });
+  else document.getElementById("cms-main")?.scrollTo({ top: 0 });
+});
 function navigate(id: string) {
   void router.replace({ query: { section: id } }); menuOpen.value = false;
 }
