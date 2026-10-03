@@ -3,6 +3,7 @@ import { computed, ref } from "vue";
 import { useLocale } from "@/composables/useLocale";
 import { usePortfolio } from "@/composables/usePortfolio";
 import ProjectsSection from "./ProjectsSection.vue";
+import NaturalActionIcon from "./NaturalActionIcon.vue";
 import { navigateNatural } from "./naturalNavigation";
 
 const { currentCv: cv, copy, locale } = useLocale();
@@ -61,15 +62,14 @@ const educationGpa = computed(() => cv.value.educations.find(item => item.gpa)?.
         <p class="natural-lead">{{ cv.profile.tagline }}</p>
         <div class="natural-links">
           <a class="natural-button primary" href="#projects"
-            >{{ locale === 'id' ? 'Lihat Proyek Pilihan' : 'View Selected Projects' }} <span class="natural-icon" aria-hidden="true">arrow_downward</span></a
+            >{{ locale === 'id' ? 'Lihat Proyek Pilihan' : 'View Selected Projects' }} <NaturalActionIcon name="arrow_downward" :size="21" /></a
           >
           <a
             v-if="cv.profile.social.cvUrl"
             class="natural-button"
             :href="cv.profile.social.cvUrl"
             :download="settings.cvDownloadName"
-            ><span class="natural-icon" aria-hidden="true">download</span
-            >{{ locale === 'id' ? 'Unduh Resume / CV' : 'Download Resume / CV' }}</a
+            ><NaturalActionIcon name="download" :size="21" color="var(--color-teal)" />{{ locale === 'id' ? 'Unduh Resume / CV' : 'Download Resume / CV' }}</a
           >
           <div class="hero-social-links">
           <a
@@ -79,7 +79,7 @@ const educationGpa = computed(() => cv.value.educations.find(item => item.gpa)?.
             target="_blank"
             rel="noopener noreferrer"
             :aria-label="copy.contact.actions.github.title"
-            ><span class="natural-icon" aria-hidden="true">code</span></a
+            ><NaturalActionIcon name="code" :size="21" color="var(--color-teal)" /></a
           >
           <a
             v-if="cv.profile.social.linkedin"
@@ -99,7 +99,7 @@ const educationGpa = computed(() => cv.value.educations.find(item => item.gpa)?.
             target="_blank"
             rel="noopener noreferrer"
             :aria-label="copy.contact.actions.whatsapp.title"
-            ><span class="natural-icon" aria-hidden="true">chat</span></a
+            ><NaturalActionIcon name="chat" :size="21" color="var(--color-teal)" /></a
           >
           </div>
         </div>

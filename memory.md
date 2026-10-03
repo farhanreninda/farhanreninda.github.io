@@ -1867,3 +1867,11 @@ Ringkasan perubahan
 **Dikerjakan:** menu mobile dua kolom per kelompok dan kelompok Website tidak stretch pada tablet. Toolbar proyek satu kolom penuh, ringkasan kartu dengan ikon/judul/disclosure sejajar dan tombol aksi44px. Tombol simpan profil penuh, dialog preview fleksibel, input select16px. Navigasi mobile mereset scroll window setelah render; desktop tetap scroll panel.
 **Validasi:** seluruh sembilan bagian CMS pada320px tanpa overflow; editor pendidikan, sertifikasi, pengalaman, proyek dan identitas dibuka pada390px; dialog tema/diff diperiksa; menu tablet768px dan desktop1280px diperiksa. TypeScript dan build lulus. QC menggunakan database sementara terpisah, tanpa publikasi konten. Bukti docs/cms/verification/cms-mobile-project-editor.png.
 **Publikasi:** commit berbahasa Indonesia, push fix/cms-mobile lalu merge dan push main sesuai permintaan pengguna.
+
+
+| 2026-10-04 | Polesan mobile Natural | Ikon aksi mobile SVG, tombol mode44px tetap, sosial tiga kolom penuh, navigasi footer mengikuti lebar label | Font ikon terlambat menyebabkan tombol oval kosong dan ruang sosial/footer terlalu renggang |
+
+### Session 2026-10-04 - Ikon dan jarak mobile Natural
+**Dikerjakan:** branch fix/portfolio-mobile-polish. NaturalActionIcon mempertahankan glyph font pada desktop dan menampilkan SVG pada mobile700px untuk menu, mode, admin, CTA dan sosial. Ukuran tombol mode mobile tetap44px. Sosial tiga kolom selebar hero, navigasi footer tiga kolom max-content dua baris dengan gap18px khusus max650px.
+**Validasi:** ponsel320/390px tanpa overflow, mode44x44px, sosial sama lebar; desktop1280px diperiksa, layout dan ukuran/warna glyph lama dipertahankan. TypeScript/build dan diff-check lulus. Bukti portfolio-mobile-actions-polish.png dan portfolio-mobile-footer-polish.png.
+**Publikasi:** commit Indonesia lalu push branch, merge dan push main sesuai permintaan pengguna.
