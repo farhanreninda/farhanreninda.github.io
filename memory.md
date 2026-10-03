@@ -1843,3 +1843,11 @@ Ringkasan perubahan
 **Batasan:** ketajaman screenshot mengikuti sumber asli; file FHD masih diperlukan untuk gambar kecil.
 
 **Hasil publikasi:** commit aebc1cd dibuat dan branch feature/portfolio-natural-theme berhasil di-push. Main diperbarui dengan konten CMS terbaru lalu merge berhasil tanpa konflik. Push main dilakukan setelah pencatatan ini.
+
+
+| 2026-10-04 | QC mobile tema Natural | Navigasi Menu dengan enam pilihan; hero dan kontak disusun untuk ponsel, tablet satu kolom, galeri target44px | Menu terpotong, ruang pembuka berlebih dan email terbungkus sempit pada mobile |
+
+### Session 2026-10-04 - QC mobile dan publikasi perbaikan
+**Dikerjakan:** checkout feature/portfolio-natural-theme dan sinkronkan main. Header mobile menggunakan tombol Menu dengan aria-expanded/controls dan enam tujuan, menutup sebelum menghitung scroll. Header grid tetap dua kolom di320px. Hero mengurangi ruang pembuka, CTA selebar konten, sosial terpusat. Keahlian satu kolom pada layar480px. Tablet651–900px menyusun hero, konteks dan kontak satu kolom. Email dan tombol Salin terpisah baris. Galeri dot dan tutup target44px; header detail sticky agar tombol tutup tetap terlihat saat scroll.
+**Validasi:** ukuran320/360/390/430/768/1024/1280px tidak menyebabkan overflow halaman. Bahasa Inggris/mode terang320px dan bahasa Indonesia/mode gelap390px diperiksa. Menu membuka seluruh pilihan dan menutup setelah navigasi. Galeri gambar13 bisa dipilih, header tetap tersedia saat PageDown. Pendidikan satu kolom. TypeScript/build Vite dan diff-check lulus. Bukti portfolio-natural-mobile-qc-hero/menu/contact.png.
+**Publikasi:** commit fix: rapikan tampilan mobile tema Natural, push branch, merge main, push main sesuai permintaan pengguna.
