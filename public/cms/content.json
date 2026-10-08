@@ -263,7 +263,7 @@
               "/media/4e0820d7-cc07-4753-b90e-e6ac32a96a00.jpg",
               "/media/b68a3341-3f4c-4cda-814d-e9db632a5fc4.jpg"
             ],
-            "demoUrl": ""
+            "demoUrl": "/media/759fe035-da05-481d-be10-b428a10724c8.mp4"
           },
           {
             "name": "Sistem Informasi Penjualan",
@@ -1147,5 +1147,5 @@
     ],
     "activeThemeId": "natural"
   },
-  "revision": 8
+  "revision": 9
 }
