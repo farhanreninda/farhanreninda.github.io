@@ -255,7 +255,7 @@
               "DataStore"
             ],
             "link": "https://github.com/farhanreninda/GarasiKu",
-            "thumbnail": "",
+            "thumbnail": "/media/a3c4844a-da96-490f-9a7b-67128dfd3fcb.jpg",
             "images": [
               "/media/33252d54-1cc6-4411-a254-9cf1984d7f0f.jpg",
               "/media/f77ed9f2-471a-4497-a029-3e6cd518bf50.jpg",
@@ -1147,5 +1147,5 @@
     ],
     "activeThemeId": "natural"
   },
-  "revision": 5
+  "revision": 6
 }
