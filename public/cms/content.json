@@ -241,7 +241,7 @@
             "name": "GarasiKu Application",
             "category": "Android Application",
             "badge": "Android",
-            "period": "2026 - sekarang",
+            "period": "2026",
             "description": "GarasiKu adalah aplikasi Android untuk mengelola mobil dan motor, mencatat riwayat servis, serta memantau biaya kendaraan. Pengguna dapat menyimpan data pembelian dan aksesori, memperbarui odometer, dan mengatur pengingat servis maupun pajak berdasarkan tanggal atau kilometer. Data disimpan secara lokal di perangkat dan dapat dicadangkan melalui ekspor serta impor file JSON.",
             "tech": [
               "Kotlin",
@@ -263,7 +263,8 @@
               "/media/20a56132-9fad-4411-a248-1982c471fc63.jpg",
               "/media/4e0820d7-cc07-4753-b90e-e6ac32a96a00.jpg",
               "/media/b68a3341-3f4c-4cda-814d-e9db632a5fc4.jpg"
-            ]
+            ],
+            "demoUrl": ""
           },
           {
             "name": "Sistem Informasi Penjualan",
@@ -1147,5 +1148,5 @@
     ],
     "activeThemeId": "natural"
   },
-  "revision": 6
+  "revision": 7
 }
