@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-14",
+  "environment": "Local production build with gzip; not deployed PageSpeed results",
+  "lighthouse": "13.5.0",
+  "sourceReport": "https://pagespeed.web.dev/analysis/https-farhanreninda-my-id/68nha55d14",
+  "mobile": {
+    "time": "2026-10-14T10:54:57.519Z",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "metrics": {
+      "first-contentful-paint": 1361.9076,
+      "largest-contentful-paint": 1891.3614,
+      "total-blocking-time": 34.5,
+      "cumulative-layout-shift": 0,
+      "speed-index": 1361.9076
+    }
+  },
+  "desktop": {
+    "time": "2026-10-14T10:46:45.608Z",
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "metrics": {
+      "first-contentful-paint": 336.9548,
+      "largest-contentful-paint": 443.43219999999997,
+      "total-blocking-time": 0,
+      "cumulative-layout-shift": 0,
+      "speed-index": 337.14517907361335
+    }
+  }
+}

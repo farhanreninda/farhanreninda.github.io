@@ -2,6 +2,8 @@
 
 ## Core Framework
 
+> Pembaruan performa 2026-10-14: bootstrap tidak lagi memuat Pinia/Unhead. Metadata title/description/OG dikelola watchEffect dengan API DOM di App.vue; lang tetap dari useLocale. Vue Options API dinonaktifkan karena semua SFC memakai script setup. Font Natural merupakan subset WOFF2 dan foto bawaan memakai varian WebP; transport GitHub admin dimuat dinamis. Dependency terpasang tidak ditambah/dihapus. Validasi dan batasan: [performa](../performance/README.md).
+
 > Pembaruan CMS 2026-10-03: Node.js minimal 24; backend HTTP, crypto, SQLite, dan test runner bawaan tanpa paket runtime baru. `npm run dev` menjalankan API 3001 + Vite 5173. Database memerlukan disk permanen di host Node terpisah dari Pages. Detail: [CMS](../cms/README.md). Bagian tanpa backend di bawah merekam baseline.
 
 | Technology | Version | Purpose |

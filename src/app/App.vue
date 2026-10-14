@@ -1,6 +1,5 @@
 ﻿<script setup lang="ts">
-import { onMounted, nextTick } from "vue";
-import { useHead } from "@unhead/vue";
+import { onMounted, nextTick, watchEffect } from "vue";
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 import NaturalHeader from "@/components/NaturalHeader.vue";
@@ -11,19 +10,27 @@ import { useTheme } from "@/composables/useTheme";
 import { useLocale } from "@/composables/useLocale";
 import { useRoute } from "vue-router";
 
-const { locale, copy } = useLocale();
+const { copy } = useLocale();
 const route = useRoute();
 const { natural } = usePortfolio();
 
-useHead({
-  title: () => route.meta.admin ? "Admin Portfolio" : copy.value.app.ogTitle,
-  htmlAttrs: { lang: () => locale.value },
-  meta: [
-    { name: "description", content: () => copy.value.app.description },
-    { property: "og:title", content: () => copy.value.app.ogTitle },
-    { property: "og:description", content: () => copy.value.app.ogDescription },
-    { property: "og:type", content: "website" },
-  ],
+watchEffect(() => {
+  document.title = route.meta.admin ? "Admin Portfolio"
+    : route.name === 'not-found' ? copy.value.notFound.title : copy.value.app.ogTitle;
+  for (const [attribute, name, content] of [
+    ['name', 'description', copy.value.app.description],
+    ['property', 'og:title', copy.value.app.ogTitle],
+    ['property', 'og:description', copy.value.app.ogDescription],
+    ['property', 'og:type', 'website'],
+  ]) {
+    let meta = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${name}"]`);
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute(attribute, name);
+      document.head.append(meta);
+    }
+    meta.setAttribute('content', content);
+  }
 });
 
 useTheme();
@@ -33,7 +40,10 @@ onMounted(async () => {
   const hash = window.location.hash.replace("#", "");
   if (hash) {
     const el = document.getElementById(hash);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) {
+      document.querySelector('.natural-home')?.classList.add('has-navigation');
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 });
 </script>

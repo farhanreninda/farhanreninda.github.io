@@ -8,6 +8,17 @@ export default defineConfig({
   plugins: [vue(), {
     name: 'pages-entry-points',
     apply: 'build',
+    transformIndexHtml: {
+      order: 'post',
+      handler(_html, context) {
+        return Object.values(context.bundle ?? {})
+          .filter(asset => /^assets\/HomeView-.*\.(js|css)$/.test(asset.fileName))
+          .map(asset => ({ tag: 'link', attrs: {
+            rel: asset.fileName.endsWith('.js') ? 'modulepreload' : 'stylesheet',
+            href: '/' + asset.fileName,
+          } }));
+      },
+    },
     async closeBundle() {
       await mkdir('dist/admin', { recursive: true });
       await copyFile('dist/index.html', 'dist/admin/index.html');
@@ -21,6 +32,7 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  define: { __VUE_OPTIONS_API__: false },
   base: "/",
   preview: {
     proxy: { "/api": "http://127.0.0.1:3001" },

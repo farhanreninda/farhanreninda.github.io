@@ -128,7 +128,10 @@ const educationGpa = computed(() => cv.value.educations.find(item => item.gpa)?.
         </div>
         <div class="developer-identity">
           <div class="developer-portrait">
-            <img :src="settings.portraitUrl" :alt="cv.profile.name" />
+            <picture>
+              <source v-if="settings.portraitUrl === '/profile/portrait.jpg'" srcset="/profile/portrait-128.webp 128w, /profile/portrait-256.webp 256w" sizes="64px" type="image/webp" />
+              <img :src="settings.portraitUrl" :alt="cv.profile.name" width="64" height="64" decoding="async" />
+            </picture>
             <i v-if="currentRole" aria-hidden="true" />
           </div>
           <div>

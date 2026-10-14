@@ -214,7 +214,7 @@ nav a.active {
   outline-offset: 3px;
 }
 .natural-icon {
-  font-family: "Material Symbols Outlined";
+  font-family: "Portfolio Symbols";
   font-size: 18px;
   line-height: 1;
 }

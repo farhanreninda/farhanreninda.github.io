@@ -25,7 +25,7 @@
 }
 .showcase-label, .showcase-close { display: flex; align-items: center; gap: 10px; }
 .showcase-label { color: var(--color-teal); font-family: monospace; }
-.showcase-icon { font: 18px 'Material Symbols Outlined'; }
+.showcase-icon { font: 18px 'Portfolio Symbols'; }
 .showcase-category { color: var(--color-text-muted); }
 .showcase-close { margin-left: auto; }
 .showcase-close kbd { color: var(--color-text-muted); padding: 3px 6px; border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-surface-elev); }

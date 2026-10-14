@@ -2,6 +2,8 @@
 
 ## Application Lifecycle
 
+> Pembaruan performa 2026-10-14: HTML memiliki status loading; bootstrap menampilkan overlay tetap, menjalankan fetch konten dan resolusi router bersamaan, lalu mount setelah keduanya berhasil. Error/retry tetap ada. Metadata reaktif memakai DOM, font/aset HomeView di-preload saat build, dan section Natural di luar viewport ditunda rendernya. Navigasi klik/deep link mengaktifkan layout penuh sebelum mengukur/scroll. Detail: [performa](../performance/README.md).
+
 > Pembaruan CMS 2026-10-03: bootstrap mengambil `/api/content` dan menunggu router sebelum mount; revisi baru menyegarkan data/reveal. Admin memakai sesi server, PUT berversi, dan upload SQLite. Flow tema/navigasi publik dipertahankan. Acuan terbaru: [CMS](../cms/README.md); uraian statis di bawah adalah baseline.
 
 ### 1. Boot Sequence
