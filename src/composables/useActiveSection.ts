@@ -34,8 +34,7 @@ export function useActiveSection(ids: string[], headerOffset: number | (() => nu
   onMounted(() => {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    // Initial computation + a small delay so layout has settled.
-    compute();
+    // Measure after the initial page layout has settled.
     setTimeout(compute, 80);
   });
 

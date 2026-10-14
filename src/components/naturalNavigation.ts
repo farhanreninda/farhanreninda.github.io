@@ -6,6 +6,8 @@ export function navigateNatural(event: MouseEvent) {
   if (!section) return;
 
   event.preventDefault();
+  document.querySelector('.natural-home')?.classList.add('has-navigation');
+  history.pushState(null, '', '#' + id);
   const headerBottom = document.querySelector('.natural-header')?.getBoundingClientRect().bottom ?? 0;
   const rect = section.getBoundingClientRect();
   const style = getComputedStyle(section);
@@ -14,6 +16,5 @@ export function navigateNatural(event: MouseEvent) {
   const availableHeight = window.innerHeight - headerBottom;
   const gap = Math.max(24, (availableHeight - contentHeight) / 2);
   const top = id === 'top' ? 0 : window.scrollY + rect.top + paddingTop - headerBottom - gap;
-  history.pushState(null, '', '#' + id);
   window.scrollTo({ top: Math.max(0, top), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 }

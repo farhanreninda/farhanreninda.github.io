@@ -1,15 +1,14 @@
 import { ApiError } from './errors';
 import { copySchema, validateDocument } from './schema';
 import type { AdminSession, ContentResponse, MediaItem } from './types';
+import { previews, readPublicContent } from './githubPublic';
+export { githubMode, githubMediaPreview } from './githubPublic';
 
-export const githubMode = import.meta.env.VITE_CMS_MODE !== 'local';
 export const githubRepo = import.meta.env.VITE_GITHUB_REPO || 'farhanreninda/farhanreninda.github.io';
 export const githubBranch = import.meta.env.VITE_GITHUB_BRANCH || 'main';
 export const oauthUrl = import.meta.env.VITE_GITHUB_AUTH_URL || '';
 let token = '';
 let contentSha = '';
-const previews = new Map<string, string>();
-export const githubMediaPreview = (url: string) => previews.get(url) || url;
 const contentPath = 'public/cms/content.json';
 const mediaPath = 'public/cms/media.json';
 const encode = (bytes: Uint8Array) => { let text = ''; for (const byte of bytes) text += String.fromCharCode(byte); return btoa(text); };
@@ -75,9 +74,7 @@ export function loginGithub(): Promise<AdminSession> {
 export async function githubRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
   const method = options.method || 'GET';
   if (path === '/content') {
-    const response = await fetch('/cms/content.json', { cache: 'no-store', signal: options.signal ?? AbortSignal.timeout(15000) });
-    if (!response.ok) throw new ApiError(response.status, 'Konten portfolio belum tersedia pada deployment ini.');
-    return await response.json() as T;
+    return readPublicContent<T>(options);
   }
   if (path === '/admin/session') throw new ApiError(401, 'Masuk dengan GitHub.');
   if (path === '/admin/logout') { token = ''; contentSha = ''; for (const url of previews.values()) URL.revokeObjectURL(url); previews.clear(); return undefined as T; }

@@ -51,8 +51,8 @@
   font-family: 'CMS Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
-  src: url(/fonts/cms/stitch-8.ttf) format('truetype');
+  font-display: optional;
+  src: url(../assets/fonts/jakarta-700.woff2) format('woff2');
 }
 
 @font-face {

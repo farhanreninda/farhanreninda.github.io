@@ -1,9 +1,7 @@
 ﻿<script setup lang="ts">
-import { useHead } from "@unhead/vue";
 import { useLocale } from "@/composables/useLocale";
 
 const { copy } = useLocale();
-useHead({ title: () => copy.value.notFound.title });
 </script>
 
 <template>

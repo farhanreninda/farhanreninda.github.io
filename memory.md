@@ -44,6 +44,8 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
 | 2026-10-14 | README portfolio pribadi | Ganti panduan teknis dengan profil, keahlian, proyek pilihan, CV dan kontak; publikasikan hanya dokumentasi ke main melalui checkout terpisah | Pengguna meminta README GitHub berfokus pada portfolio; pekerjaan PageSpeed di bugfix/fix-pagespeed belum dipublikasikan |
+| 2026-10-14 | Perbaikan PageSpeed | Branch bugfix/fix-pagespeed; overlay loading, route/data paralel, subset font dan WebP, render offscreen adaptif, preload HomeView, transport admin lazy | Audit produksi mobile58/desktop94 menunjukkan CLS0.15, font ikon besar, gambar terlalu besar dan main-thread blocking; lokal mencapai mobile99/desktop100, target mobile100 dan audit produksi masih pending |
+| 2026-10-14 | Metadata dan bundle awal | Empat meta tag memakai watchEffect/DOM; title admin/404 tetap reaktif; Options API tidak dipakai dinonaktifkan; package terpasang tidak dihapus | Bundle awal148.42KB menjadi123.10KB; tes metadata tanpa duplikasi, browser ID/EN/admin/404 dan audit SEO100 lulus |
 | 2026-10-03 | Login GitHub lokal | Tambahkan VITE_GITHUB_AUTH_URL di .env.local yang diabaikan Git; localhost masih ditolak Worker (403) | Tombol dinonaktifkan karena URL OAuth kosong; pengguna perlu menambahkan origin localhost ke ADMIN_ORIGINS |
 | 2026-10-03 | Tema portfolio Natural | Branch feature/portfolio-natural-theme; existing menjadi Portfolio Original, Natural memakai layout khusus dari Stitch; data CMS dan tema aktif awal dipertahankan | Dua tampilan bisa dipilih/di-preview dan dikembalikan tanpa duplikasi atau perubahan konten |
 | 2026-10-03 | Samakan gerbang admin dengan screenshot final | Badge Portfolio / Admin, gembok kiri, footer OAuth, repository ellipsis dan kolom grid minmax(0,1fr) | Screenshot terbaru menggantikan arahan sebelumnya; min-content repository menyebabkan kartu melebar pada ponsel |
@@ -1885,3 +1887,29 @@ Ringkasan perubahan
 **Validasi:** isi profil/proyek/kontak dicocokkan dengan public/cms/content.json; domain dicocokkan dengan CNAME; berkas CV dan anchor proyek tersedia; git diff --check lulus.
 **Technical Debt:** tidak ada tambahan; build/test aplikasi tidak dijalankan ulang karena perubahan hanya dokumentasi.
 **Pending Tasks:** pekerjaan PageSpeed tetap terpisah dan belum dipublikasikan.
+
+### Session 2026-10-14 - Audit dan perbaikan PageSpeed
+**Dikerjakan:** membaca memori/steering dan laporan PageSpeed mobile/desktop; meminta nama branch sebelum checkout, pengguna memilih prefix bugfix/, lalu membuat bugfix/fix-pagespeed dari main yang bersih. Overlay loading, route/data paralel, font subset/hash/preload, WebP responsif khusus foto bawaan, content-visibility dan navigasi/deep-link, scroll-spy setelah layout, transport admin lazy, metadata DOM reaktif serta flag Vue Composition API diterapkan. Konten CMS dan aset foto asli tetap sama.
+**Validasi:** build/type-check dan 8 tes lulus; empat viewport320/390/768/1280 tidak overflow; ID/EN, light/dark, filter9/5, galeri13 gambar, Escape/fokus, salin email, Original, gerbang admin, deep link dan judul404 diperiksa. Metadata mengikuti bahasa tanpa tag duplikat; console terakhir bersih. Lighthouse13.5 build lokal gzip: mobile99/100/100/100, desktop100/100/100/100; LCP mobile1.89dtk, TBT34ms dan CLS0. Laporan/bukti di docs/performance dan HTML lengkap di .cache/pagespeed.
+**Keputusan Penting:** mempertahankan desain/data dan Vue Router; tidak membuat SSR, service worker atau mengganti hosting. Metadata hanya empat tag, Unhead/Pinia tetap terpasang tetapi tidak diinisialisasi. Font CMS penuh dan foto JPG asli dipertahankan; subset perlu diperbarui saat menambah ikon. Flag Options API harus dievaluasi bila menambah dependency yang memakainya.
+**Technical Debt:** target performa mobile100 belum tercapai (pengukuran akhir99); cache GitHub Pages diatur hosting; audit perangkat fisik/Safari/Firefox belum dilakukan.
+**Pending Tasks:** review pengguna; belum commit/push/merge/deploy. Google PageSpeed produksi belum diuji setelah perubahan dan target semua100 belum diklaim tercapai. Memori ini merekam hasil lokal, bukan skor domain live setelah deployment.
+**Known Context Update:** perbaikan berada pada bugfix/fix-pagespeed. Bootstrap publik memakai githubPublic.ts; OAuth/API admin lazy. Metadata title/OG/description ditangani App.vue, locale/lang tetap useLocale. Tema Natural memakai font turunan di src/assets/fonts dan fotoWebP bawaan; semua konten CMS tetap sumber yang sama.
+
+| 2026-10-14 | README portfolio pribadi di main | Commit 09f90de berisi README dan memory saja berhasil dipush ke origin/main dari checkout terpisah | Permintaan pengguna merapikan README GitHub tanpa membawa perubahan PageSpeed yang belum dipublikasikan |
+
+### Session 2026-10-14 - Publikasi README portfolio pribadi
+**Dikerjakan:** README GitHub main diganti dengan profil, keahlian, tiga proyek pilihan dari CMS terbaru (GarasiKu, Sistem Informasi Penjualan, Redmimo), tautan portfolio/CV dan kontak. Bagian pengembangan lokal, build, deploy, struktur teknis, serta pengaturan CMS dihapus.
+**Validasi:** git diff --check lulus; commit 09f90de hanya menyentuh README.md dan memory.md; remote refs/heads/main cocok dengan commit hasil push.
+**Keputusan Penting:** memakai checkout terpisah dari origin/main terbaru. Workspace utama tetap bugfix/fix-pagespeed dan seluruh perubahan PageSpeed dipertahankan tanpa commit/push.
+**Technical Debt:** tidak ada tambahan; build/test aplikasi tidak dijalankan ulang untuk perubahan dokumentasi.
+**Pending Tasks:** pekerjaan PageSpeed sebelumnya tetap belum dipublikasikan.
+
+| 2026-10-14 | Publikasi perbaikan PageSpeed | Commit dan push bugfix/fix-pagespeed, lalu sinkronkan main dan merge/push tanpa mengganti README atau konten CMS terbaru | Pengguna meminta publikasi branch dan main; build serta delapan tes sudah lulus sebelum commit |
+
+### Session 2026-10-14 - Commit, push dan merge PageSpeed
+**Dikerjakan:** commit 7f5c6d6 (fix: tingkatkan performa pemuatan portfolio) dan push bugfix/fix-pagespeed; checkout main dan fast-forward origin/main terbaru, termasuk README 09f90de serta konten/media CMS. Merge perbaikan PageSpeed dengan mempertahankan keduanya; konflik memory.md diselesaikan dengan menyimpan catatan dari kedua branch.
+**Validasi:** build/type-check dan delapan tes lulus sebelum commit serta setelah penggabungan. README.md, public/cms/content.json dan public/cms/media.json identik dengan main terbaru sebelum merge; diff-check lulus dan marker konflik sudah dihapus.
+**Keputusan Penting:** merge biasa tanpa force push; pesan commit dan merge berbahasa Indonesia. Push main memicu workflow GitHub Pages existing.
+**Technical Debt:** hasil Lighthouse terakhir masih mobile99 dan desktop100; skor Google PageSpeed produksi setelah deployment belum diperiksa.
+**Pending Tasks:** audit PageSpeed domain live setelah workflow deployment selesai; tidak ada perubahan tambahan pada data CMS atau README.

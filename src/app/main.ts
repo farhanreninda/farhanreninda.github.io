@@ -1,8 +1,6 @@
 ﻿import { createApp } from "vue";
-import { createPinia } from "pinia";
-import { createHead } from "@unhead/vue";
 import App from "./App.vue";
-import { githubMode } from "@/cms/github";
+import { githubMode } from "@/cms/githubPublic";
 import { router } from "./router";
 import "@/styles/main.css";
 import { loadPortfolio, setupPortfolioRefresh } from "@/composables/usePortfolio";
@@ -14,20 +12,18 @@ async function bootstrap() {
   }
   const root = document.getElementById("app")!;
   const message = document.createElement("p");
-  message.style.cssText = "max-width:40rem;margin:15vh auto;padding:1.5rem";
+  message.style.cssText = "position:fixed;inset:0;display:grid;place-content:center;margin:0;padding:1.5rem";
   message.setAttribute("role", "status");
   message.textContent = "Memuat portfolio…";
   root.replaceChildren(message);
   try {
-    await loadPortfolio();
     const app = createApp(App);
-    app.use(createPinia());
     app.use(router);
-    app.use(createHead());
-    await router.isReady();
+    await Promise.all([loadPortfolio(), router.isReady()]);
     app.mount("#app");
     if (!location.pathname.startsWith("/admin")) setupPortfolioRefresh();
   } catch {
+    message.style.cssText = "max-width:40rem;margin:15vh auto;padding:1.5rem";
     message.setAttribute("role", "alert");
     message.textContent = "Portfolio belum dapat dimuat. Periksa koneksi dan deployment website, lalu coba lagi. ";
     const retry = document.createElement("button");

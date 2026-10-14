@@ -17,6 +17,15 @@
 .natural-home :is(h1, h2, h3, p, ul) {
   margin: 0;
 }
+.natural-section,
+.natural-projects {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+/* Anchor navigation measures the complete page before centering a section. */
+.natural-home:is(.has-navigation, :has(:target)) :is(.natural-section, .natural-projects) {
+  content-visibility: visible;
+}
 .natural-home :is(h1, h2, h3) {
   font-family: var(--font-display);
   color: var(--color-text-strong);
@@ -278,7 +287,7 @@
   align-items: center;
 }
 .natural-icon {
-  font-family: "Material Symbols Outlined";
+  font-family: "Portfolio Symbols";
   font-style: normal;
   font-size: 21px;
   font-weight: 400;
@@ -554,7 +563,7 @@
   border-color: color-mix(in srgb, var(--color-teal) 30%, var(--color-border));
   font-weight: 600;
 }
-.natural-projects :deep(.filter-icon) { font: 17px 'Material Symbols Outlined'; }
+.natural-projects :deep(.filter-icon) { font: 17px 'Portfolio Symbols'; }
 @media (max-width: 650px) {
   .natural-projects :deep(.project-filters) { width: 100%; }
   .natural-projects :deep(.project-filters button) { min-height: 44px; }

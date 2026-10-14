@@ -18,7 +18,7 @@ const paths: Record<string, string> = {
   <svg class="mobile-action-icon" :style="{ color }" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="paths[name]" /></svg>
 </template>
 <style scoped>
-.action-symbol { font-family: 'Material Symbols Outlined'; font-size: 18px; line-height: 1; }
+.action-symbol { font-family: 'Portfolio Symbols'; font-size: 18px; line-height: 1; }
 .mobile-action-icon { display: none; }
 @media (max-width: 700px) {
   .action-symbol { display: none; }
