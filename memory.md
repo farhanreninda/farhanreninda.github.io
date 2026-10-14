@@ -43,6 +43,7 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
+| 2026-10-14 | README portfolio pribadi | Ganti panduan teknis dengan profil, keahlian, proyek pilihan, CV dan kontak; publikasikan hanya dokumentasi ke main melalui checkout terpisah | Pengguna meminta README GitHub berfokus pada portfolio; pekerjaan PageSpeed di bugfix/fix-pagespeed belum dipublikasikan |
 | 2026-10-03 | Login GitHub lokal | Tambahkan VITE_GITHUB_AUTH_URL di .env.local yang diabaikan Git; localhost masih ditolak Worker (403) | Tombol dinonaktifkan karena URL OAuth kosong; pengguna perlu menambahkan origin localhost ke ADMIN_ORIGINS |
 | 2026-10-03 | Tema portfolio Natural | Branch feature/portfolio-natural-theme; existing menjadi Portfolio Original, Natural memakai layout khusus dari Stitch; data CMS dan tema aktif awal dipertahankan | Dua tampilan bisa dipilih/di-preview dan dikembalikan tanpa duplikasi atau perubahan konten |
 | 2026-10-03 | Samakan gerbang admin dengan screenshot final | Badge Portfolio / Admin, gembok kiri, footer OAuth, repository ellipsis dan kolom grid minmax(0,1fr) | Screenshot terbaru menggantikan arahan sebelumnya; min-content repository menyebabkan kartu melebar pada ponsel |
@@ -185,6 +186,8 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 
 ## Known Context
+
+- README utama berfokus pada profil dan karya pribadi; panduan pengembangan, build, deploy, serta CMS tetap berada di dokumentasi teknis.
 
 - Hosting pilihan user tetap GitHub Pages pada farhanreninda.my.id. Mode default CMS GitHub: public/cms/content.json dan media.json; commit ke main memicu workflow Pages. Login GitHub App via Worker oauth/worker.mjs. Setup akun Cloudflare/GitHub App/variable auth belum selesai; user belum punya akun Cloudflare. Branch implementasi feature/admin-cms. Node/SQLite tersedia melalui VITE_CMS_MODE=local dan npm run dev:local.
 
@@ -1875,3 +1878,10 @@ Ringkasan perubahan
 **Dikerjakan:** branch fix/portfolio-mobile-polish. NaturalActionIcon mempertahankan glyph font pada desktop dan menampilkan SVG pada mobile700px untuk menu, mode, admin, CTA dan sosial. Ukuran tombol mode mobile tetap44px. Sosial tiga kolom selebar hero, navigasi footer tiga kolom max-content dua baris dengan gap18px khusus max650px.
 **Validasi:** ponsel320/390px tanpa overflow, mode44x44px, sosial sama lebar; desktop1280px diperiksa, layout dan ukuran/warna glyph lama dipertahankan. TypeScript/build dan diff-check lulus. Bukti portfolio-mobile-actions-polish.png dan portfolio-mobile-footer-polish.png.
 **Publikasi:** commit Indonesia lalu push branch, merge dan push main sesuai permintaan pengguna.
+
+### Session 2026-10-14 - README portfolio pribadi
+**Dikerjakan:** README diganti dengan profil Android Developer, keahlian, proyek GarasiKu/Sistem Informasi Penjualan/Redmimo, tautan portfolio/CV, dan kontak. Panduan pengembangan lokal, build, deploy, struktur folder, serta pengaturan CMS dihapus dari README utama.
+**Keputusan Penting:** menggunakan konten CMS terbaru dari origin/main; perubahan dokumentasi disiapkan melalui checkout terpisah agar pekerjaan PageSpeed di bugfix/fix-pagespeed tidak ikut dipublikasikan.
+**Validasi:** isi profil/proyek/kontak dicocokkan dengan public/cms/content.json; domain dicocokkan dengan CNAME; berkas CV dan anchor proyek tersedia; git diff --check lulus.
+**Technical Debt:** tidak ada tambahan; build/test aplikasi tidak dijalankan ulang karena perubahan hanya dokumentasi.
+**Pending Tasks:** pekerjaan PageSpeed tetap terpisah dan belum dipublikasikan.
