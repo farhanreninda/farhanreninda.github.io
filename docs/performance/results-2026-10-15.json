@@ -145,5 +145,64 @@
         }
       }
     ]
+  },
+  "publication": {
+    "fixCommit": "7b03b4a59636504cb17a4e832b7675789af1b921",
+    "mergeCommit": "274a8d3754538e86c4a1d97cb4440b43a53c0b73",
+    "workflow": "https://github.com/farhanreninda/farhanreninda.github.io/actions/runs/38681417519",
+    "deployment": "success",
+    "googlePageSpeed": [
+      {
+        "url": "https://pagespeed.web.dev/analysis/https-farhanreninda-my-id/1r9zu0iq80?hl=id&form_factor=mobile",
+        "time": "2026-10-15T11:26:36+07:00",
+        "scores": {
+          "performance": 0.98,
+          "accessibility": 1,
+          "best-practices": 1,
+          "seo": 1
+        },
+        "metrics": {
+          "first-contentful-paint": 1354,
+          "largest-contentful-paint": 1524,
+          "total-blocking-time": 0,
+          "cumulative-layout-shift": 0,
+          "speed-index": 4116
+        }
+      },
+      {
+        "url": "https://pagespeed.web.dev/analysis/https-farhanreninda-my-id/pdkwdv3lgk?hl=id&form_factor=mobile",
+        "time": "2026-10-15T11:34:20+07:00",
+        "scores": {
+          "performance": 1,
+          "accessibility": 1,
+          "best-practices": 1,
+          "seo": 1
+        },
+        "metrics": {
+          "first-contentful-paint": 1204,
+          "largest-contentful-paint": 1518,
+          "total-blocking-time": 0,
+          "cumulative-layout-shift": 0,
+          "speed-index": 2641
+        }
+      }
+    ],
+    "googleDesktop": {
+      "url": "https://pagespeed.web.dev/analysis/https-farhanreninda-my-id/pdkwdv3lgk?hl=id&form_factor=desktop",
+      "time": "2026-10-15T11:34:20+07:00",
+      "scores": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 244,
+        "largest-contentful-paint": 340,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "speed-index": 794
+      }
+    }
   }
 }
