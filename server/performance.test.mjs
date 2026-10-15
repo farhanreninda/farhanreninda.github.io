@@ -7,6 +7,36 @@ import { parse, compileScript } from '@vue/compiler-sfc';
 import { ref, reactive, effectScope, nextTick } from 'vue';
 import { navigateNatural } from '../src/components/naturalNavigation.ts';
 
+test('Build inlines entry CSS while retaining route preloads and early theme hydration', async () => {
+  const configUrl = new URL('../vite.config.ts', import.meta.url);
+  const bundle = await build({ entryPoints: [fileURLToPath(configUrl)], bundle: true, platform: 'node', format: 'esm', write: false,
+    define: { 'import.meta.url': JSON.stringify(configUrl.href) },
+    plugins: [{ name: 'config-fixture', setup(builder) {
+      builder.onResolve({ filter: /^(vite|@vitejs\/plugin-vue)$/ }, args => ({ path: args.path, namespace: 'config-fixture' }));
+      builder.onLoad({ filter: /.*/, namespace: 'config-fixture' }, args => ({ contents: args.path === 'vite'
+        ? 'export const defineConfig = value => value;' : 'export default () => ({ name: "vue-fixture" });' }));
+    } }],
+  });
+  const config = (await import('data:text/javascript;base64,' + Buffer.from(bundle.outputFiles[0].text).toString('base64'))).default;
+  const handler = config.plugins.find(plugin => plugin.name === 'pages-entry-points').transformIndexHtml.handler;
+  const css = 'body{background:#fff} @font-face{src:url("/assets/font.woff2")}';
+  const html = '<head><meta charset="UTF-8"><script>hydrateTheme()</script><link rel="stylesheet" crossorigin href="/assets/index-abc.css"><link rel="icon" href="/favicon.svg"></head>';
+  const assets = {
+    css: { type: 'asset', fileName: 'assets/index-abc.css', source: css },
+    homeCss: { type: 'asset', fileName: 'assets/HomeView-abc.css', source: '.home{}' },
+    homeJs: { type: 'chunk', fileName: 'assets/HomeView-abc.js' },
+    adminCss: { type: 'asset', fileName: 'assets/AdminView-abc.css', source: '.admin{}' },
+  };
+  const result = handler(html, { bundle: assets });
+  assert.equal(result.html, html.replace('<link rel="stylesheet" crossorigin href="/assets/index-abc.css">', ''));
+  assert.deepEqual(result.tags, [
+    { tag: 'link', attrs: { rel: 'stylesheet', href: '/assets/HomeView-abc.css' } },
+    { tag: 'link', attrs: { rel: 'modulepreload', href: '/assets/HomeView-abc.js' } },
+    { tag: 'style', children: css, injectTo: 'head' },
+  ]);
+  assert.deepEqual(handler(html, {}), []);
+});
+
 test('Metadata follows CMS revisions and route changes without creating duplicate tags', async () => {
   const savedDocument = globalThis.document;
   const tags = [{ attributes: { name: 'description', content: 'Old' }, setAttribute(key, value) { this.attributes[key] = value; } }];
