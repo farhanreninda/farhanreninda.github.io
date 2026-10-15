@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-15",
+  "environment": "Local production build with gzip; default Lighthouse mobile throttling and desktop preset. Not post-deployment Google PageSpeed results.",
+  "sourceReport": "https://pagespeed.web.dev/analysis/https-farhanreninda-my-id/pxdutcna4k?hl=id&form_factor=mobile",
+  "baseline": {
+    "time": "2026-10-15T04:06:17.920Z",
+    "url": "http://127.0.0.1:4174/",
+    "lighthouse": "13.5.0",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "metrics": {
+      "first-contentful-paint": 1361.324,
+      "largest-contentful-paint": 1857.986,
+      "total-blocking-time": 16,
+      "cumulative-layout-shift": 0,
+      "speed-index": 1361.324
+    }
+  },
+  "mobile": [
+    {
+      "time": "2026-10-15T04:07:41.489Z",
+      "url": "http://127.0.0.1:4174/",
+      "lighthouse": "13.5.0",
+      "scores": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 1358.9542,
+        "largest-contentful-paint": 1703.9313,
+        "total-blocking-time": 30.999999999999886,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1358.9542
+      }
+    },
+    {
+      "time": "2026-10-15T04:08:29.834Z",
+      "url": "http://127.0.0.1:4174/",
+      "lighthouse": "13.5.0",
+      "scores": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 1361.1928,
+        "largest-contentful-paint": 1710.2892000000002,
+        "total-blocking-time": 37,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1361.1928
+      }
+    }
+  ],
+  "desktop": {
+    "time": "2026-10-15T04:09:33.625Z",
+    "url": "http://127.0.0.1:4174/",
+    "lighthouse": "13.5.0",
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "metrics": {
+      "first-contentful-paint": 336.3078,
+      "largest-contentful-paint": 438.4617,
+      "total-blocking-time": 0,
+      "cumulative-layout-shift": 0,
+      "speed-index": 336.3078
+    }
+  },
+  "light": {
+    "time": "2026-10-15T04:16:02.892Z",
+    "url": "http://127.0.0.1:4174/",
+    "lighthouse": "13.5.0",
+    "benchmarkIndex": 2546,
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "metrics": {
+      "first-contentful-paint": 1358.9916,
+      "largest-contentful-paint": 1708.4874,
+      "total-blocking-time": 40,
+      "cumulative-layout-shift": 0,
+      "speed-index": 1358.9916
+    },
+    "chromeFlags": "--headless --disable-gpu --blink-settings=preferredColorScheme=1"
+  },
+  "supplementalRuns": {
+    "note": "Theme-query runs occurred with a much lower host CPU benchmark (850.5 and 1328 versus roughly 2400-2500). Retained for transparency; cannot guarantee 100 under arbitrary CPU load.",
+    "runs": [
+      {
+        "time": "2026-10-15T04:12:19.169Z",
+        "url": "http://127.0.0.1:4174/?theme=light",
+        "lighthouse": "13.5.0",
+        "benchmarkIndex": 850.5,
+        "scores": {
+          "performance": 0.92,
+          "accessibility": 1,
+          "best-practices": 1,
+          "seo": 1,
+          "agentic-browsing": 1
+        },
+        "metrics": {
+          "first-contentful-paint": 1541.312,
+          "largest-contentful-paint": 1982.9679999999998,
+          "total-blocking-time": 298,
+          "cumulative-layout-shift": 0,
+          "speed-index": 1843.0216587388895
+        }
+      },
+      {
+        "time": "2026-10-15T04:14:55.482Z",
+        "url": "http://127.0.0.1:4174/?theme=light",
+        "lighthouse": "13.5.0",
+        "benchmarkIndex": 1328,
+        "scores": {
+          "performance": 0.95,
+          "accessibility": 1,
+          "best-practices": 1,
+          "seo": 1,
+          "agentic-browsing": 1
+        },
+        "metrics": {
+          "first-contentful-paint": 1116.78,
+          "largest-contentful-paint": 1995.67,
+          "total-blocking-time": 233,
+          "cumulative-layout-shift": 0,
+          "speed-index": 1924.58770797195
+        }
+      }
+    ]
+  }
+}

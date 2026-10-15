@@ -10,13 +10,21 @@ export default defineConfig({
     apply: 'build',
     transformIndexHtml: {
       order: 'post',
-      handler(_html, context) {
-        return Object.values(context.bundle ?? {})
+      handler(html, context) {
+        const assets = Object.values(context.bundle ?? {});
+        const entryCss = assets.find(asset => asset.type === 'asset' && /^assets\/index-.*\.css$/.test(asset.fileName));
+        const tags = assets
           .filter(asset => /^assets\/HomeView-.*\.(js|css)$/.test(asset.fileName))
           .map(asset => ({ tag: 'link', attrs: {
             rel: asset.fileName.endsWith('.js') ? 'modulepreload' : 'stylesheet',
             href: '/' + asset.fileName,
           } }));
+        if (entryCss?.type !== 'asset') return tags;
+        // Inline the small entry stylesheet to avoid a render-blocking request.
+        return {
+          html: html.replace(/<link\b[^>]*href="\/assets\/index-[^"]+\.css"[^>]*>/, ''),
+          tags: [...tags, { tag: 'style', children: String(entryCss.source), injectTo: 'head' as const }],
+        };
       },
     },
     async closeBundle() {

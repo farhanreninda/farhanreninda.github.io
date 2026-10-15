@@ -1,5 +1,7 @@
 # Pemeriksaan PageSpeed 2026-10-14
 
+Pemeriksaan lanjutan dengan hasil mobile 100: [2026-10-15](follow-up-2026-10-15.md).
+
 Branch: `bugfix/fix-pagespeed`, sesuai persetujuan pengguna mengganti prefix `codex/` menjadi `bugfix/`.
 
 ## Hasil
