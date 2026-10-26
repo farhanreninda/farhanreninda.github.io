@@ -1,5 +1,13 @@
 [
   {
+    "id": "b75fc090-11a4-4019-8dfc-2c8017bef2d7",
+    "name": "cover.jpg",
+    "url": "/media/b75fc090-11a4-4019-8dfc-2c8017bef2d7.jpg",
+    "mime": "image/jpeg",
+    "size": 1684946,
+    "source": "upload"
+  },
+  {
     "id": "759fe035-da05-481d-be10-b428a10724c8",
     "name": "GarasiKu-promosi.mp4",
     "url": "/media/759fe035-da05-481d-be10-b428a10724c8.mp4",
