@@ -398,6 +398,34 @@
               "Web"
             ],
             "thumbnail": "/projects/humanity.jpg"
+          },
+          {
+            "name": "DashTConnect Application",
+            "category": "Android Application",
+            "badge": "Android",
+            "period": "Oktober 2026",
+            "description": "DashTConnect adalah aplikasi Android sebagai receiver CarPlay untuk menghubungkan iPhone ke layar mobil melalui T-Link. Bluetooth menyiapkan sambungan, sedangkan Wi-Fi lokal membawa gambar dan audio dengan koneksi internet tetap digunakan di iPhone.\n\nAplikasi mendukung tampilan CarPlay layar penuh, navigasi, musik, dan kontrol sentuh. Tombol mengambang dapat digeser dan menempel ke tepi terdekat, memudar setelah tiga detik, serta kembali ke posisi awal setelah sepuluh detik tanpa interaksi. Pintasannya menyediakan pengaturan kecerahan dan penghentian sesi.\n\nFitur lainnya mencakup tema terang, gelap, atau mengikuti perangkat, layout portrait dan landscape, tutorial koneksi empat langkah, pintasan Wi-Fi dan Bluetooth, bantuan koneksi, serta uji tampilan dengan penghitung sentuhan. Informasi perangkat menampilkan model, versi Android, jaringan, suhu baterai, daya eksternal, dan detail hardware.",
+            "thumbnail": "/media/b75fc090-11a4-4019-8dfc-2c8017bef2d7.jpg",
+            "images": [
+              "/media/8d216170-d8c6-4085-bb66-a6bd6bd6e9ad.jpg",
+              "/media/fcdbaabb-6fbc-42e6-aa76-a1967609966f.jpg",
+              "/media/47943b0c-0bf3-4f74-8d9b-cc77ef5444c1.jpg",
+              "/media/8b4b4df1-fae3-4d19-b003-0ac471ef47b0.jpg",
+              "/media/fa06297f-0a3a-4e1e-bcce-532cda0c4a7a.jpg",
+              "/media/0ef75fef-7a08-4315-9066-903e7f0119f4.jpg"
+            ],
+            "tech": [
+              "Flutter",
+              "Dart",
+              "Kotlin",
+              "Material 3",
+              "Platform Channels",
+              "Bluetooth",
+              "Wi-Fi Direct",
+              "MediaCodec",
+              "AudioTrack"
+            ],
+            "link": "https://farhanreninda.my.id/dashtconnect/"
           }
         ],
         "certificates": [
@@ -1147,5 +1175,5 @@
     ],
     "activeThemeId": "natural"
   },
-  "revision": 10
+  "revision": 11
 }
