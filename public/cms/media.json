@@ -1,5 +1,13 @@
 [
   {
+    "id": "fcdbaabb-6fbc-42e6-aa76-a1967609966f",
+    "name": "2.jpg",
+    "url": "/media/fcdbaabb-6fbc-42e6-aa76-a1967609966f.jpg",
+    "mime": "image/jpeg",
+    "size": 1616709,
+    "source": "upload"
+  },
+  {
     "id": "b75fc090-11a4-4019-8dfc-2c8017bef2d7",
     "name": "cover.jpg",
     "url": "/media/b75fc090-11a4-4019-8dfc-2c8017bef2d7.jpg",
