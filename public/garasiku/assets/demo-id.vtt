@@ -1,0 +1,121 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.171
+Kenali GarasiKu.
+
+00:00:01.171 --> 00:00:10.250
+Aplikasi untuk mengelola kendaraan, mencatat perawatan, mengatur pengingat, dan melihat biaya kepemilikan dalam satu tempat.
+
+00:00:10.250 --> 00:00:16.268
+Dari beranda, lihat kendaraan aktif, kilometer terkini, dan perawatan berikutnya.
+
+00:00:16.268 --> 00:00:21.320
+Akses cepat membantu Anda mencatat servis atau memperbarui odometer.
+
+00:00:21.320 --> 00:00:23.761
+Simpan mobil dan motor di garasi.
+
+00:00:23.761 --> 00:00:27.682
+Lengkapi merek, model, identitas, dan spesifikasinya.
+
+00:00:27.682 --> 00:00:35.820
+Pilih kendaraan aktif, atau sembunyikan kendaraan yang sudah tidak digunakan sambil mempertahankan catatannya.
+
+00:00:35.820 --> 00:00:41.177
+Catatan kepemilikan memisahkan identitas, pembelian, dan aksesori.
+
+00:00:41.177 --> 00:00:45.560
+Simpan harga, diskon, dealer, serta tanggal pembelian.
+
+00:00:45.560 --> 00:00:53.270
+Tambahkan aksesori, harga, dan status pemasangannya agar biaya awal kendaraan mudah ditelusuri.
+
+00:00:53.270 --> 00:00:57.618
+Telusuri riwayat menggunakan pencarian dan filter aktivitas.
+
+00:00:57.618 --> 00:01:04.212
+Setiap catatan menyimpan tanggal, kilometer, lokasi, biaya, serta komponen yang dikerjakan.
+
+00:01:04.212 --> 00:01:09.140
+Buka detailnya saat Anda membutuhkan informasi perawatan sebelumnya.
+
+00:01:09.140 --> 00:01:14.764
+Catat servis, ganti oli, perbaikan, pemasangan aksesori, atau aktivitas lainnya.
+
+00:01:14.764 --> 00:01:22.990
+Dalam contoh ini, penggantian oli senilai tujuh puluh lima ribu rupiah tersimpan dan langsung masuk ke catatan biaya.
+
+00:01:22.990 --> 00:01:27.910
+Jadwal menampilkan target perawatan berdasarkan komponen dan riwayatnya.
+
+00:01:27.910 --> 00:01:31.668
+Gunakan interval kilometer atau waktu sesuai kebutuhan.
+
+00:01:31.668 --> 00:01:38.570
+Untuk PCX seratus enam puluh K satu Z, tersedia acuan perawatan; interval pribadi juga dapat dipilih.
+
+00:01:38.570 --> 00:01:45.172
+Buat pengingat untuk servis, oli, pajak, STNK, asuransi, atau kebutuhan lainnya.
+
+00:01:45.172 --> 00:01:48.391
+Tetapkan tanggal atau kilometer target.
+
+00:01:48.391 --> 00:01:54.250
+Pada contoh ini, interval oli pribadi diatur setiap dua ribu kilometer.
+
+00:01:54.250 --> 00:01:58.294
+Buku biaya memisahkan pembelian, aksesori, dan perawatan.
+
+00:01:58.294 --> 00:02:04.182
+Filter kendaraan serta periode, lalu lihat ringkasan bulanan dan grafik enam bulan.
+
+00:02:04.182 --> 00:02:10.000
+Catatan berbiaya membantu Anda menelusuri pengeluaran sampai ke aktivitas asalnya.
+
+00:02:10.000 --> 00:02:13.073
+Perbarui odometer setelah kendaraan digunakan.
+
+00:02:13.073 --> 00:02:16.948
+Kilometer dicatat secara manual dan tidak boleh berkurang.
+
+00:02:16.948 --> 00:02:22.360
+Data terbaru membantu aplikasi memantau jarak menuju target perawatan berikutnya.
+
+00:02:22.360 --> 00:02:25.059
+Sesuaikan nama pemilik melalui profil.
+
+00:02:25.059 --> 00:02:28.469
+Pilih tema terang, gelap, atau mengikuti sistem.
+
+00:02:28.469 --> 00:02:36.070
+Pengaturan disimpan di perangkat, sehingga tampilan tetap sesuai pilihan Anda saat aplikasi dibuka kembali.
+
+00:02:36.070 --> 00:02:39.427
+Atur berapa hari sebelumnya pengingat mulai muncul.
+
+00:02:39.427 --> 00:02:42.849
+Periksa izin dan kanal, lalu gunakan uji notifikasi.
+
+00:02:42.849 --> 00:02:52.130
+Pemeriksaan berjalan berkala; pengingat kilometer mengikuti odometer yang Anda perbarui, dan pengiriman dapat dipengaruhi pengaturan Android.
+
+00:02:52.130 --> 00:02:54.651
+Data GarasiKu tersimpan secara lokal.
+
+00:02:54.651 --> 00:02:59.012
+Ekspor berkas JSON sebagai cadangan, lalu impor saat diperlukan.
+
+00:02:59.012 --> 00:03:06.370
+Periksa pratinjau terlebih dahulu, karena pemulihan akan mengganti data yang ada setelah Anda mengonfirmasi.
+
+00:03:06.370 --> 00:03:11.542
+Halaman tentang aplikasi menampilkan versi, informasi build, serta penyimpanan.
+
+00:03:11.542 --> 00:03:17.630
+Anda juga dapat membuka informasi aplikasi Android untuk memeriksa pengaturan pada perangkat.
+
+00:03:17.630 --> 00:03:18.355
+GarasiKu.
+
+00:03:18.355 --> 00:03:25.600
+Mulai dari satu catatan perawatan, dan bangun riwayat kendaraan yang mudah dibaca kembali.

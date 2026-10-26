@@ -43,6 +43,7 @@ Ketika user mengetik **"Close Session"**, agent **WAJIB** segera menulis final s
 
 | Tanggal | Task | Keputusan | Alasan |
 |---------|------|-----------|--------|
+| 2026-10-26 | Landing page GarasiKu | HTML mandiri pada public/garasiku dengan aset aplikasi asli, video, caption, pilihan fitur dan tema; branch codex/garasiku-landing | Memenuhi alamat /garasiku pada domain dan hosting existing tanpa mengubah DNS atau shell portfolio; publikasi menunggu persetujuan commit sesuai preferensi tersimpan |
 | 2026-10-15 | PageSpeed mobile lanjutan | Sisipkan CSS entry kecil ke HTML saat build; preload HomeView dan tema awal dipertahankan; tunggu persetujuan sebelum commit/push | Laporan produksi98 terutama kehilangan poin Speed Index; lokal99 menjadi100 pada dua audit mobile, desktop tetap100 dan sembilan tes lulus |
 | 2026-10-14 | README portfolio pribadi | Ganti panduan teknis dengan profil, keahlian, proyek pilihan, CV dan kontak; publikasikan hanya dokumentasi ke main melalui checkout terpisah | Pengguna meminta README GitHub berfokus pada portfolio; pekerjaan PageSpeed di bugfix/fix-pagespeed belum dipublikasikan |
 | 2026-10-14 | Perbaikan PageSpeed | Branch bugfix/fix-pagespeed; overlay loading, route/data paralel, subset font dan WebP, render offscreen adaptif, preload HomeView, transport admin lazy | Audit produksi mobile58/desktop94 menunjukkan CLS0.15, font ikon besar, gambar terlalu besar dan main-thread blocking; lokal mencapai mobile99/desktop100, target mobile100 dan audit produksi masih pending |
@@ -1940,3 +1941,34 @@ Ringkasan perubahan
 **Technical Debt:** skor dipengaruhi kondisi pengukuran; hasil produksi98-100 dan hasil lokal92-100 saat benchmark CPU berubah tetap tercatat; tidak menjamin setiap run100. Chrome headless153 hanya di .cache, tanpa dependency proyek baru.
 **Pending Tasks:** tidak ada untuk permintaan commit/push/checkout/merge/push dan verifikasi100. Sesi berakhir pada main; kode bersih, laporan aktual tersedia di docs/performance/follow-up-2026-10-15.md dan results-2026-10-15.json.
 **Known Context Update:** target semua kategori100 telah terlihat di Google PageSpeed produksi pada https://pagespeed.web.dev/analysis/https-farhanreninda-my-id/pdkwdv3lgk ; perubahan kode final hanya hook CSS entry dan regresinya. Prefix branch tetap bugfix/; meminta persetujuan sebelum commit perubahan baru sesuai arahan pengguna.
+
+### Session 2026-10-26 - Landing page GarasiKu siap ditinjau
+**Dikerjakan:** membuat public/garasiku/index.html, CSS, JavaScript, WebP screenshot asli data demo, ikon launcher, font reuse, video promosi dan subtitle VTT. Isi meliputi lima halaman utama, pengingat, data lokal/backup, FAQ dan kontak pengembang. Dokumen integrasi/pemeriksaan tersedia di docs/garasiku/README.md. Tidak mengubah source Vue, data CMS atau CNAME.
+**Validasi:** build/type-check dan10 tes lulus; Chrome lokal320/390/768/1024/1440 tanpa overflow, lima panel, deep link, tema tersimpan, FAQ, video H.2641920x1080 berdurasi205,74detik, caption dan fallback tanpa JavaScript. Console bersih; gambar desktop/mobile light/dark diperiksa. Revisi memperbaiki ukuran grid pada320px dan menghapus animasi pembuka yang menyembunyikan konten dalam screenshot. Frame loading/transisi diganti dengan frame aplikasi stabil. Kontras memenuhi4,5:1.
+**Keputusan Penting:** alamat tujuan /garasiku memakai folder static GitHub Pages; domain tidak perlu DNS baru. Konten produk mandiri, belum terhubung CMS. Tautan APK/Play Store tidak dibuat karena rilis publik belum terverifikasi; CTA demo dan email berfungsi. Situs produksi /garasiku masih404 sebelum publikasi. Perubahan memori lama yang sudah ada dipertahankan.
+**Technical Debt:** belum diuji perangkat fisik/Safari/Firefox atau PageSpeed produksi. Screenshot/video sesuai rekaman8Oktober2026, subtitle memakai estimasi waktu per kalimat. Jika versi aplikasi berubah, rekaman perlu diperbarui.
+**Pending Tasks:** menunggu persetujuan pengguna sebelum commit/push/merge/main/deploy sesuai preferensi tersimpan. Semua pekerjaan implementasi dan pemeriksaan lokal sudah selesai di branch codex/garasiku-landing. Preview lokal pada port4186 tersedia untuk review selama tindak lanjut.
+
+
+### Tindak lanjut 2026-10-26 - Tautan kanan atas GarasiKu
+Pengguna meminta tombol kanan atas langsung ke GitHub. CTA header kini GitHub GarasiKu, menuju remote repository aplikasi https://github.com/farhanreninda/vehicle-maintenance-pro di tab baru dengan noopener/noreferrer. Kontak bagian bawah tetap tersedia. Build dan tes tautan/aset diperiksa ulang; belum commit/push/deploy.
+
+
+### Tindak lanjut 2026-10-26 - Email kontak GarasiKu
+Pengguna menentukan email kontak landing page: farhanhan0456@gmail.com. Tombol Tanyakan tentang GarasiKu kini membuka mailto alamat tersebut dengan subjek Informasi aplikasi GarasiKu. Perubahan hanya kontak produk, bukan email profil/CMS portfolio. Belum commit/push/deploy.
+
+
+### Tindak lanjut 2026-10-26 - CTA penutup ke GitHub
+Pengguna melaporkan tombol email tidak bisa diklik dan memilih langsung ke GitHub. CTA penutup diganti menjadi Lihat GarasiKu di GitHub, menuju https://github.com/farhanreninda/vehicle-maintenance-pro di tab baru dengan noopener/noreferrer. Teks pendamping menyesuaikan tujuan kode sumber/perkembangan aplikasi. Tidak menyimpulkan penyebab email gagal; mailto tidak lagi dipakai pada CTA ini. Belum commit/push/deploy.
+
+Pemeriksaan klik CTA membuka tab GitHub dan menemukan redirect repository lama ke https://github.com/farhanreninda/GarasiKu. Kedua tautan landing page diperbarui ke URL akhir tersebut.
+
+
+### Tindak lanjut 2026-10-26 - Redesign header dan footer GarasiKu
+Pengguna kurang cocok dengan header/footer. Header menjadi bilah inset berbingkai mengikuti lebar konten, logo kiri, navigasi tengah, tema dan GitHub kanan. Mobile menggunakan menu collapse dengan aria-expanded/controls, menutup saat navigasi dan Escape, serta mengembalikan fokus saat Escape. GitHub tetap terlihat di mobile; target aksi44px, logo saja pada layar terkecil. Footer navy memiliki identitas aplikasi, navigasi, informasi pengembang, GitHub/portfolio, dan kembali ke atas. Scope hanya shell landing page; CTA GitHub dan konten utama dipertahankan.
+Validasi: build dan tes aset/anchor/caption lulus; browser320/390/768/1024/1440 tanpa overflow, tema/five panels/video/fallback tetap berfungsi, menu mobile diperiksa buka/tutup/navigasi/Escape. Screenshot header-new/footer-new/header-mobile-new/footer-mobile-new diperiksa di .cache/garasiku. Belum commit/push/deploy; menunggu review.
+
+
+### Session 2026-10-26 - Persetujuan publikasi landing page GarasiKu
+Pengguna meminta langsung push dan menggunakan domain farhanreninda.my.id/garasiku melalui GitHub Pages. Persetujuan mencakup commit dan push landing page serta pembaruan main agar workflow existing menerbitkannya. Origin/main dan HEAD sama-sama8bf746e saat fetch. Perubahan mencakup public/garasiku, tes dan dokumentasi landing page, serta memori tugas ini. Catatan konsultasi CarPlay yang sudah ada dan tidak terkait tetap lokal, tidak disertakan dalam commit.
+Validasi akhir: npm test, npm run build, pemeriksaan entry dist/garasiku/index.html serta CNAME sebelum push. Selanjutnya memantau workflow dan memeriksa alamat HTTPS produksi, aset dan video.

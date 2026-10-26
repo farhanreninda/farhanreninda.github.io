@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <title>GarasiKu | Catatan kendaraan dan perawatan dalam satu aplikasi</title>
+  <meta name="description" content="Kenali GarasiKu, aplikasi Android untuk mengelola mobil dan motor, riwayat servis, pengingat perawatan, serta biaya kendaraan. Lihat fitur dan demo aplikasinya.">
+  <link rel="canonical" href="https://farhanreninda.my.id/garasiku/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="GarasiKu | Rawat kendaraan, simpan riwayatnya">
+  <meta property="og:description" content="Garasi, servis, pengingat, dan biaya kendaraan. Kenali fitur GarasiKu dan tonton demo aplikasinya.">
+  <meta property="og:url" content="https://farhanreninda.my.id/garasiku/">
+  <meta property="og:image" content="https://farhanreninda.my.id/garasiku/assets/demo-poster.webp">
+  <meta property="og:image:alt" content="Tampilan aplikasi GarasiKu dengan ringkasan kendaraan dan perawatan">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/garasiku/assets/icon.svg" type="image/svg+xml">
+  <link rel="preload" href="/garasiku/assets/geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/garasiku/style.css">
+  <script src="/garasiku/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#utama">Langsung ke konten</a>
+  <header class="header">
+    <div class="header-inner wrap">
+      <a class="brand" href="#utama" aria-label="GarasiKu, kembali ke awal"><img src="/garasiku/assets/icon.svg" alt="" width="42" height="42"><span>Garasi<span class="brand-ku">Ku</span></span></a>
+      <nav id="primary-nav" aria-label="Navigasi utama"><a href="#fitur">Fitur aplikasi</a><a href="#demo">Video demo</a><a href="#pertanyaan">Tanya jawab</a></nav>
+      <div class="header-actions"><button class="theme-toggle" type="button" aria-label="Ganti tema" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg></button><a class="button small header-cta" href="https://github.com/farhanreninda/GarasiKu" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Buka menu navigasi" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+    </div>
+  </header>
+
+  <main id="utama">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="overline"><span class="android-dot" aria-hidden="true"></span>Aplikasi Android untuk mobil & motor</p>
+        <h1 id="hero-title">Rawat kendaraan.<br>Simpan <span class="accent-word">riwayatnya.</span></h1>
+        <p class="intro">Kapan terakhir ganti oli? Berapa biaya servis bulan ini? Simpan jawabannya di GarasiKu, bersama catatan kendaraanmu.</p>
+        <div class="hero-actions"><a class="button" href="#demo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4Z"/></svg>Tonton demo aplikasi</a><a class="text-link" href="#fitur">Lihat fitur GarasiKu <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-note">Dibuat untuk catatan harian kendaraanmu.<br>Data tersimpan lokal di perangkat.</p>
+      </div>
+      <div class="hero-visual" aria-label="Pratinjau halaman Beranda dan Servis GarasiKu">
+        <div class="hero-ground" aria-hidden="true"><span>Catatan kecil.<br>Riwayat yang berarti.</span></div>
+        <div class="phone hero-phone-back"><img src="/garasiku/assets/servis.webp" alt="Riwayat perawatan GarasiKu, termasuk catatan ganti oli dan biayanya" width="720" height="1600" decoding="async"></div>
+        <div class="phone hero-phone-front"><img src="/garasiku/assets/beranda.webp" alt="Beranda GarasiKu dengan kendaraan aktif, odometer, dan akses cepat perawatan" width="720" height="1600" fetchpriority="high"></div>
+        <span class="visual-caption">Tampilan asli aplikasi · data demo</span>
+      </div>
+    </section>
+
+    <div class="principles wrap" aria-label="Ringkasan aplikasi"><p><strong>Mobil & motor</strong><span>Dalam satu garasi</span></p><p><strong>Riwayat & jadwal</strong><span>Perawatan lebih mudah ditelusuri</span></p><p><strong>Catatan biaya</strong><span>Pembelian sampai perawatan</span></p><p><strong>Data lokal</strong><span>Cadangan JSON milikmu</span></p></div>
+
+    <section id="fitur" class="feature-section section-space" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="overline">Kenali aplikasinya</p><h2 id="features-title">Satu tempat untuk<br>cerita kendaraanmu.</h2><p>Pilih halaman untuk melihat apa yang bisa kamu catat dan pantau.</p></div>
+        <div class="feature-picker" aria-label="Pilih fitur GarasiKu">
+          <a class="feature-choice active" href="#panel-beranda" data-feature="beranda" aria-current="true">Beranda</a><a class="feature-choice" href="#panel-garasi" data-feature="garasi">Garasi</a><a class="feature-choice" href="#panel-servis" data-feature="servis">Servis</a><a class="feature-choice" href="#panel-biaya" data-feature="biaya">Biaya</a><a class="feature-choice" href="#panel-profil" data-feature="profil">Profil</a>
+        </div>
+        <div class="feature-stage">
+          <article id="panel-beranda" class="feature-panel">
+            <div class="feature-copy"><span class="feature-number">01 / Beranda</span><h3>Mulai dari kendaraan<br>yang kamu pakai.</h3><p>Lihat kendaraan aktif, odometer, dan perawatan berikutnya. Akses pencatatan servis atau pembaruan kilometer langsung dari beranda.</p><ul class="check-list"><li>Ringkasan kendaraan dalam satu tampilan</li><li>Akses cepat untuk catat perawatan</li><li>Pengingat dan jadwal terdekat</li></ul><a href="#pengingat" class="text-link">Kenali jadwal dan pengingat <span aria-hidden="true">↓</span></a></div>
+            <figure><div class="phone feature-phone"><img src="/garasiku/assets/beranda.webp" width="720" height="1600" alt="Beranda: Honda PCX 160 dengan odometer, servis berikutnya, dan tombol catat perawatan" loading="lazy"></div><figcaption>Beranda · contoh data kendaraan</figcaption></figure>
+          </article>
+          <article id="panel-garasi" class="feature-panel">
+            <div class="feature-copy"><span class="feature-number">02 / Garasi</span><h3>Setiap kendaraan<br>punya catatannya.</h3><p>Tambahkan mobil dan motor, lengkapi identitas serta spesifikasinya, lalu pilih kendaraan yang sedang dipantau. Catatan pembelian dan aksesori ikut tersimpan.</p><ul class="check-list"><li>Merek, model, tahun, dan identitas kendaraan</li><li>Harga pembelian, diskon, serta dealer</li><li>Aksesori, biaya, dan status pemasangannya</li><li>Sembunyikan kendaraan sambil menyimpan riwayatnya</li></ul></div>
+            <figure><div class="phone feature-phone"><img src="/garasiku/assets/garasi.webp" width="720" height="1600" alt="Garasi dengan filter mobil dan motor, kendaraan aktif, odometer, serta pembelian dan aksesori" loading="lazy"></div><figcaption>Garasi · contoh satu kendaraan aktif</figcaption></figure>
+          </article>
+          <article id="panel-servis" class="feature-panel">
+            <div class="feature-copy"><span class="feature-number">03 / Servis</span><h3>Ingat pekerjaannya.<br>Catat detailnya.</h3><p>Simpan servis rutin, ganti oli, perbaikan, atau aktivitas lainnya. Cari kembali catatan saat ingin tahu kapan komponen terakhir dirawat.</p><ul class="check-list"><li>Tanggal, kilometer, bengkel, dan biaya</li><li>Komponen serta tindakan yang dikerjakan</li><li>Catatan tambahan dan interval pribadi</li><li>Pencarian dan filter jenis aktivitas</li></ul></div>
+            <figure><div class="phone feature-phone"><img src="/garasiku/assets/servis.webp" width="720" height="1600" alt="Riwayat servis dengan catatan ganti oli demo Rp75.000 dan rincian pekerjaan" loading="lazy"></div><figcaption>Servis · riwayat pekerjaan kendaraan</figcaption></figure>
+          </article>
+          <article id="panel-biaya" class="feature-panel">
+            <div class="feature-copy"><span class="feature-number">04 / Biaya</span><h3>Tahu ke mana<br>biaya dikeluarkan.</h3><p>Pisahkan biaya pembelian, aksesori, dan perawatan. Lihat pengeluaran bulanan dan tren enam bulan untuk memahami biaya kepemilikan kendaraan.</p><ul class="check-list"><li>Ringkasan biaya per kendaraan atau seluruh garasi</li><li>Pilihan bulan dan rincian aktivitas berbiaya</li><li>Grafik untuk membaca perubahan pengeluaran</li></ul></div>
+            <figure><div class="phone feature-phone"><img src="/garasiku/assets/biaya.webp" width="720" height="1600" alt="Buku biaya GarasiKu dengan total pembelian, aksesori, servis, dan pengeluaran bulanan" loading="lazy"></div><figcaption>Biaya · angka berasal dari data demo</figcaption></figure>
+          </article>
+          <article id="panel-profil" class="feature-panel">
+            <div class="feature-copy"><span class="feature-number">05 / Profil</span><h3>Sesuaikan dengan<br>cara kamu merawat.</h3><p>Ubah nama pemilik, perbarui odometer, serta atur tampilan dan pengingat. Simpan salinan catatan melalui ekspor data.</p><ul class="check-list"><li>Tema terang, gelap, atau mengikuti sistem</li><li>Odometer manual yang tidak boleh berkurang</li><li>Pengaturan izin dan tes notifikasi</li><li>Ekspor dan impor cadangan JSON</li></ul></div>
+            <figure><div class="phone feature-phone"><img src="/garasiku/assets/profil.webp" width="720" height="1600" alt="Profil dan pengaturan dengan kendaraan yang dipantau, tema, serta pengingat" loading="lazy"></div><figcaption>Profil · pengaturan tersimpan di perangkat</figcaption></figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pengingat" class="maintenance wrap section-space" aria-labelledby="maintenance-title">
+      <div class="reminder-visual"><div class="phone reminder-phone"><img src="/garasiku/assets/pengingat.webp" width="720" height="1600" alt="Form pengingat ganti oli dengan interval pribadi 2.000 kilometer dan target odometer" loading="lazy"></div><p class="reminder-caption">Interval mengikuti kebutuhan kendaraanmu.</p></div>
+      <div class="maintenance-copy"><p class="overline">Perawatan berikutnya</p><h2 id="maintenance-title">Bukan cuma mencatat<br>yang sudah lewat.</h2><p class="section-intro">Gunakan riwayat untuk memantau target perawatan berikutnya, berdasarkan tanggal atau kilometer.</p><div class="detail-row"><span>01</span><div><h3>Jadwal per komponen</h3><p>Lihat target oli dan komponen lain dari interval serta catatan terakhir. Atur interval pribadi sesuai kebutuhan.</p></div></div><div class="detail-row"><span>02</span><div><h3>Pengingat untuk kewajiban kendaraan</h3><p>Atur servis, ganti oli, pajak, STNK, asuransi, atau pengingat lainnya. Pilih berapa hari sebelumnya notifikasi mulai muncul.</p></div></div><div class="detail-row"><span>03</span><div><h3>Odometer yang terus diperbarui</h3><p>Masukkan kilometer terbaru secara manual agar target jarak mengikuti pemakaian kendaraanmu.</p></div></div><p class="fine-print">Notifikasi diperiksa berkala dan waktunya dapat dipengaruhi pengaturan Android. Acuan bawaan perawatan tersedia untuk Honda PCX 160 K1Z (2021–2024); kendaraan lain memakai interval pilihan pengguna.</p></div>
+    </section>
+
+    <section id="demo" class="demo-section section-space" aria-labelledby="demo-title"><div class="wrap"><div class="demo-heading"><div><p class="overline">Lihat langsung</p><h2 id="demo-title">GarasiKu, dalam penggunaan.</h2></div><p>Dari mencatat ganti oli sampai membaca biaya kendaraan. Tonton alurnya di aplikasi.</p></div><video id="demo-video" controls playsinline preload="none" poster="/garasiku/assets/demo-poster.webp" width="1920" height="1080" aria-label="Video promosi dan penjelasan fitur GarasiKu"><source src="/garasiku/assets/demo.mp4" type="video/mp4"><track kind="captions" src="/garasiku/assets/demo-id.vtt" srclang="id" label="Bahasa Indonesia"><p>Browser kamu belum mendukung video. <a href="/garasiku/assets/demo.mp4">Unduh video demo GarasiKu</a>.</p></video><p class="video-caption">3 menit 26 detik · Narasi bahasa Indonesia · Rekaman emulator dengan data demo</p></div></section>
+
+    <section class="local-section wrap section-space" aria-labelledby="local-title"><div><p class="overline">Catatanmu, di perangkatmu</p><h2 id="local-title">Simpan lokal.<br>Cadangkan sendiri.</h2></div><div class="local-copy"><p>Catatan kendaraan tersimpan di perangkat. Ekspor berkas JSON untuk menyimpan salinan, lalu impor kembali ketika diperlukan.</p><p>Periksa pratinjau sebelum memulihkan cadangan. Impor akan mengganti data yang ada setelah kamu mengonfirmasi.</p><p class="fine-print">Sinkronisasi cloud belum tersedia. Simpan berkas cadangan di tempat yang kamu pilih.</p></div></section>
+
+    <section id="pertanyaan" class="faq-section wrap" aria-labelledby="faq-title"><div><p class="overline">Sebelum mencoba</p><h2 id="faq-title">Yang perlu<br>kamu tahu.</h2></div><div class="faq-list"><details><summary>Apakah GarasiKu untuk mobil dan motor?</summary><p>Ya. Kamu bisa menyimpan beberapa kendaraan, memilih kendaraan aktif, dan memisahkan catatan perawatannya. Identitas, pembelian, dan aksesori dicatat pada kendaraan masing-masing.</p></details><details><summary>Apakah kilometer terbaca otomatis?</summary><p>Belum. Odometer diperbarui secara manual. Nilai terbaru tidak boleh lebih rendah dari catatan sebelumnya dan digunakan untuk memantau target kilometer perawatan.</p></details><details><summary>Bagaimana jika ingin memindahkan data?</summary><p>Ekspor cadangan JSON dari Profil, simpan berkasnya, lalu impor di perangkat tujuan. Tinjau pratinjau karena pemulihan mengganti data yang sudah ada. Sinkronisasi antarperangkat secara otomatis belum tersedia.</p></details><details><summary>Apakah notifikasi muncul tepat pada jam tertentu?</summary><p>Pengingat diperiksa berkala, bukan alarm tepat waktu. Aktifkan izin dan kanal notifikasi, atur jarak hari pengingat, lalu gunakan tes notifikasi. Android dapat menunda pengiriman untuk menghemat baterai.</p></details><details><summary>Di mana saya bisa mendapatkan aplikasinya?</summary><p>Hubungi pengembang untuk menanyakan ketersediaan versi yang dapat dicoba. Tautan unduhan publik akan ditambahkan setelah versi rilis tersedia.</p></details></div></section>
+
+    <section id="kontak" class="contact-section wrap section-space"><div class="contact-panel"><img src="/garasiku/assets/icon.svg" alt="" width="64" height="64" loading="lazy"><h2>Mulai merapikan<br>catatan kendaraanmu.</h2><p>Lihat kode sumber dan perkembangan GarasiKu<br>di repository GitHub aplikasi ini.</p><a class="button" href="https://github.com/farhanreninda/GarasiKu" target="_blank" rel="noopener noreferrer">Lihat GarasiKu di GitHub <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-main wrap">
+      <div class="footer-identity"><a class="brand" href="#utama"><img src="/garasiku/assets/icon.svg" width="48" height="48" alt=""><span>GarasiKu</span></a><p>Tempat menyimpan riwayat<br>dan rencana perawatan kendaraanmu.</p></div>
+      <nav class="footer-nav" aria-label="Jelajahi GarasiKu"><h2>Kenali GarasiKu</h2><a href="#fitur">Fitur aplikasi</a><a href="#demo">Video demo</a><a href="#pertanyaan">Tanya jawab</a></nav>
+      <div class="footer-project"><h2>Proyek oleh Farhan Reninda</h2><p>Dibangun untuk membantu pemilik mobil dan motor merapikan catatan kendaraannya.</p><a href="https://github.com/farhanreninda/GarasiKu" target="_blank" rel="noopener noreferrer">Repository GitHub <span aria-hidden="true">↗</span></a><a href="/">Portfolio pengembang <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="footer-bottom wrap"><p>GarasiKu · Aplikasi Android</p><a href="#utama" class="back-top">Kembali ke atas <span aria-hidden="true">↑</span></a></div>
+  </footer>
+</body>
+</html>
